@@ -1,0 +1,27 @@
+{
+    "name": "ricardopedias/freep-console",
+    "type": "tool",
+    "description": "Camada para linha de comando do framework Freep.",
+    "keywords": ["framework", "freep", "tool", "console"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Console\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
