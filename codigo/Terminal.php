@@ -11,27 +11,41 @@ use Throwable;
 
 class Terminal
 {
-    private string $caminhoAplicacao;
+    private string $caminhoDaAplicacao;
 
     /** @var array<string> */
-    private array $listaDiretorios = [];
+    private array $listaDeDiretorios = [];
 
     private string $comandoExecutado = "nao";
 
-    public function __construct(string $caminhoAplicacao)
-    {
-        $this->caminhoAplicacao = realpath($caminhoAplicacao);
+    private string $modoDeUsar = "";
 
-        if ($this->caminhoAplicacao === false || is_dir($this->caminhoAplicacao) === false) {
+    public function __construct(string $caminhoDaAplicacao)
+    {
+        $caminhoAnalizado = realpath($caminhoDaAplicacao);
+
+        if ($caminhoAnalizado === false || is_dir($caminhoAnalizado) === false) {
             throw new InvalidArgumentException("O diretório de aplicação especificado não existe");
         }
+
+        $this->caminhoDaAplicacao = $caminhoAnalizado;
 
         $this->carregarComandosDe(__DIR__ . '/Comandos');
     }
 
-    public function caminhoAplicacao(): string
+    public function setarModoDeUsar(string $texto): void
     {
-        return $this->caminhoAplicacao;
+        $this->modoDeUsar = $texto;
+    }
+
+    public function modoDeUsar(): string
+    {
+        return $this->modoDeUsar;
+    }
+
+    public function caminhoDaAplicacao(): string
+    {
+        return $this->caminhoDaAplicacao;
     }
 
     public function carregarComandosDe(string $caminhoComandos): self
@@ -42,7 +56,7 @@ class Terminal
             throw new InvalidArgumentException("O diretórios especificado para comandos não existe");
         }
 
-        $this->listaDiretorios[] = $caminhoComandos;
+        $this->listaDeDiretorios[] = $caminhoComandos;
         return $this;
     }
 
@@ -59,8 +73,7 @@ class Terminal
             $argumentos[0] = "ajuda";
         }
 
-        $nomeComando          = array_shift($argumentos);
-        $quantidadeArgumentos = count($argumentos);
+        $nomeComando = array_shift($argumentos);
 
         ini_set("display_errors", "1");
 
@@ -72,25 +85,26 @@ class Terminal
         }
     }
 
-    public function obterListaComandos(): array
+    /** @return array<int,string> */
+    public function listaDeComandos(): array
     {
         $todosComandos = [];
 
-        foreach ($this->listaDiretorios as $path) {
-            $todosComandos = array_merge($todosComandos, $this->obterListaDiretorios($path));
+        foreach ($this->listaDeDiretorios as $path) {
+            $todosComandos = array_merge($todosComandos, $this->listaDeDiretorios($path));
         }
 
         return $todosComandos;
     }
 
     /**
-     * @param array<int,string> $argumentosDoComando
+     * @param array<int,string> $argumentos
      */
     private function executarComando(string $nome, array $argumentos): void
     {
-        $nomeComando = $this->normalizarNomeComando($nome);
+        $nomeComando = $this->normalizarNomeDoComando($nome);
 
-        $todosComandos = $this->obterListaComandos();
+        $todosComandos = $this->listaDeComandos();
 
         if ($nomeComando === "Ajuda") {
             (new Ajuda($this))->executar($argumentos);
@@ -99,17 +113,17 @@ class Terminal
         }
 
         foreach ($todosComandos as $arquivoComando) {
-            $nomeCompletoClasse = $this->interpretarNomeClasse($arquivoComando);
+            $nomeCompletoClasse = $this->interpretarNomeDaClasse($arquivoComando);
 
             if (class_exists($nomeCompletoClasse) === false) {
                 continue;
             }
 
             $objetoComando = (new $nomeCompletoClasse($this));
-            if ($nomeComando !== $this->normalizarNomeComando($objetoComando->nome())) {
+            if ($nomeComando !== $this->normalizarNomeDoComando($objetoComando->nome())) {
                 continue;
             }
-    
+
             $objetoComando->executar($argumentos);
             $this->comandoExecutado = $nomeCompletoClasse;
             return;
@@ -120,7 +134,7 @@ class Terminal
     }
 
     /** @return array<int,string> */
-    private function obterListaDiretorios(string $caminho): array
+    private function listaDeDiretorios(string $caminho): array
     {
         $caminhosContexto = array_diff(
             (array)scandir($caminho),
@@ -147,18 +161,18 @@ class Terminal
         throw new RuntimeException("Não é possível extrair o namespace do arquivo '{$umArquivo}'");
     }
 
-    private function extrairNomeClasse(string $arquivoComando): string
+    private function extrairNomeDaClasse(string $arquivoComando): string
     {
         return str_replace('.php', '', array_slice(explode("/", $arquivoComando), -1)[0]);
     }
 
-    public function interpretarNomeClasse(string $arquivoComando): string
+    public function interpretarNomeDaClasse(string $arquivoComando): string
     {
         return $this->extrairNamespace($arquivoComando)
-            . "\\" . $this->extrairNomeClasse($arquivoComando);
+            . "\\" . $this->extrairNomeDaClasse($arquivoComando);
     }
 
-    private function normalizarNomeComando(string $nomeKebabCase): string
+    private function normalizarNomeDoComando(string $nomeKebabCase): string
     {
         // make:user-controller -> [Make, User-controller]
         $kebabCase = array_map(

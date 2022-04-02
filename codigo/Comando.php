@@ -12,21 +12,17 @@ abstract class Comando
 
     private string $descricao = "Executar o comando 'sem-nome'";
 
+    private string $modoDeUsar = "";
+
     private Terminal $terminal;
 
-    /** @var array<int,Opcap> */
+    /** @var array<int,Opcao> */
     private array $opcoes = [];
 
-    /**
-     * O caminho principal é especificado aqui para que o comando executado possa
-     * encontrar a localização da aplicação na qual ele está acoplado.
-     * 
-     * @param string $caminhoAplicacao Caminho principal, compartilhado com todos os comandos
-     */
     public function __construct(Terminal $terminal)
     {
         $this->terminal = $terminal;
-        
+
         $this->adicionarOpcao(
             new Opcao('-a', '--ajuda', "Exibe a ajuda do comando", Opcao::OPCIONAL)
         );
@@ -51,6 +47,11 @@ abstract class Comando
         $this->descricao = $descricao;
     }
 
+    protected function setarModoDeUsar(string $descricao): void
+    {
+        $this->modoDeUsar = $descricao;
+    }
+
     protected function adicionarOpcao(Opcao $opcao): void
     {
         $this->opcoes[] = $opcao;
@@ -64,6 +65,11 @@ abstract class Comando
     public function descricao(): string
     {
         return $this->descricao;
+    }
+
+    public function modoDeUsar(): string
+    {
+        return $this->modoDeUsar;
     }
 
     /** @return array<int,Opcao> */
@@ -80,7 +86,7 @@ abstract class Comando
     public function executar(array $argumentosComando): void
     {
         $interpretador = new Interpretador($this->opcoes());
-        $argumentos = $interpretador->interpretarListaArgumentos($argumentosComando);
+        $argumentos = $interpretador->interpretarListaDeArgumentos($argumentosComando);
 
         if ($argumentos->opcao('-a') === '1') {
             $this->imprimirAjuda();
@@ -96,13 +102,14 @@ abstract class Comando
 
         $this->linha(" " . $this->descricao());
 
-        $this->imprimirSecao("Modo de usar:");
-
-        $this->linha(sprintf(" ./freep %s [opcoes]", $this->nome()));
+        if ($this->modoDeUsar() !== "") {
+            $this->imprimirSecao("Modo de usar:");
+            $this->linha($this->modoDeUsar());
+        }
 
         $this->imprimirSecao("Opções:");
 
-        foreach($this->opcoes() as $opcao) {
+        foreach ($this->opcoes() as $opcao) {
             $this->imprimirOpcao($opcao->notacaoCurta(), $opcao->notacaoLonga(), $opcao->descricao());
         }
     }
@@ -126,14 +133,14 @@ abstract class Comando
         $this->linha(sprintf($involucro, $argumento, $espacamento . $descricao));
     }
 
-    protected function obterTerminal(): Terminal
+    protected function terminal(): Terminal
     {
         return $this->terminal;
     }
 
-    protected function caminhoAplicacao(string $sufixo = ""): string
+    protected function caminhoDaAplicacao(string $sufixo = ""): string
     {
-        return $this->obterTerminal()->caminhoAplicacao() . "/" . trim($sufixo, "/");
+        return $this->terminal()->caminhoDaAplicacao() . "/" . trim($sufixo, "/");
     }
 
     protected function linha(string $texto): void
@@ -158,8 +165,8 @@ abstract class Comando
 
     private function imprimir(string $texto): void
     {
-        $fp = fopen('php://output', 'w');
-        fwrite($fp, $texto); // @phpstan-ignore-line
-        fclose($fp); // @phpstan-ignore-line
+        $recurso = fopen('php://output', 'w');
+        fwrite($recurso, $texto); // @phpstan-ignore-line
+        fclose($recurso); // @phpstan-ignore-line
     }
 }

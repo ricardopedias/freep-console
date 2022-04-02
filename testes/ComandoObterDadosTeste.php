@@ -9,6 +9,7 @@ use Freep\Console\Comando;
 use Freep\Console\Terminal;
 use PHPUnit\Framework\TestCase;
 
+/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class ComandoObterDadosTeste extends TestCase
 {
     private function fabricarTerminal(): Terminal
@@ -19,13 +20,14 @@ class ComandoObterDadosTeste extends TestCase
     /** @test */
     public function obterCaminhoRaiz(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {
-                echo $this->caminhoAplicacao();
+                echo $this->caminhoDaAplicacao();
             }
         };
 
@@ -40,13 +42,14 @@ class ComandoObterDadosTeste extends TestCase
     /** @test */
     public function obterCaminhoRaizComSufixo(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {
-                echo $this->caminhoAplicacao("teste/de/sufixo");
+                echo $this->caminhoDaAplicacao("teste/de/sufixo");
             }
         };
 
@@ -61,14 +64,15 @@ class ComandoObterDadosTeste extends TestCase
     /** @test */
     public function obterCaminhoRaizComSufixoLimpandoBarras(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                echo $this->caminhoAplicacao("/teste/de/sufixo/");
+                echo $this->caminhoDaAplicacao("/teste/de/sufixo/");
             }
         };
 
@@ -83,14 +87,15 @@ class ComandoObterDadosTeste extends TestCase
     /** @test */
     public function obterCaminhoRaizComSufixoLimpandoBarraDireita(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                echo $this->caminhoAplicacao("teste/de/sufixo/");
+                echo $this->caminhoDaAplicacao("teste/de/sufixo/");
             }
         };
 
@@ -105,14 +110,15 @@ class ComandoObterDadosTeste extends TestCase
     /** @test */
     public function obterCaminhoRaizComSufixoLimpandoBarraEsquerda(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                echo $this->caminhoAplicacao("/teste/de/sufixo");
+                echo $this->caminhoDaAplicacao("/teste/de/sufixo");
             }
         };
 

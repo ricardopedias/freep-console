@@ -9,27 +9,27 @@ use RuntimeException;
 class Interpretador
 {
     /**
-     * Mapeamento de notações curtas/longas para notação principal 
+     * Mapeamento de notações curtas/longas para notação principal
      * @var array<string,string>
      */
-    private array $mapaNotacoes = [];
+    private array $mapaDeNotacoes = [];
 
     /**
-     * Lista de opções identificáveis pela notação principal 
+     * Lista de opções identificáveis pela notação principal
      * @var array<string,Opcao> */
     private array $opcoesConfiguradas = [];
 
     /**
-     * Lista de valores identificáveis pela notação principal 
+     * Lista de valores identificáveis pela notação principal
      * @var array<string,mixed> */
     private array $opcoesComChave = [];
 
     /**
-     * Lista de textos especificados que não pertencem a nenhuma opção 
+     * Lista de textos especificados que não pertencem a nenhuma opção
      * @var array<int,string> */
     private array $opcoesSemChave = [];
 
-    /** @param array<int,Option> $configuracao */
+    /** @param array<int,Opcao> $configuracao */
     public function __construct(array $configuracao)
     {
         /** @var Opcao $opcao */
@@ -39,8 +39,8 @@ class Interpretador
             $notacaoLonga = $opcao->notacaoLonga();
 
             $this->opcoesConfiguradas[$notacaoPrincipal] = $opcao;
-            $this->mapaNotacoes[$notacaoCurta] = $notacaoPrincipal;
-            $this->mapaNotacoes[$notacaoLonga] = $notacaoPrincipal;
+            $this->mapaDeNotacoes[$notacaoCurta] = $notacaoPrincipal;
+            $this->mapaDeNotacoes[$notacaoLonga] = $notacaoPrincipal;
         }
     }
 
@@ -49,25 +49,34 @@ class Interpretador
         $this->opcoesSemChave = (new Composicao($this->opcoesSemChave))->valores();
     }
 
-    /** @param int $indice O indice da opção inválida */
-    private function descartarOpcaoInvalida(array & $listaArgumentos, int $indice): void
+    /**
+     * @param array<int,string> $listaDeArgumentos
+     * @param int $indice O indice da opção inválida
+     */
+    private function descartarOpcaoInvalida(array &$listaDeArgumentos, int $indice): void
     {
-        unset($listaArgumentos[$indice]);
+        unset($listaDeArgumentos[$indice]);
     }
 
-    /** @param int $indice O indice da opção avulsa */
-    private function extrairOpcaoAvulsa(array & $listaArgumentos, int $indice): void
+    /**
+     * @param array<int,string> $listaDeArgumentos
+     * @param int $indice O indice da opção avulsa
+     */
+    private function extrairOpcaoAvulsa(array &$listaDeArgumentos, int $indice): void
     {
-        $this->opcoesSemChave[] = $listaArgumentos[$indice];
+        $this->opcoesSemChave[] = $listaDeArgumentos[$indice];
 
-        unset($listaArgumentos[$indice]);
+        unset($listaDeArgumentos[$indice]);
     }
 
-    /** @param int $indice O indice da opção */
-    private function extrairOpcao(array & $listaArgumentos, int $indice): void
+    /**
+     * @param array<int,string> $listaDeArgumentos
+     * @param int $indice O indice da opção
+     */
+    private function extrairOpcao(array &$listaDeArgumentos, int $indice): void
     {
-        $notacao = array_shift($listaArgumentos);
-        $opcao = $this->obterOpcao($notacao);
+        $notacao = array_shift($listaDeArgumentos);
+        $opcao = $this->opcao((string)$notacao);
         $notacaoPrincipal = $opcao->notacaoPrincipal();
 
         if ($opcao->booleana() === true || $opcao->valorada() === false) {
@@ -76,9 +85,9 @@ class Interpretador
         }
 
         $valorComposto = [];
-        foreach ($listaArgumentos as $indice => $argumento) {
+        foreach ($listaDeArgumentos as $indice => $argumento) {
             // apenas valores são agrupados aqui
-            if ($this->formatoNotacao($argumento) === true) {
+            if ($this->formatoDeNotacao($argumento) === true) {
                 break;
             }
 
@@ -87,7 +96,7 @@ class Interpretador
             $valorComposto[] = $this->removerAspas($argumento);
 
             // remove o argumento da lista
-            unset($listaArgumentos[$indice]);
+            unset($listaDeArgumentos[$indice]);
 
             if ($ultimoNohDoValor === true) {
                 break;
@@ -115,64 +124,65 @@ class Interpretador
         return str_ends_with($argumento, "'") || str_ends_with($argumento, '"');
     }
 
-    private function formatoNotacao(string $argumento): bool
+    private function formatoDeNotacao(string $argumento): bool
     {
         return str_starts_with($argumento, "-");
     }
 
     private function notacaoValida(string $argumento): bool
     {
-        if ($this->formatoNotacao($argumento) === false) {
+        if ($this->formatoDeNotacao($argumento) === false) {
             return false;
         }
 
-        return isset($this->mapaNotacoes[$argumento]);
+        return isset($this->mapaDeNotacoes[$argumento]);
     }
 
-    private function obterIndiceAtual(array $listaArgumentos): int
+    /** @param array<int,string> $listaDeArgumentos */
+    private function indiceAtual(array $listaDeArgumentos): int
     {
-        $chaves = array_keys($listaArgumentos);
+        $chaves = array_keys($listaDeArgumentos);
         return $chaves[0] ?? -1;
     }
 
-    private function obterOpcao(string $notacao): Opcao
+    private function opcao(string $notacao): Opcao
     {
-        $notacao = $this->mapaNotacoes[$notacao];
+        $notacao = $this->mapaDeNotacoes[$notacao];
         return $this->opcoesConfiguradas[$notacao];
     }
 
     public function interpretarArgumentos(string $argumentosDoTerminal): Argumentos
     {
-        return $this->interpretarListaArgumentos(explode(' ', $argumentosDoTerminal));
+        return $this->interpretarListaDeArgumentos(explode(' ', $argumentosDoTerminal));
     }
 
-    /** @param array<int,string> $listaArgumentos */
-    public function interpretarListaArgumentos(array $listaArgumentos): Argumentos
+    /** @param array<int,string> $listaDeArgumentos */
+    public function interpretarListaDeArgumentos(array $listaDeArgumentos): Argumentos
     {
-        while(($indice = $this->obterIndiceAtual($listaArgumentos)) !== -1) {
-            $noh = $listaArgumentos[$indice];
+        while (($indice = $this->indiceAtual($listaDeArgumentos)) !== -1) {
+            $noh = $listaDeArgumentos[$indice];
 
             // texto avulso, sem chave especificada
-            if ($this->formatoNotacao($noh) === false) {
-                $this->extrairOpcaoAvulsa($listaArgumentos, $indice);
+            if ($this->formatoDeNotacao($noh) === false) {
+                $this->extrairOpcaoAvulsa($listaDeArgumentos, $indice);
                 continue;
             }
 
             // chave inválida de opção
-            if ($this->notacaoValida($listaArgumentos[$indice]) === false) {
-                $this->descartarOpcaoInvalida($listaArgumentos, $indice);
+            if ($this->notacaoValida($listaDeArgumentos[$indice]) === false) {
+                $this->descartarOpcaoInvalida($listaDeArgumentos, $indice);
                 continue;
             }
 
-            $this->extrairOpcao($listaArgumentos, $indice);
+            $this->extrairOpcao($listaDeArgumentos, $indice);
         }
 
         $this->popularValoresPadroes();
-        $this->verificarObrigatorias();
+        $this->verificarObrigatoriedade();
         $this->popularValoresBooleanos();
         $this->comporValoresEntreAspas();
 
-        return new Argumentos($this->mapaNotacoes, $this->opcoesComChave, $this->opcoesSemChave);
+        return new Argumentos($this->mapaDeNotacoes, $this->opcoesComChave, $this->opcoesSemChave);
     }
 
     private function popularValoresPadroes(): void
@@ -207,7 +217,7 @@ class Interpretador
         }
     }
 
-    private function verificarObrigatorias(): void
+    private function verificarObrigatoriedade(): void
     {
         $obrigatorias = [];
 

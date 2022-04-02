@@ -35,20 +35,12 @@ class Opcao
         int $tipo,
         ?string $valorPadrao = null
     ) {
-        if (
-            $notacaoCurta !== null
-            && (str_starts_with($notacaoCurta, "--") === true || str_starts_with($notacaoCurta, "-") === false)
-        ) {
-            throw new InvalidArgumentException("A notação curta deve iniciar com um traço");
-        }
-
-        if ($notacaoLonga !== null && str_starts_with($notacaoLonga, "--") === false) {
-            throw new InvalidArgumentException("A notação longa deve iniciar com dois traços");
-        }
-
         if ($notacaoCurta === null && $notacaoLonga === null) {
             throw new InvalidArgumentException("É obrigatório fornecer pelo menos uma notação");
         }
+
+        $this->validarNotacaoCurta($notacaoCurta);
+        $this->validarNotacaoLonga($notacaoLonga);
 
         $this->notacaoCurta = $notacaoCurta ?? $notacaoLonga;
         $this->notacaoLonga = $notacaoLonga ?? $notacaoCurta;
@@ -82,6 +74,23 @@ class Opcao
 
         if ($this->booleana === true && in_array($this->valorPadrao, ["0", "1", ""]) === false) {
             throw new InvalidArgumentException("Um valor booleano deve ser '0' ou '1'");
+        }
+    }
+
+    private function validarNotacaoCurta(?string $notacaoCurta): void
+    {
+        if (
+            $notacaoCurta !== null
+            && (str_starts_with($notacaoCurta, "--") === true || str_starts_with($notacaoCurta, "-") === false)
+        ) {
+            throw new InvalidArgumentException("A notação curta deve iniciar com um traço");
+        }
+    }
+
+    private function validarNotacaoLonga(?string $notacaoLonga): void
+    {
+        if ($notacaoLonga !== null && str_starts_with($notacaoLonga, "--") === false) {
+            throw new InvalidArgumentException("A notação longa deve iniciar com dois traços");
         }
     }
 

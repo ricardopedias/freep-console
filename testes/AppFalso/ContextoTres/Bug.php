@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 
 declare(strict_types=1);
 
@@ -7,6 +8,7 @@ declare(strict_types=1);
 use Freep\Console\Argumentos;
 use Freep\Console\Comando;
 
+/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class Bug extends Comando
 {
     protected function inicializar(): void

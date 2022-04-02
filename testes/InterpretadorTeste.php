@@ -133,7 +133,9 @@ class InterpretadorTeste extends TestCase
             new Opcao('-d', '--ddd', 'Descricao opcao 4', Opcao::OPCIONAL),
         ]);
 
-        $argumentos = $interpretador->interpretarArgumentos('DDD -b "Ricardo Pereira" XX -c "Arquitetura Limpa" Teste \'Portas e Adaptadores\'');
+        $argumentos = $interpretador->interpretarArgumentos(
+            'DDD -b "Ricardo Pereira" XX -c "Arquitetura Limpa" Teste \'Portas e Adaptadores\''
+        );
         $this->assertInstanceOf(Argumentos::class, $argumentos);
         $this->assertSame(null, $argumentos->opcao('-a'));
         $this->assertSame('Ricardo Pereira', $argumentos->opcao('-b'));

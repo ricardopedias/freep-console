@@ -4,38 +4,38 @@ declare(strict_types=1);
 
 namespace Freep\Console;
 
-use RuntimeException;
-
 class Composicao
 {
     private bool $emComposicao = false;
 
+    /** @var array<int,string> */
     private array $valorComposto = [];
 
     /** @param array<int,string> $opcoesSemChave */
     public function __construct(private array $opcoesSemChave)
-    {}
+    {
+    }
 
-    private function aberturaAspasDuplas(string $argumento): bool
+    private function aberturaComAspasDuplas(string $argumento): bool
     {
         return str_starts_with($argumento, '"');
     }
 
-    private function aberturaAspasSimples(string $argumento): bool
+    private function aberturaComAspasSimples(string $argumento): bool
     {
         return str_starts_with($argumento, "'");
     }
 
     private function argumentoDeAbertura(string $argumento): bool
     {
-        return $this->aberturaAspasDuplas($argumento)
-            || $this->aberturaAspasSimples($argumento);
+        return $this->aberturaComAspasDuplas($argumento)
+            || $this->aberturaComAspasSimples($argumento);
     }
 
     private function argumentoDeFechamento(string $argumento): bool
     {
-        return $this->fechamentoAspasDuplas($argumento)
-            || $this->fechamentoAspasSimples($argumento);
+        return $this->fechamentoComAspasDuplas($argumento)
+            || $this->fechamentoComAspasSimples($argumento);
     }
 
     private function compondo(): bool
@@ -48,18 +48,18 @@ class Composicao
         $this->emComposicao = true;
         $this->valorComposto[] = $argumentoParcial;
     }
-    
-    private function fechamentoAspasDuplas(string $argumento): bool
+
+    private function fechamentoComAspasDuplas(string $argumento): bool
     {
         return str_ends_with($argumento, '"');
     }
 
-    private function fechamentoAspasSimples(string $argumento): bool
+    private function fechamentoComAspasSimples(string $argumento): bool
     {
         return str_ends_with($argumento, "'");
     }
 
-    private function obterValorComposto(): string
+    private function valorComposto(): string
     {
         $valor = implode(" ", $this->valorComposto);
 
@@ -74,10 +74,11 @@ class Composicao
         return trim(trim($argumento, "'"), '"');
     }
 
+    /** @return array<int,string> */
     public function valores(): array
     {
         $valores = [];
-        
+
         foreach ($this->opcoesSemChave as $argumento) {
             if ($this->argumentoDeAbertura($argumento) === true) {
                 $this->comporValor($argumento);
@@ -86,7 +87,7 @@ class Composicao
 
             if ($this->argumentoDeFechamento($argumento) === true) {
                 $this->comporValor($argumento);
-                $valores[] = $this->obterValorComposto();
+                $valores[] = $this->valorComposto();
                 continue;
             }
 

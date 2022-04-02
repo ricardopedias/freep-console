@@ -17,8 +17,10 @@ class Ajuda extends Comando
 
     protected function manipular(Argumentos $argumentos): void
     {
-        $this->imprimirSecao("Modo de usar:");
-        $this->linha("  ./freep comando [opcoes] [argumentos]");
+        if ($this->terminal()->modoDeUsar() !== "") {
+            $this->imprimirSecao("Modo de usar:");
+            $this->linha("  " . $this->terminal()->modoDeUsar());
+        }
 
         $this->imprimirSecao("Opções:");
 
@@ -32,18 +34,19 @@ class Ajuda extends Comando
         }
     }
 
+    /** @return array<int,Comando> */
     private function obterComandos(): array
     {
         $lista = [];
-        $listaComandos = $this->obterTerminal()->obterListaComandos();
+        $listaComandos = $this->terminal()->listaDeComandos();
         foreach ($listaComandos as $arquivoComando) {
-            $nomeCompletoClasse = $this->obterTerminal()->interpretarNomeClasse($arquivoComando);
+            $nomeCompletoClasse = $this->terminal()->interpretarNomeDaClasse($arquivoComando);
 
             if (class_exists($nomeCompletoClasse) === false) {
                 continue;
             }
-    
-            $objetoComando = (new $nomeCompletoClasse($this->obterTerminal()));
+
+            $objetoComando = (new $nomeCompletoClasse($this->terminal()));
             $lista[] = $objetoComando;
         }
 

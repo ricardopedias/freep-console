@@ -8,6 +8,7 @@ use Exception;
 use Freep\Console\Argumentos;
 use Freep\Console\Comando;
 
+/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class ExemploExcecao extends Comando
 {
     public function inicializar(): void

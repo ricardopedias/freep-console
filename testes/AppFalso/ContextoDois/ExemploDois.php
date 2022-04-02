@@ -7,6 +7,7 @@ namespace Testes\AppFalso\ContextoDois;
 use Freep\Console\Argumentos;
 use Freep\Console\Comando;
 
+/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class ExemploDois extends Comando
 {
     protected function inicializar(): void

@@ -9,6 +9,7 @@ use Freep\Console\Comando;
 use Freep\Console\Terminal;
 use PHPUnit\Framework\TestCase;
 
+/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class ComandoSaidasTeste extends TestCase
 {
     private function fabricarTerminal(): Terminal
@@ -19,9 +20,11 @@ class ComandoSaidasTeste extends TestCase
     /** @test */
     public function execucaoComDisparoDeTexto(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
+
 
             protected function manipular(Argumentos $argumentos): void
             {
@@ -39,9 +42,10 @@ class ComandoSaidasTeste extends TestCase
     /** @test */
     public function execucaoComDisparoDeErro(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {
@@ -59,9 +63,10 @@ class ComandoSaidasTeste extends TestCase
     /** @test */
     public function execucaoComDisparoDeInformacao(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {
@@ -79,9 +84,10 @@ class ComandoSaidasTeste extends TestCase
     /** @test */
     public function execucaoComDisparoDeAlerta(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {

@@ -13,11 +13,13 @@ class TerminalAjudaTeste extends TestCase
     private function fabricarTerminal(): Terminal
     {
         $terminal = new Terminal(__DIR__ . "/AppFalso");
+        $terminal->setarModoDeUsar("./freep comando [opcoes] [argumentos]");
         $terminal->carregarComandosDe(__DIR__ . "/AppFalso/ContextoUm/src/Comandos");
         $terminal->carregarComandosDe(__DIR__ . "/AppFalso/ContextoDois");
         return $terminal;
     }
 
+    /** @return array<int,string> */
     private function linhasMensagemAjuda(): array
     {
         return [
@@ -40,6 +42,7 @@ class TerminalAjudaTeste extends TestCase
         ];
     }
 
+    /** @return array<int,string> */
     private function linhasMensagemAjudaComando(): array
     {
         return [
@@ -54,12 +57,12 @@ class TerminalAjudaTeste extends TestCase
     }
 
     /** @test */
-    public function opcaoAjudaPadraoLonga()
+    public function opcaoAjudaPadraoLonga(): void
     {
         ob_start();
         $terminal = $this->fabricarTerminal();
         $terminal->executar([ "--ajuda" ]);
-        $result = ob_get_clean();
+        $result = (string)ob_get_clean();
 
         foreach ($this->linhasMensagemAjuda() as $texto) {
             $this->assertStringContainsString($texto, $result);
@@ -67,12 +70,12 @@ class TerminalAjudaTeste extends TestCase
     }
 
     /** @test */
-    public function opcaoAjudaPadraoCurta()
+    public function opcaoAjudaPadraoCurta(): void
     {
         ob_start();
         $terminal = $this->fabricarTerminal();
         $terminal->executar([ "-a" ]);
-        $result = ob_get_clean();
+        $result = (string)ob_get_clean();
 
         $this->assertEquals(Ajuda::class, $terminal->comandoExecutado());
 
@@ -82,12 +85,12 @@ class TerminalAjudaTeste extends TestCase
     }
 
     /** @test */
-    public function opcaoAjudaLongaDoComando()
+    public function opcaoAjudaLongaDoComando(): void
     {
         ob_start();
         $terminal = $this->fabricarTerminal();
         $terminal->executar([ "exemplo1", "--ajuda" ]);
-        $result = ob_get_clean();
+        $result = (string)ob_get_clean();
 
         foreach ($this->linhasMensagemAjudaComando() as $texto) {
             $this->assertStringContainsString($texto, $result);
@@ -95,12 +98,12 @@ class TerminalAjudaTeste extends TestCase
     }
 
     /** @test */
-    public function opcaoAjudaCurtaDoComando()
+    public function opcaoAjudaCurtaDoComando(): void
     {
         ob_start();
         $terminal = $this->fabricarTerminal();
         $terminal->executar([ "exemplo1", "-a" ]);
-        $result = ob_get_clean();
+        $result = (string)ob_get_clean();
 
         foreach ($this->linhasMensagemAjudaComando() as $texto) {
             $this->assertStringContainsString($texto, $result);
@@ -108,12 +111,12 @@ class TerminalAjudaTeste extends TestCase
     }
 
     /** @test */
-    public function comandoAjuda()
+    public function comandoAjuda(): void
     {
         ob_start();
         $terminal = $this->fabricarTerminal();
         $terminal->executar([ "ajuda" ]);
-        $result = ob_get_clean();
+        $result = (string)ob_get_clean();
 
         $this->assertEquals(Ajuda::class, $terminal->comandoExecutado());
 

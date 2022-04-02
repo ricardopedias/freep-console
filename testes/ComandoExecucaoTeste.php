@@ -10,6 +10,7 @@ use Freep\Console\Opcao;
 use Freep\Console\Terminal;
 use PHPUnit\Framework\TestCase;
 
+/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class ComandoExecucaoTeste extends TestCase
 {
     private function fabricarTerminal(): Terminal
@@ -20,7 +21,7 @@ class ComandoExecucaoTeste extends TestCase
     /** @test */
     public function execucao(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
             {
                 $this->setarNome("teste");
@@ -50,7 +51,7 @@ class ComandoExecucaoTeste extends TestCase
     /** @test */
     public function execucaoDescricaoPadraoComNome(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
             {
                 $this->setarNome("teste");
@@ -72,9 +73,10 @@ class ComandoExecucaoTeste extends TestCase
     /** @test */
     public function execucaoDescricaoPadraoSemNome(): void
     {
-        $objeto = new class($this->fabricarTerminal()) extends Comando {
+        $objeto = new class ($this->fabricarTerminal()) extends Comando {
             protected function inicializar(): void
-            {}
+            {
+            }
 
             protected function manipular(Argumentos $argumentos): void
             {
