@@ -12,66 +12,102 @@ A primeira coisa a fazer é criar os comandos necessários e alocá-los em algum
 ```php
 class DizerOla extends Comando
 {
+    /**
+     * O método "self->inicializar()" deve ser implementado em todos os comandos.
+     * Pelo menos o método "setarNome" deverá ser invocado para determinar a palavra a ser usada no terminal para invocar o comando.
+     * Os outros métodos podem ser invocados para melhorar a experiência do usuário.
+     */
     protected function inicializar(): void
     {
+        // O nome do comando, que será usado para invocá-lo no terminal
         $this->setarNome("dizer-ola");
+
+        // Uma descrição sobre o objetivo do comando
+        // Esta mensagem será exibida nas informações de ajuda
         $this->setarDescricao("Exibe a mensagem 'olá' no terminal");
+
+        // Uma dica sobre como este comando pode ser utilizado
+        // Esta mensagem será exibida nas informações de ajuda
         $this->setarModoDeUsar("./superapp dizer-ola [opcoes]");
 
+        // Uma opção obrigatória e valorada.
+        // Quando especificada no terminal, deverá vir acompanhada de um valor
         $this->adicionarOpcao(
             new Opcao(
                 '-l',
                 '--ler-arquivo',
-                'Lé a mensagem de um arquivo texto',
-                Opcao::OPCIONAL | Opcao::COM_VALOR
+                'Lê a mensagem a partir de um arquivo texto',
+                Opcao::OBRIGATORIA | Opcao::COM_VALOR
             )
         );
 
+        // Uma opção não-obrigatória
         $this->adicionarOpcao(
             new Opcao(
                 '-d',
                 '--destruir',
-                'Apaga o arquivo texto usá-lo',
+                'Apaga o arquivo texto após usá-lo',
                 Opcao::OPCIONAL
             )
         );
     }
 
+    /**
+     * O método "self->manipular()" deve ser implementado em todos os comandos.
+     * É neste método que a rotina do comando deverá ser implementada.
+     * 
+     * O argumento "$argumentos" contém dois métodos úteis:
+     * - opcao(nome da opçao): obtém o valor de uma opção a partir de sua chave. Se o usuário especificar a opção no terminal, o valor correspondente será devolvido aqui. Caso contrário, um valor padrão será devolvido de acordo com o tipo de opção;
+     * - argumento(indice): obtém um argumento fornecido pelo usuário no terminal. Um argumento é toda palavra sem chaves (ex: -e ou --exemplo) que for especificada no terminal. 
+     */ 
     protected function manipular(Argumentos $argumentos): void
     {
-        if ($argumentos->opcao('-l') === '1') {
-            $this->linha("Apagando o arquivo texto usado");
-            // ... rotina para apagar o arquivo
+        $mensagem = "Olá";
+
+        // Ao executar a opção, pode-se exibir uma mensagem padrão no terminal para notificar o usuário do que está acontecendo
+        if ($argumentos->opcao('-l') !== '1') {
+            $this->linha("Lendo o arquivo texto contendo a mensagem de olá");
+
+            // rotina que lê o arquivo e atribui a mensagem na variável
+            $mensagem = "";
         }
 
-        // ... rotina para leitura do arquivo
-
-        if ('algum erro ocorrer') {
-            $this->erro("Não foi possível ler o arquivo json");
+        // se algo der errado, pode-se exibir uma mensagem de erro no terminal
+        if ($mensagem === "") {
+            $this->erro("Não foi possível ler o arquivo texto");
         }
 
+        // se a exclusão for solicitada, pode-se exibir uma mensagem de alerta no terminal
         if ($argumentos->opcao('-d') === '1') {
-            $this->linha("Apagando o arquivo texto usado");
+            $this->alerta("Apagando o arquivo texto usado");
             // ... rotina para apagar o arquivo
         }
 
-        $this->info("Arquivo json lido com sucesso");
+        // Enfim, exibe a mensagem apropriada de forma destacada
+        $this->info($mensagem);
     }
 }
 ```
 
 
-Com os comandos implementados, é preciso criar uma instancia de `Freep\Console\Termnal` e dizer para ele quais os diretórios que contém comandos.
+Com os comandos implementados no diretório desejado, é preciso criar uma instância de `Freep\Console\Terminal` e dizer para ela quais são os diretórios contendo os comandos implementados.
 
-Por fim, basta mandar o Terminal executar os comandos através do método `executar()`:
+Por fim, basta mandar o Terminal executar os comandos através do método `Terminal->executar()`:
 
 ```php
+// Cria uma instãncia do Terminal. O caminho para a raiz da aplicação deve ser especificado para que os comandos possam utilizá-lo
 $terminal = new Terminal("raiz/da/super/aplicacao");
+
+// Uma dica sobre como o terminal pode ser utilizado
+// Esta mensagem será exibida nas informações de ajuda
 $terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
+
+// Adiciona dois diretórios contendo comandos
 $terminal->carregarComandosDe(__DIR__ . "/comandos");
 $terminal->carregarComandosDe(__DIR__ . "/mais-comandos");
 
-$terminal->executar([ "nome-comando", "--file", "config.json" ]);
+// Executa o comando
+$terminal->executar([ "dizer-ola", "-l", "mensagem.txt", "-d" ]);
 
 ```
 
@@ -79,8 +115,7 @@ $terminal->executar([ "nome-comando", "--file", "config.json" ]);
 
 ### Ferramentas
 
-Para o desenvolvimento, foram utilizadas ferramentas para testes de unidade e 
-análise estática. Todas configuradas no nível máximo de exigência.
+Para o desenvolvimento, foram utilizadas ferramentas para testes de unidade e análise estática. Todas configuradas no nível máximo de exigência.
 
 São as seguintes ferramentas:
 
@@ -91,8 +126,5 @@ São as seguintes ferramentas:
 
 ### Infraestrutura
 
-Se o [Docker](https://www.docker.com/) estiver instalado no computador, não será necessário ter o Composer, e nem mesmo o PHP, 
-instalados na máquina do desenvolvedor. Para usar o Composer e as bibliotecas de qualidade de código, 
-basta usar o script `./composer`, localizado na raiz deste repositório. 
-
-Trata-se de uma ponte para todos os comandos do Composer, executados através do Docker.
+Se o [Docker](https://www.docker.com/) estiver instalado no computador, não será necessário ter o Composer, e nem mesmo o PHP, instalados na máquina do desenvolvedor. Para usar o Composer e as bibliotecas de qualidade de código, 
+use o script `./composer`, localizado na raiz deste repositório. Este script é, na verdade, uma ponte para todos os comandos do Composer, executando-os através do Docker.
