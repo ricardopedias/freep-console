@@ -14,7 +14,8 @@ class DizerOla extends Comando
 {
     /**
      * O método "self->inicializar()" deve ser implementado em todos os comandos.
-     * Pelo menos o método "setarNome" deverá ser invocado para determinar a palavra a ser usada no terminal para invocar o comando.
+     * Pelo menos o método "setarNome" deverá ser invocado para determinar a palavra 
+     * a ser usada no terminal para invocar o comando.
      * Os outros métodos podem ser invocados para melhorar a experiência do usuário.
      */
     protected function inicializar(): void
@@ -57,14 +58,22 @@ class DizerOla extends Comando
      * É neste método que a rotina do comando deverá ser implementada.
      * 
      * O argumento "$argumentos" contém dois métodos úteis:
-     * - opcao(nome da opçao): obtém o valor de uma opção a partir de sua chave. Se o usuário especificar a opção no terminal, o valor correspondente será devolvido aqui. Caso contrário, um valor padrão será devolvido de acordo com o tipo de opção;
-     * - argumento(indice): obtém um argumento fornecido pelo usuário no terminal. Um argumento é toda palavra sem chaves (ex: -e ou --exemplo) que for especificada no terminal. 
+     * 
+     * - opcao(nome da opçao): obtém o valor de uma opção a partir de sua chave. 
+     * Se o usuário especificar a opção no terminal, o valor correspondente será 
+     * devolvido aqui. Caso contrário, um valor padrão será devolvido de acordo 
+     * com o tipo de opção;
+     * 
+     * - argumento(indice): obtém um argumento fornecido pelo usuário no terminal. 
+     * Um argumento é toda palavra sem chaves (ex: -e ou --exemplo) que for especificada 
+     * no terminal. 
      */ 
     protected function manipular(Argumentos $argumentos): void
     {
         $mensagem = "Olá";
 
-        // Ao executar a opção, pode-se exibir uma mensagem padrão no terminal para notificar o usuário do que está acontecendo
+        // a executar a opção, pode-se exibir uma mensagem padrão no terminal para 
+        // notificar o usuário do que está acontecendo
         if ($argumentos->opcao('-l') !== '1') {
             $this->linha("Lendo o arquivo texto contendo a mensagem de olá");
 
@@ -95,7 +104,8 @@ Com os comandos implementados no diretório desejado, é preciso criar uma inst�
 Por fim, basta mandar o Terminal executar os comandos através do método `Terminal->executar()`:
 
 ```php
-// Cria uma instãncia do Terminal. O caminho para a raiz da aplicação deve ser especificado para que os comandos possam utilizá-lo
+// Cria uma instãncia do Terminal. O caminho para a raiz da aplicação deve ser 
+// especificado para que os comandos possam utilizá-lo
 $terminal = new Terminal("raiz/da/super/aplicacao");
 
 // Uma dica sobre como o terminal pode ser utilizado
