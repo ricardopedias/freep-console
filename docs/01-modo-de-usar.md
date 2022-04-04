@@ -1,11 +1,6 @@
 # Freep Console
 
-## Sinopse
-
-Este repositório contém as funcionalidades necessárias para implementar um gerenciador de 
-comandos para terminal em uma aplicação PHP de forma fácil.
-
-Para informações detalhadas, consulte a [documentação](docs/indice.md);
+[Voltar ao índice](indice.md)
 
 ## Modo de Usar
 
@@ -100,7 +95,6 @@ class DizerOla extends Comando
 }
 ```
 
-
 Com os comandos implementados no diretório desejado, é preciso criar uma instância de `Freep\Console\Terminal` e dizer para ela quais são os diretórios contendo os comandos implementados.
 
 Por fim, basta mandar o Terminal executar os comandos através do método `Terminal->executar()`:
@@ -118,25 +112,11 @@ $terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
 $terminal->carregarComandosDe(__DIR__ . "/comandos");
 $terminal->carregarComandosDe(__DIR__ . "/mais-comandos");
 
-// Executa o comando
+// Executa o comando a partir de uma lista
+// Esta lista de palavras pode ser obtida da variável "$argv" do PHP
+// https://www.php.net/manual/pt_BR/reserved.variables.argv.php
 $terminal->executar([ "dizer-ola", "-l", "mensagem.txt", "-d" ]);
 
 ```
 
-## Desenvolvimento
-
-### Controle de qualidade
-
-Para o desenvolvimento, foram utilizadas ferramentas para testes de unidade e análise estática. Todas configuradas no nível máximo de exigência.
-
-São as seguintes ferramentas:
-
-- [PHP Unit](https://phpunit.de)
-- [PHP Stan](https://phpstan.org)
-- [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-- [PHP MD](https://phpmd.org)
-
-### Infraestrutura
-
-Se o [Docker](https://www.docker.com/) estiver instalado no computador, não será necessário ter o Composer, e nem mesmo o PHP, instalados na máquina do desenvolvedor. Para usar o Composer e as bibliotecas de qualidade de código, 
-use o script `./composer`, localizado na raiz deste repositório. Este script é, na verdade, uma ponte para todos os comandos do Composer, executando-os através do Docker.
+[Voltar ao índice](indice.md)

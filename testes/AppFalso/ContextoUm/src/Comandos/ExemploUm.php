@@ -14,7 +14,7 @@ class ExemploUm extends Comando
     {
         $this->setarNome("exemplo1");
         $this->setarDescricao("Executa o comando exemplo1");
-        $this->setarModoDeUsar("./freep exemplo1 [opcoes]");
+        $this->setarModoDeUsar("./superapp exemplo1 [opcoes]");
     }
 
     protected function manipular(Argumentos $argumentos): void

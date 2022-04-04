@@ -1,0 +1,32 @@
+#!/bin/php
+<?php
+
+include __DIR__ . "/vendor/autoload.php";
+
+/**
+ * ./superapp - Script para linha de comando
+ *
+ * Site: https://github.com/ricardopedias/freep-console
+ * Autor: Ricardo Pereira <contato@ricardopedias.com.br>
+ * 
+ * ------------------------------------------------------------------------------
+ * Este programa é um exemplo de utilização da linha de comando implementada 
+ * com a biblioteca freep-console.
+ *
+ * Para informações sobre os comandos disponíveis, use o comando:
+ * $ ./superapp --ajuda
+ *
+ * Licença: MIT
+ */
+
+use Freep\Console\Terminal;
+
+// Remove o primeiro argumento com o nome do script (./superapp)
+array_shift($argv);
+
+$terminal = new Terminal(__DIR__ . "/codigo");
+$terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
+$terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoUm/src/Comandos");
+$terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoDois");
+
+$terminal->executar($argv);

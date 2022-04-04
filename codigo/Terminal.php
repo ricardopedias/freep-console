@@ -53,7 +53,7 @@ class Terminal
         $caminhoReal = realpath($caminhoComandos);
 
         if ($caminhoReal === false || is_dir($caminhoReal) === false) {
-            throw new InvalidArgumentException("O diretórios especificado para comandos não existe");
+            throw new InvalidArgumentException("O diretório especificado para comandos não existe");
         }
 
         $this->listaDeDiretorios[] = $caminhoComandos;
@@ -129,8 +129,8 @@ class Terminal
             return;
         }
 
-        // dispara saída padrão para o bash capturar
-        echo "comando nao encontrado";
+        echo "\033[0;31m✗ Comando '{$nome}' não encontrado\033[0m\n";
+        (new Ajuda($this))->executar($argumentos);
     }
 
     /** @return array<int,string> */
