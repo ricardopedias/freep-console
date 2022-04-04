@@ -1,13 +1,13 @@
-# Freep Console
+# Script de terminal
 
 [Voltar ao índice](indice.md)
 
-## Script de terminal
+## Criando um script
 
-O objetivo de um comando de terminal é ser executado no terminal, por esse motivo óbvio é 
+O objetivo de um comando de terminal é ser executado na linha de comando, por esse motivo óbvio é 
 preciso criar um script para receber os comandos.
 
-Na raiz deste repositório existe um script de exemplo chamado "superapp", contendo a invocação da classe Freep\Console\Terminal:
+Na raiz deste repositório existe um script de exemplo chamado **"superapp"**, contendo a invocação da classe `Freep\Console\Terminal`:
 
 ```php
 #!/bin/php
@@ -26,7 +26,7 @@ use Freep\Console\Terminal;
 array_shift($argv);
 
 $terminal = new Terminal(__DIR__ . "/codigo");
-// ...
+// outras configurações ...
 
 // Usa a variável $argv para interpretar os argumentos do usuário
 $terminal->executar($argv);

@@ -1,10 +1,8 @@
-# Freep Console
+# Instanciando o terminal
 
 [Voltar ao índice](indice.md)
 
-## Instanciando o terminal
-
-### Implementação
+## Implementação
 
 A interpretação dos argumentos digitados pelo usuário acontece através da instância 
 da classe `Freep\Console\Terminal`, que pode ser configurada da seguinte maneira:
@@ -17,6 +15,8 @@ $terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoDois");
 
 $terminal->executar($argv);
 ```
+
+## Métodos disponíveis
 
 ### O diretório de trabalho
 
@@ -56,7 +56,6 @@ varrido pela biblioteca a fim de identificar os comandos disponíveis.
 
 Quando o usuario digitar `./superapp --ajuda`, as informações de ajuda de todos os 
 coamndos será utilizada para exibir uma tela de ajuda abrangente no terminal do usuário.
-
 
 ### Interpretar a entrada do usuário
 

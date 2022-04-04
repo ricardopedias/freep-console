@@ -1,8 +1,6 @@
-# Freep Console
+# Modo de Usar
 
 [Voltar ao índice](indice.md)
-
-## Modo de Usar
 
 A primeira coisa a fazer é criar os comandos necessários e alocá-los em algum diretório. Um comando deve ser implementado com base na classe abstrata `Freep\Console\Comando`:
 
