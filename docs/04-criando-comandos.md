@@ -1,6 +1,7 @@
 # Criando Comandos
 
-[Voltar ao índice](indice.md)
+- [Voltar ao índice](indice.md)
+- [Instanciando o Terminal](03-instanciando-o-terminal.md)
 
 ## Sobre um comando
 
@@ -165,5 +166,5 @@ especificados.
 
 Mais informações sobre argumentos em [usando os argumentos](06-usando-os-argumentos.md).
 
-
-[Voltar ao índice](indice.md)
+- [Implementando Opções](05-implementando-opcoes.md)
+- [Voltar ao índice](indice.md)

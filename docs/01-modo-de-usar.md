@@ -116,5 +116,5 @@ $terminal->carregarComandosDe(__DIR__ . "/mais-comandos");
 $terminal->executar([ "dizer-ola", "-l", "mensagem.txt", "-d" ]);
 
 ```
-
-[Voltar ao índice](indice.md)
+- [Script de terminal](02-script-de-terminal.md)
+- [Voltar ao índice](indice.md)

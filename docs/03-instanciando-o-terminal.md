@@ -1,6 +1,7 @@
 # Instanciando o terminal
 
-[Voltar ao índice](indice.md)
+- [Voltar ao índice](indice.md)
+- [Script de terminal](02-script-de-terminal.md)
 
 ## Implementação
 
@@ -68,4 +69,5 @@ aqui, usando a variável reservada do PHP chamada "$argv". Ela contem  lista de 
 digitadas no terminal e está presente somente quando um script PHP for executado em CLI,
 ou seja, no terminal.
 
-[Voltar ao índice](indice.md)
+- [Criando Comandos](04-criando-comandos.md)
+- [Voltar ao índice](indice.md)
