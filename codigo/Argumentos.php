@@ -37,7 +37,7 @@ class Argumentos
         return $this->comChave;
     }
 
-    /** @return mixed */
+    /** @return string */
     public function opcao(string $notacao): string
     {
         if (isset($this->mapaDeNotacoes[$notacao]) === false) {
