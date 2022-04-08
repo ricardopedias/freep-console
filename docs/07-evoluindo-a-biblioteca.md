@@ -25,7 +25,7 @@ São as seguintes ferramentas:
 
 ### 2.2. Análise estática
 
-Para fazer a análise do código implementando e colher feedback das ferramentas, use:
+Para fazer a análise do código implementado e colher feedback das ferramentas, use:
 
 ```bash
 $ ./composer analisar
