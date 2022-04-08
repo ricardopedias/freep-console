@@ -11,7 +11,7 @@ Para informações detalhadas, consulte a [documentação](docs/indice.md);
 
 ### 1. Crie um comando
 
-Implemente um comando baseado na calsse abstrata `Freep\Console\Comando`:
+Implemente um comando chamado "meu-comando", baseado na classe abstrata `Freep\Console\Comando`:
 
 ```php
 class MeuComando extends Comando
@@ -33,14 +33,16 @@ class MeuComando extends Comando
 
 ### 2. Crie um script
 
-Crie um arquivo (chamado, por exemplo, "meuconsole") com o seguinte conteúdo:
+Crie um arquivo, chame-o por exemplo de "meuconsole", e adicione o o seguinte conteúdo:
 
 ```php
 #!/bin/php
 <?php
 include __DIR__ . "/vendor/autoload.php";
 
-$terminal = new Freep\Console\Terminal(__DIR__ . "/codigo");
+array_shift($argv);
+
+$terminal = new Freep\Console\Terminal("/diretorio/de/comandos");
 $terminal->executar($argv);
 ```
 
