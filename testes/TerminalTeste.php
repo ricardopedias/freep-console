@@ -12,10 +12,33 @@ use Testes\AppFalso\ContextoUm\src\Comandos\ExemploUm;
 
 class TerminalTeste extends TestCase
 {
+    /** @return array<int,string> */
+    private function linhasMensagemAjuda(): array
+    {
+        return [
+            "Modo de usar:",
+            "./superapp comando [opcoes] [argumentos]",
+
+            "Opções:",
+            "-a, --ajuda",
+            "Exibe as informações de ajuda",
+
+            "Comandos disponíveis:",
+            "ajuda",
+            "Exibe as informações de ajuda",
+            "exemplo-excecao",
+            "Executa o comando exemplo-excecao",
+            "exemplo1",
+            "Executa o comando exemplo1",
+            "exemplo2",
+            "Executa o comando exemplo2"
+        ];
+    }
+
     private function fabricarTerminal(): Terminal
     {
         $terminal = new Terminal(__DIR__ . "/AppFalso");
-        $terminal->setarModoDeUsar("./freep comando [opcoes] [argumentos]");
+        $terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
         $terminal->carregarComandosDe(__DIR__ . "/AppFalso/ContextoUm/src/Comandos");
         $terminal->carregarComandosDe(__DIR__ . "/AppFalso/ContextoDois");
         return $terminal;
@@ -51,7 +74,10 @@ class TerminalTeste extends TestCase
         $result = (string)ob_get_clean();
 
         $this->assertEquals("nao", $terminal->comandoExecutado());
-        $this->assertStringContainsString("comando nao encontrado", $result);
+
+        foreach ($this->linhasMensagemAjuda() as $texto) {
+            $this->assertStringContainsString($texto, $result);
+        }
     }
 
     /** @test */

@@ -13,7 +13,7 @@ class TerminalAjudaTeste extends TestCase
     private function fabricarTerminal(): Terminal
     {
         $terminal = new Terminal(__DIR__ . "/AppFalso");
-        $terminal->setarModoDeUsar("./freep comando [opcoes] [argumentos]");
+        $terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
         $terminal->carregarComandosDe(__DIR__ . "/AppFalso/ContextoUm/src/Comandos");
         $terminal->carregarComandosDe(__DIR__ . "/AppFalso/ContextoDois");
         return $terminal;
@@ -24,7 +24,7 @@ class TerminalAjudaTeste extends TestCase
     {
         return [
             "Modo de usar:",
-            "./freep comando [opcoes] [argumentos]",
+            "./superapp comando [opcoes] [argumentos]",
 
             "Opções:",
             "-a, --ajuda",
@@ -49,7 +49,7 @@ class TerminalAjudaTeste extends TestCase
             "Comando: exemplo1",
             "Executa o comando exemplo1",
             "Modo de usar:",
-            "./freep exemplo1 [opcoes]",
+            "./superapp exemplo1 [opcoes]",
             "Opções:",
             "-a, --ajuda",
             "Exibe a ajuda do comando"

@@ -137,7 +137,7 @@ class InterpretadorTeste extends TestCase
             'DDD -b "Ricardo Pereira" XX -c "Arquitetura Limpa" Teste \'Portas e Adaptadores\''
         );
         $this->assertInstanceOf(Argumentos::class, $argumentos);
-        $this->assertSame(null, $argumentos->opcao('-a'));
+        $this->assertSame("", $argumentos->opcao('-a'));
         $this->assertSame('Ricardo Pereira', $argumentos->opcao('-b'));
         $this->assertSame('1', $argumentos->opcao('-c'));
         $this->assertSame('0', $argumentos->opcao('-d'));
