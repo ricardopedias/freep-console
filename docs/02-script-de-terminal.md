@@ -3,7 +3,7 @@
 - [Voltar ao índice](indice.md)
 - [Modo de Usar](01-modo-de-usar.md)
 
-## Criando um script
+## 1. Criando um script
 
 O objetivo de um comando de terminal é ser executado na linha de comando, por esse motivo óbvio é 
 preciso criar um script para receber os argumentos passados pelo usuário.
@@ -27,14 +27,15 @@ use Freep\Console\Terminal;
 array_shift($argv);
 
 $terminal = new Terminal(__DIR__ . "/codigo");
-// outras configurações de $terminal ...
+
+// outras configurações para o $terminal ...
 
 // Usa a variável $argv para interpretar os argumentos do usuário
 $terminal->executar($argv);
 
 ```
 
-## Usando o terminal
+## 2. Usando o terminal
 
 Perceba que o script acima inicia com `#!/bin/php`. Essa notação diz para 
 o terminal do sistema operacional que este script deverá ser interpretado pelo 

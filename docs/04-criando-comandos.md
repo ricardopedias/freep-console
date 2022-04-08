@@ -3,7 +3,7 @@
 - [Voltar ao índice](indice.md)
 - [Instanciando o Terminal](03-instanciando-o-terminal.md)
 
-## Sobre um comando
+## 1. Sobre um comando
 
 Todos os coamndos devem ser implementados com base na classe abstrata `Freep\Console\Comando`:
 
@@ -16,7 +16,9 @@ abstract class Comando
 }
 ```
 
-## Método inicializar
+## 2. Método inicializar
+
+### 2.1. Sobre
 
 No método `"self->inicializar()"` devem ser implementadas as configurações do comando, como o nome, a mensagem de ajuda, as opções, etc.
 
@@ -36,7 +38,7 @@ class MeuComando extends Comando
 }
 ```
 
-### Método Comando->setarNome
+### 2.2. Setar o nome do comando
 
 Especifica o nome do comando, ou seja, a palavra que o usuário digitará no terminal para invocá-lo.
 
@@ -44,7 +46,7 @@ Especifica o nome do comando, ou seja, a palavra que o usuário digitará no ter
 $this->setarNome("meu-comando");
 ```
 
-### Método Comando->setarDescricao
+### 2.3. Setar a descrição do comando
 
 Especifica uma descrição sobre o objetivo do comando.
 Esta mensagem será exibida nas informações de ajuda
@@ -54,7 +56,7 @@ Esta mensagem será exibida nas informações de ajuda
 $this->setarDescricao("Exibe a mensagem 'olá' no terminal");
 ```
 
-### Método Comando->setarModoDeUsar
+### 2.4. Setar o modo de usar
 
 Especifica uma dica sobre como este comando pode ser utilizado.
 Esta mensagem será exibida nas informações de ajuda        
@@ -63,8 +65,7 @@ Esta mensagem será exibida nas informações de ajuda
 $this->setarModoDeUsar("./superapp dizer-ola [opcoes]");
 ```
 
-
-### Método Comando->adicionarOpcao
+### 2.5. Adicionar uma opção
 
 Adiciona uma opção ao comando, podendo ser *obrigatória*, *opcional* ou *valorada*.
 
@@ -80,7 +81,9 @@ $this->adicionarOpcao(new Opcao(
 ```
 
 
-## Método manipular
+## 3. Manipular argumentos
+
+### 3.1. Sobre
 
 Da mesma forma, o método `"self->manipular()"` deve ser implementado em todos os comandos. É neste método que a rotina do comando deverá ser implementada.
 
@@ -104,7 +107,7 @@ class MeuComando extends Comando
 }
 ```
 
-### Método Comando->terminal()
+### 3.2. Obter o terminal atual
 
 Obtém a intância do terminal atual, permitindo acessar informações úteis.
 
@@ -112,7 +115,7 @@ Obtém a intância do terminal atual, permitindo acessar informações úteis.
 $instancia = $this->terminal();
 ```
 
-### Método Comando->caminhoDaAplicacao()
+### 3.3. Obter o caminho da aplicação atual
 
 Obtém o caminho completo até a raiz da aplicação. Pode-se especificar um sufixo,
 para compor facilmente um caminho mais completo:
@@ -126,7 +129,7 @@ echo $this->caminhoDaAplicacao('console/php');
 ```
 
 
-### Método Comando->alerta()
+### 3.4. Emitir um alerta
 
 Exibe um texto detacado em laranja no terminal do usuário.
 
@@ -134,7 +137,7 @@ Exibe um texto detacado em laranja no terminal do usuário.
 echo $this->alerta("Operação inexistente");
 ```
 
-### Método Comando->erro()
+### 3.5. Emitir um erro
 
 Exibe um texto detacado em vermelho no terminal do usuário.
 
@@ -142,7 +145,7 @@ Exibe um texto detacado em vermelho no terminal do usuário.
 echo $this->erro("Ocorreu um erro");
 ```
 
-### Método Comando->info()
+### 3.6. Emitir uma informação
 
 Exibe um texto detacado em verde no terminal do usuário.
 
@@ -150,7 +153,7 @@ Exibe um texto detacado em verde no terminal do usuário.
 echo $this->info("Operação executada");
 ```
 
-### Método Comando->linha()
+### 3.7. Emitir um texto simples
 
 Exibe um texto sem destaque no terminal do usuário.
 
@@ -158,11 +161,13 @@ Exibe um texto sem destaque no terminal do usuário.
 echo $this->linha("Executando comando");
 ```
 
-## Método manipular: argumentos
+## 4. Objeto Argumentos
 
 Para identificar as opções fornecidas pelo usuário no terminal, usa-se o objeto
 `Freep\Console\Argumentos`, que fornece acesso às opções, valores e argumentos
 especificados.
+
+Este objeto é disponibilizado como argumento do método `"self->manipular()"`.
 
 Mais informações sobre argumentos em [usando os argumentos](06-usando-os-argumentos.md).
 
