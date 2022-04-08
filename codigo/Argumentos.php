@@ -38,13 +38,13 @@ class Argumentos
     }
 
     /** @return mixed */
-    public function opcao(string $notacao)
+    public function opcao(string $notacao): string
     {
         if (isset($this->mapaDeNotacoes[$notacao]) === false) {
             throw new OutOfRangeException("A opção '{$notacao}' é inválida");
         }
 
         $notacaoPrincipal = $this->mapaDeNotacoes[$notacao];
-        return $this->comChave[$notacaoPrincipal] ?? null;
+        return $this->comChave[$notacaoPrincipal] ?? "";
     }
 }

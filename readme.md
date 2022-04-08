@@ -9,123 +9,48 @@ Para informações detalhadas, consulte a [documentação](docs/indice.md);
 
 ## Modo de Usar
 
-A primeira coisa a fazer é criar os comandos necessários e alocá-los em algum diretório. Um comando deve ser implementado com base na classe abstrata `Freep\Console\Comando`:
+### 1. Crie um comando
+
+Implemente um comando baseado na calsse abstrata `Freep\Console\Comando`:
 
 ```php
-class DizerOla extends Comando
+class MeuComando extends Comando
 {
-    /**
-     * O método "self->inicializar()" deve ser implementado em todos os comandos.
-     * Pelo menos o método "setarNome" deverá ser invocado para determinar a palavra 
-     * a ser usada no terminal para invocar o comando.
-     * Os outros métodos podem ser invocados para melhorar a experiência do usuário.
-     */
     protected function inicializar(): void
     {
-        // O nome do comando, que será usado para invocá-lo no terminal
-        $this->setarNome("dizer-ola");
-
-        // Uma descrição sobre o objetivo do comando
-        // Esta mensagem será exibida nas informações de ajuda
-        $this->setarDescricao("Exibe a mensagem 'olá' no terminal");
-
-        // Uma dica sobre como este comando pode ser utilizado
-        // Esta mensagem será exibida nas informações de ajuda
-        $this->setarModoDeUsar("./superapp dizer-ola [opcoes]");
-
-        // Uma opção obrigatória e valorada.
-        // Quando especificada no terminal, deverá vir acompanhada de um valor
+        $this->setarNome("meu-comando");
         $this->adicionarOpcao(
-            new Opcao(
-                '-l',
-                '--ler-arquivo',
-                'Lê a mensagem a partir de um arquivo texto',
-                Opcao::OBRIGATORIA | Opcao::COM_VALOR
-            )
-        );
-
-        // Uma opção não-obrigatória
-        $this->adicionarOpcao(
-            new Opcao(
-                '-d',
-                '--destruir',
-                'Apaga o arquivo texto após usá-lo',
-                Opcao::OPCIONAL
-            )
+            new Opcao('-l', '--ler', 'Lê um arquivo texto', Opcao::OBRIGATORIA)
         );
     }
 
-    /**
-     * O método "self->manipular()" deve ser implementado em todos os comandos.
-     * É neste método que a rotina do comando deverá ser implementada.
-     * 
-     * O argumento "$argumentos" contém dois métodos úteis:
-     * 
-     * - opcao(nome da opçao): obtém o valor de uma opção a partir de sua chave. 
-     * Se o usuário especificar a opção no terminal, o valor correspondente será 
-     * devolvido aqui. Caso contrário, um valor padrão será devolvido de acordo 
-     * com o tipo de opção;
-     * 
-     * - argumento(indice): obtém um argumento fornecido pelo usuário no terminal. 
-     * Um argumento é toda palavra sem chaves (ex: -e ou --exemplo) que for especificada 
-     * no terminal. 
-     */ 
     protected function manipular(Argumentos $argumentos): void
     {
-        $mensagem = "Olá";
-
-        // a executar a opção, pode-se exibir uma mensagem padrão no terminal para 
-        // notificar o usuário do que está acontecendo
-        if ($argumentos->opcao('-l') !== '1') {
-            $this->linha("Lendo o arquivo texto contendo a mensagem de olá");
-
-            // rotina que lê o arquivo e atribui a mensagem na variável
-            $mensagem = "";
-        }
-
-        // se algo der errado, pode-se exibir uma mensagem de erro no terminal
-        if ($mensagem === "") {
-            $this->erro("Não foi possível ler o arquivo texto");
-        }
-
-        // se a exclusão for solicitada, pode-se exibir uma mensagem de alerta no terminal
-        if ($argumentos->opcao('-d') === '1') {
-            $this->alerta("Apagando o arquivo texto usado");
-            // ... rotina para apagar o arquivo
-        }
-
-        // Enfim, exibe a mensagem apropriada de forma destacada
-        $this->info($mensagem);
+        $this->info("Olá");
     }
 }
 ```
 
+### 2. Crie um script
 
-Com os comandos implementados no diretório desejado, é preciso criar uma instância de `Freep\Console\Terminal` e dizer para ela quais são os diretórios contendo os comandos implementados.
-
-Por fim, basta mandar o Terminal executar os comandos através do método `Terminal->executar()`:
+Crie um arquivo (chamado, por exemplo, "meuconsole") com o seguinte conteúdo:
 
 ```php
-// Cria uma instãncia do Terminal. O caminho para a raiz da aplicação deve ser 
-// especificado para que os comandos possam utilizá-lo
-$terminal = new Terminal("raiz/da/super/aplicacao");
+#!/bin/php
+<?php
+include __DIR__ . "/vendor/autoload.php";
 
-// Uma dica sobre como o terminal pode ser utilizado
-// Esta mensagem será exibida nas informações de ajuda
-$terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
-
-// Adiciona dois diretórios contendo comandos
-$terminal->carregarComandosDe(__DIR__ . "/comandos");
-$terminal->carregarComandosDe(__DIR__ . "/mais-comandos");
-
-// Executa o comando
-$terminal->executar([ "dizer-ola", "-l", "mensagem.txt", "-d" ]);
-
+$terminal = new Freep\Console\Terminal(__DIR__ . "/codigo");
+$terminal->executar($argv);
 ```
 
-## Desenvolvimento
+### 3. Execute o script
 
-### Controle de qualidade
+```bash
+$ ./meuconsole meu-comando -l
+```
+
+## Controle de qualidade
 
 Para o desenvolvimento, foram utilizadas ferramentas para testes de unidade e análise estática. Todas configuradas no nível máximo de exigência.
 
@@ -136,7 +61,3 @@ São as seguintes ferramentas:
 - [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 - [PHP MD](https://phpmd.org)
 
-### Infraestrutura
-
-Se o [Docker](https://www.docker.com/) estiver instalado no computador, não será necessário ter o Composer, e nem mesmo o PHP, instalados na máquina do desenvolvedor. Para usar o Composer e as bibliotecas de qualidade de código, 
-use o script `./composer`, localizado na raiz deste repositório. Este script é, na verdade, uma ponte para todos os comandos do Composer, executando-os através do Docker.
