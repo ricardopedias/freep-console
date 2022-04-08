@@ -1,7 +1,7 @@
 # Instanciando o terminal
 
-- [Voltar ao índice](indice.md)
-- [Script de terminal](02-script-de-terminal.md)
+[◂ Script de terminal](02-script-de-terminal.md) | [Voltar ao índice](indice.md) | [Criando comandos ▸](04-criando-comandos.md)
+-- | -- | --
 
 ## 1. Implementação
 
@@ -71,5 +71,6 @@ ou seja, no terminal.
 
 Mais informações da documentação do PHP em [Reserved Variables](https://www.php.net/manual/pt_BR/reserved.variables.argv.php)
 
-- [Criando Comandos](04-criando-comandos.md)
-- [Voltar ao índice](indice.md)
+
+[◂ Script de terminal](02-script-de-terminal.md) | [Voltar ao índice](indice.md) | [Criando comandos ▸](04-criando-comandos.md)
+-- | -- | --

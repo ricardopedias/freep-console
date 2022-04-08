@@ -1,7 +1,7 @@
 # Usando argumentos
 
-- [Voltar ao índice](indice.md)
-- [Implementando Opções](05-implementando-opcoes.md)
+[◂ Implementando Opções](05-implementando-opcoes.md) | [Voltar ao índice](indice.md) | [Evoluindo a biblioteca ▸](07-evoluindo-a-biblioteca.md)
+-- | -- | --
 
 ## 1. Objeto Argumentos
 
@@ -79,7 +79,5 @@ class DizerOla extends Comando
 
 Todos os valores obtidos pelo objeto `Argumentos` serão do tipo "string", não importa se sejam textos ou números. Caso seja um booleano, a string devolvida será "0" ou "1". 
 
-
-
-- [Evoluindo a biblioteca](07-evoluindo-a-biblioteca.md)
-- [Voltar ao índice](indice.md)
+[◂ Implementando Opções](05-implementando-opcoes.md) | [Voltar ao índice](indice.md) | [Evoluindo a biblioteca ▸](07-evoluindo-a-biblioteca.md)
+-- | -- | --

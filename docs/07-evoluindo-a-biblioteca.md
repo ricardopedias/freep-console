@@ -1,15 +1,18 @@
 # Evoluindo a biblioteca
 
-- [Voltar ao índice](indice.md)
-- [Usando os argumentos](06-usando-os-argumentos.md)
-## X
+[◂ Usando os argumentos](06-usando-os-argumentos.md) | [Voltar ao índice](indice.md)
+-- | --
 
-## Infraestrutura
 
-Se o [Docker](https://www.docker.com/) estiver instalado no computador, não será necessário ter o Composer, e nem mesmo o PHP, instalados na máquina do desenvolvedor. Para usar o Composer e as bibliotecas de qualidade de código, 
-use o script `./composer`, localizado na raiz deste repositório. Este script é, na verdade, uma ponte para todos os comandos do Composer, executando-os através do Docker.
+## 1. Infraestrutura
 
-## Controle de qualidade
+Se o [Docker](https://www.docker.com/) estiver instalado no computador, não será necessário ter o Composer ou PHP instalados. 
+
+Para usar o Composer e as bibliotecas de qualidade de código, use o script `./composer`, localizado na raiz deste repositório. Este script é, na verdade, uma ponte para todos os comandos do Composer, executando-os através do Docker.
+
+## 2. Controle de qualidade
+
+### 2.1. Ferramentas
 
 Para o desenvolvimento, foram utilizadas ferramentas para testes de unidade e análise estática. Todas configuradas no nível máximo de exigência.
 
@@ -20,6 +23,22 @@ São as seguintes ferramentas:
 - [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 - [PHP MD](https://phpmd.org)
 
+### 2.2. Análise estática
+
+Para fazer a análise do código implementando e colher feedback das ferramentas, use:
+
+```bash
+$ ./composer analisar
+```
+
+### 2.3. Análise estática
+
+Para executar os testes de unidade, use:
+
+```bash
+$ ./composer testar
+```
 
 
-[Voltar ao índice](indice.md)
+[◂ Usando os argumentos](06-usando-os-argumentos.md) | [Voltar ao índice](indice.md)
+-- | --

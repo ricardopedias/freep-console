@@ -1,7 +1,8 @@
 # Implementando opções
 
-- [Voltar ao índice](indice.md)
-- [Criando Comandos](04-criando-comandos.md)
+[◂ Criando Comandos](04-criando-comandos.md) | [Voltar ao índice](indice.md) | [Usando os argumentos ▸](06-usando-os-argumentos.md)
+-- | -- | --
+
 
 ## 1. Sobre opções
 
@@ -154,5 +155,6 @@ new Opcao(
 )
 ```
 
-- [Usando os argumentos](06-usando-os-argumentos.md)
-- [Voltar ao índice](indice.md)
+
+[◂ Criando Comandos](04-criando-comandos.md) | [Voltar ao índice](indice.md) | [Usando os argumentos ▸](06-usando-os-argumentos.md)
+-- | -- | --

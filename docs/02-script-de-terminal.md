@@ -1,7 +1,7 @@
 # Script de terminal
 
-- [Voltar ao índice](indice.md)
-- [Modo de Usar](01-modo-de-usar.md)
+[◂ Modo de Usar](01-modo-de-usar.md) | [Voltar ao índice](indice.md) | [Instanciando o terminal ▸](03-instanciando-o-terminal.md)
+-- | -- | --
 
 ## 1. Criando um script
 
@@ -48,5 +48,5 @@ $ ./superapp --ajuda
 
 > **Nota:** em sistemas unix ou derivados, para poder invocar diretamente um script (ex: ./superapp), é preciso que ele possua permissão para executar. Isso é conseguido pelo comando `chmod a+x superapp`
 
-- [Instanciando o Terminal](03-instanciando-o-terminal.md)
-- [Voltar ao índice](indice.md)
+[◂ Modo de Usar](01-modo-de-usar.md) | [Voltar ao índice](indice.md) | [Instanciando o terminal ▸](03-instanciando-o-terminal.md)
+-- | -- | --

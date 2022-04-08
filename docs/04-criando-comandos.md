@@ -1,7 +1,7 @@
 # Criando Comandos
 
-- [Voltar ao índice](indice.md)
-- [Instanciando o Terminal](03-instanciando-o-terminal.md)
+[◂ Instanciando o terminal](03-instanciando-o-terminal.md) | [Voltar ao índice](indice.md) | [Implementando opções ▸](05-implementando-opcoes.md)
+-- | -- | --
 
 ## 1. Sobre um comando
 
@@ -171,5 +171,5 @@ Este objeto é disponibilizado como argumento do método `"self->manipular()"`.
 
 Mais informações sobre argumentos em [usando os argumentos](06-usando-os-argumentos.md).
 
-- [Implementando Opções](05-implementando-opcoes.md)
-- [Voltar ao índice](indice.md)
+[◂ Instanciando o terminal](03-instanciando-o-terminal.md) | [Voltar ao índice](indice.md) | [Implementando opções ▸](05-implementando-opcoes.md)
+-- | -- | --

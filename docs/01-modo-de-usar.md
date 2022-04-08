@@ -1,6 +1,7 @@
 # Modo de Usar
 
-[Voltar ao índice](indice.md)
+[◂ Voltar ao índice](indice.md) | [Script de Terminal ▸](02-script-de-terminal.md)
+-- | --
 
 ## 1. Implementar comandos
 
@@ -93,5 +94,5 @@ $terminal->executar([ "dizer-ola", "-l", "mensagem.txt", "-d" ]);
 
 Mais informações em [Instanciando o Terminal](03-instanciando-o-terminal.md).
 
-- [Script de terminal](02-script-de-terminal.md)
-- [Voltar ao índice](indice.md)
+[◂ Voltar ao índice](indice.md) | [Script de Terminal ▸](02-script-de-terminal.md)
+-- | --
