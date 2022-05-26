@@ -12,13 +12,13 @@ class ExampleTwo extends Command
 {
     protected function initialize(): void
     {
-        $this->setName("exemplo2");
-        $this->setDescription("Executa o comando exemplo2");
+        $this->setName("example2");
+        $this->setDescription("Run the 'example2' command");
     }
 
     protected function handle(Arguments $arguments): void
     {
         // dispara saída padrão para o teste capturar
-        $this->line("exemplo2 executado");
+        $this->line("Command 'example2' executed");
     }
 }

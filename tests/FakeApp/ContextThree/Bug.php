@@ -14,7 +14,7 @@ class Bug extends Command
     protected function initialize(): void
     {
         $this->setName("bug");
-        $this->setDescription("Executa o comando bugado");
+        $this->setDescription("Run the buggy command");
     }
 
     protected function handle(Arguments $arguments): void

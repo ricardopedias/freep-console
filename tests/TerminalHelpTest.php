@@ -13,7 +13,7 @@ class TerminalHelpTest extends TestCase
     private function terminalFactory(): Terminal
     {
         $terminal = new Terminal(__DIR__ . "/FakeApp");
-        $terminal->setHowToUse("./superapp comando [opcoes] [argumentos]");
+        $terminal->setHowToUse("./example command [options] [arguments]");
         $terminal->loadCommandsFrom(__DIR__ . "/FakeApp/ContextOne/src/Commands");
         $terminal->loadCommandsFrom(__DIR__ . "/FakeApp/ContextTwo");
         return $terminal;
@@ -23,22 +23,22 @@ class TerminalHelpTest extends TestCase
     private function helpMessageLines(): array
     {
         return [
-            "Modo de usar:",
-            "./superapp comando [opcoes] [argumentos]",
+            "How to use:",
+            "./example command [options] [arguments]",
 
-            "Opções:",
+            "Options:",
             "-h, --help",
-            "Exibe as informações de ajuda",
+            "Display help information",
 
-            "Comandos disponíveis:",
+            "Available commands:",
             "help",
-            "Exibe as informações de ajuda",
-            "exemplo-excecao",
-            "Executa o comando exemplo-excecao",
-            "exemplo1",
-            "Executa o comando exemplo1",
-            "exemplo2",
-            "Executa o comando exemplo2"
+            "Display help information",
+            "example-exception",
+            "Run the 'example-exception' command",
+            "example1",
+            "Run the 'example1' command",
+            "example2",
+            "Run the 'example2' command"
         ];
     }
 
@@ -46,13 +46,13 @@ class TerminalHelpTest extends TestCase
     private function commandHelpMessageLines(): array
     {
         return [
-            "Comando: exemplo1",
-            "Executa o comando exemplo1",
-            "Modo de usar:",
-            "./superapp exemplo1 [opcoes]",
-            "Opções:",
+            "Command: example1",
+            "Run the 'example1' command",
+            "How to use:",
+            "./example example1 [options]",
+            "Options:",
             "-h, --help",
-            "Exibe a ajuda do comando"
+            "Display command help"
         ];
     }
 
@@ -89,7 +89,7 @@ class TerminalHelpTest extends TestCase
     {
         ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "exemplo1", "--help" ]);
+        $terminal->run([ "example1", "--help" ]);
         $result = (string)ob_get_clean();
 
         foreach ($this->commandHelpMessageLines() as $texto) {
@@ -102,7 +102,7 @@ class TerminalHelpTest extends TestCase
     {
         ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "exemplo1", "-h" ]);
+        $terminal->run([ "example1", "-h" ]);
         $result = (string)ob_get_clean();
 
         foreach ($this->commandHelpMessageLines() as $texto) {

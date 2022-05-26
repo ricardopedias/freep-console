@@ -24,7 +24,7 @@ class CommandImplementationsTest extends TestCase
     public function implementationWithInvalidName(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("O nome de um comando deve ser no formato kebab-case. Ex: nome-do-comando");
+        $this->expectExceptionMessage("The name of a command must be in kebab-case format. Example: command-name");
 
         new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
@@ -64,7 +64,7 @@ class CommandImplementationsTest extends TestCase
     public function implementationWithRequiredOption(): void
     {
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Opções obrigatórias: -p|--port');
+        $this->expectExceptionMessage('Required options: -p|--port');
 
         $objeto = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void

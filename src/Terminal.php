@@ -16,7 +16,7 @@ class Terminal
     /** @var array<string> */
     private array $directoryList = [];
 
-    private string $executedCommand = "nao";
+    private string $executedCommand = "no";
 
     private string $howToUse = "";
 
@@ -53,7 +53,7 @@ class Terminal
         $realPath = realpath($commandsPath);
 
         if ($realPath === false || is_dir($realPath) === false) {
-            throw new InvalidArgumentException("O diretório especificado para comandos não existe");
+            throw new InvalidArgumentException("The directory specified for commands does not exist");
         }
 
         $this->directoryList[] = $commandsPath;
@@ -130,7 +130,7 @@ class Terminal
             return;
         }
 
-        echo "\033[0;31m✗ Comando '{$name}' não encontrado\033[0m\n";
+        echo "\033[0;31m✗ '{$name}' command not found\033[0m\n";
         (new Help($this))->run($arguments);
     }
 
@@ -159,7 +159,7 @@ class Terminal
             }
         }
 
-        throw new RuntimeException("Não é possível extrair o namespace do arquivo '{$oneFile}'");
+        throw new RuntimeException("Unable to extract namespace from file '{$oneFile}'");
     }
 
     private function extractClassName(string $commandFile): string

@@ -53,7 +53,7 @@ class OptionNotationsTest extends TestCase
     public function shortNotationWithoutDashException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("A notação curta deve iniciar com um traço");
+        $this->expectExceptionMessage("The short notation must start with a dash");
 
         new Option("a", "--aaa", 'Descricao opcao 1', Option::OPTIONAL);
     }
@@ -62,7 +62,7 @@ class OptionNotationsTest extends TestCase
     public function shortNotationWithTwoDashesException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("A notação curta deve iniciar com um traço");
+        $this->expectExceptionMessage("The short notation must start with a dash");
 
         new Option("--a", "--aaa", 'Descricao opcao 1', Option::OPTIONAL);
     }
@@ -71,7 +71,7 @@ class OptionNotationsTest extends TestCase
     public function longNotationWithoutDashException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("A notação longa deve iniciar com dois traços");
+        $this->expectExceptionMessage("The long notation must start with two dashes");
 
         new Option("-a", "aaa", 'Descricao opcao 1', Option::OPTIONAL);
     }
@@ -80,7 +80,7 @@ class OptionNotationsTest extends TestCase
     public function longNotationWithOneDashException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("A notação longa deve iniciar com dois traços");
+        $this->expectExceptionMessage("The long notation must start with two dashes");
 
         new Option("-a", "-aaa", 'Descricao opcao 1', Option::OPTIONAL);
     }
@@ -89,7 +89,7 @@ class OptionNotationsTest extends TestCase
     public function notationsNotProvidedException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("É obrigatório fornecer pelo menos uma notação");
+        $this->expectExceptionMessage("It is mandatory to provide at least one notation");
 
         new Option(null, null, 'Descricao opcao 1', Option::OPTIONAL);
     }

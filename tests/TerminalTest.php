@@ -16,29 +16,29 @@ class TerminalTest extends TestCase
     private function helpMessageLines(): array
     {
         return [
-            "Modo de usar:",
-            "./superapp comando [opcoes] [argumentos]",
+            "How to use:",
+            "./example command [options] [arguments]",
 
-            "Opções:",
+            "Options:",
             "-h, --help",
-            "Exibe as informações de ajuda",
+            "Display help information",
 
-            "Comandos disponíveis:",
+            "Available commands:",
             "help",
-            "Exibe as informações de ajuda",
-            "exemplo-excecao",
-            "Executa o comando exemplo-excecao",
-            "exemplo1",
-            "Executa o comando exemplo1",
-            "exemplo2",
-            "Executa o comando exemplo2"
+            "Display help information",
+            "example-exception",
+            "Run the 'example-exception' command",
+            "example1",
+            "Run the 'example1' command",
+            "example2",
+            "Run the 'example2' command"
         ];
     }
 
     private function terminalFactory(): Terminal
     {
         $terminal = new Terminal(__DIR__ . "/FakeApp");
-        $terminal->setHowToUse("./superapp comando [opcoes] [argumentos]");
+        $terminal->setHowToUse("./example command [options] [arguments]");
         $terminal->loadCommandsFrom(__DIR__ . "/FakeApp/ContextOne/src/Commands");
         $terminal->loadCommandsFrom(__DIR__ . "/FakeApp/ContextTwo");
         return $terminal;
@@ -61,7 +61,7 @@ class TerminalTest extends TestCase
         $terminal->run([]);
         $result = (string)ob_get_clean();
 
-        $this->assertEquals("nao", $terminal->executedCommand());
+        $this->assertEquals("no", $terminal->executedCommand());
         $this->assertEmpty($result);
     }
 
@@ -73,7 +73,7 @@ class TerminalTest extends TestCase
         $terminal->run([ "blabla" ]);
         $result = (string)ob_get_clean();
 
-        $this->assertEquals("nao", $terminal->executedCommand());
+        $this->assertEquals("no", $terminal->executedCommand());
 
         foreach ($this->helpMessageLines() as $texto) {
             $this->assertStringContainsString($texto, $result);
@@ -85,11 +85,11 @@ class TerminalTest extends TestCase
     {
         ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "exemplo1" ]);
+        $terminal->run([ "example1" ]);
         $result = (string)ob_get_clean();
 
         $this->assertEquals(ExampleOne::class, $terminal->executedCommand());
-        $this->assertStringContainsString("exemplo1 executado", $result);
+        $this->assertStringContainsString("Command 'example1' executed", $result);
     }
 
     /** @test */
@@ -97,11 +97,11 @@ class TerminalTest extends TestCase
     {
         ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "exemplo2" ]);
+        $terminal->run([ "example2" ]);
         $result = (string)ob_get_clean();
 
         $this->assertEquals(ExampleTwo::class, $terminal->executedCommand());
-        $this->assertStringContainsString("exemplo2 executado", $result);
+        $this->assertStringContainsString("Command 'example2' executed", $result);
     }
 
     /** @test */
@@ -109,11 +109,11 @@ class TerminalTest extends TestCase
     {
         ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "exemplo-excecao" ]);
+        $terminal->run([ "example-exception" ]);
         $result = (string)ob_get_clean();
 
-        $this->assertEquals("nao", $terminal->executedCommand());
-        $this->assertStringContainsString("exemplo-excecao lançou exceção", $result);
+        $this->assertEquals("no", $terminal->executedCommand());
+        $this->assertStringContainsString("Command 'example-exception' threw exception", $result);
     }
 
     /** @test */
@@ -125,7 +125,7 @@ class TerminalTest extends TestCase
         $terminal->run([ "bug" ]);
         $result = (string)ob_get_clean();
 
-        $this->assertEquals("nao", $terminal->executedCommand());
-        $this->assertStringContainsString("Não é possível extrair o namespace do arquivo", $result);
+        $this->assertEquals("no", $terminal->executedCommand());
+        $this->assertStringContainsString("Unable to extract namespace from file", $result);
     }
 }

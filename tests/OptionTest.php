@@ -14,7 +14,7 @@ class OptionTest extends TestCase
     public function defaultBooleanValueException(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Um valor booleano deve ser '0' ou '1'");
+        $this->expectExceptionMessage("A boolean value must be '0' or '1'");
 
         $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::REQUIRED, "valor teste");
         $this->assertEquals("", $opcao->getDefaultValue());

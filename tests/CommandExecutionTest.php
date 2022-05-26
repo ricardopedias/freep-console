@@ -67,7 +67,7 @@ class CommandExecutionTest extends TestCase
         $objeto->run([]);
         $result = (string)ob_get_clean();
 
-        $this->assertStringContainsString("Executar o comando 'teste'", $result);
+        $this->assertStringContainsString("Run the 'teste' command", $result);
     }
 
     /** @test */
@@ -88,6 +88,6 @@ class CommandExecutionTest extends TestCase
         $objeto->run([]);
         $result = (string)ob_get_clean();
 
-        $this->assertStringContainsString("Executar o comando 'sem-nome'", $result);
+        $this->assertStringContainsString("Run the 'no-name' command", $result);
     }
 }

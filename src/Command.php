@@ -8,9 +8,9 @@ use InvalidArgumentException;
 
 abstract class Command
 {
-    private string $name = 'sem-nome';
+    private string $name = 'no-name';
 
-    private string $description = "Executar o comando 'sem-nome'";
+    private string $description = "Run the 'no-name' command";
 
     private string $howToUse = "";
 
@@ -24,7 +24,7 @@ abstract class Command
         $this->terminal = $terminal;
 
         $this->addOption(
-            new Option('-h', '--help', "Exibe a ajuda do comando", Option::OPTIONAL)
+            new Option('-h', '--help', "Display command help", Option::OPTIONAL)
         );
 
         $this->initialize();
@@ -34,12 +34,12 @@ abstract class Command
     {
         if (strpos($commandName, " ") !== false) {
             throw new InvalidArgumentException(
-                "O nome de um comando deve ser no formato kebab-case. Ex: nome-do-comando"
+                "The name of a command must be in kebab-case format. Example: command-name"
             );
         }
 
         $this->name = $commandName;
-        $this->description = "Executar o comando '{$commandName}'";
+        $this->description = "Run the '{$commandName}' command";
     }
 
     protected function setDescription(string $text): void
@@ -98,16 +98,16 @@ abstract class Command
 
     private function printHelp(): void
     {
-        $this->printSection("Comando: " . $this->getName());
+        $this->printSection("Command: " . $this->getName());
 
         $this->line(" " . $this->getDescription());
 
         if ($this->getHowToUse() !== "") {
-            $this->printSection("Modo de usar:");
+            $this->printSection("How to use:");
             $this->line($this->getHowToUse());
         }
 
-        $this->printSection("Opções:");
+        $this->printSection("Options:");
 
         foreach ($this->getOptions() as $option) {
             $this->printOption($option->getShortNotation(), $option->getLongNotation(), $option->getDescription());

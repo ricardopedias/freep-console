@@ -12,21 +12,21 @@ class Help extends Command
     protected function initialize(): void
     {
         $this->setName("help");
-        $this->setDescription("Exibe as informações de ajuda");
+        $this->setDescription("Display help information");
     }
 
     protected function handle(Arguments $arguments): void
     {
         if ($this->getTerminal()->getHowToUse() !== "") {
-            $this->printSection("Modo de usar:");
+            $this->printSection("How to use:");
             $this->line("  " . $this->getTerminal()->getHowToUse());
         }
 
-        $this->printSection("Opções:");
+        $this->printSection("Options:");
 
         $this->printOption("-h", "--help", $this->getDescription());
 
-        $this->printSection("Comandos disponíveis:");
+        $this->printSection("Available commands:");
 
         $commandList = $this->getCommandList();
 

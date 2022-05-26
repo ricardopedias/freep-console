@@ -43,7 +43,7 @@ class ParserTest extends TestCase
     public function requiredOptionException(): void
     {
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Opções obrigatórias: -a|--aaa');
+        $this->expectExceptionMessage('Required options: -a|--aaa');
 
         $interpretador = new Parser([
             new Option('-a', '--aaa', 'Descricao opcao 1', Option::REQUIRED | Option::VALUED),
@@ -90,7 +90,7 @@ class ParserTest extends TestCase
     public function requiredBooleanOptionException(): void
     {
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Opções obrigatórias: -a|--aaa');
+        $this->expectExceptionMessage('Required options: -a|--aaa');
 
         $interpretador = new Parser([
             new Option('-a', '--aaa', 'Descricao opcao 1', Option::REQUIRED),

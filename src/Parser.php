@@ -108,7 +108,7 @@ class Parser
         }
 
         if ($compositeValue === []) {
-            throw new RuntimeException("A opção '{$notation}' requer um valor");
+            throw new RuntimeException("The '{$notation}' option requires a value");
         }
 
         $this->flaggedOptionsList[$mainNotation] = implode(" ", $compositeValue);
@@ -240,6 +240,6 @@ class Parser
 
         $tip = implode(", ", $requireds);
 
-        throw new RuntimeException(sprintf("Opções obrigatórias: %s", $tip));
+        throw new RuntimeException(sprintf("Required options: %s", $tip));
     }
 }

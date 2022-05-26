@@ -36,7 +36,7 @@ class Option
         ?string $defaultValue = null
     ) {
         if ($shortNotation === null && $longNotation === null) {
-            throw new InvalidArgumentException("É obrigatório fornecer pelo menos uma notação");
+            throw new InvalidArgumentException("It is mandatory to provide at least one notation");
         }
 
         $this->validateShortNotation($shortNotation);
@@ -73,7 +73,7 @@ class Option
         }
 
         if ($this->boolean === true && in_array($this->defaultValue, ["0", "1", ""]) === false) {
-            throw new InvalidArgumentException("Um valor booleano deve ser '0' ou '1'");
+            throw new InvalidArgumentException("A boolean value must be '0' or '1'");
         }
     }
 
@@ -83,14 +83,14 @@ class Option
             $shortNotation !== null
             && (str_starts_with($shortNotation, "--") === true || str_starts_with($shortNotation, "-") === false)
         ) {
-            throw new InvalidArgumentException("A notação curta deve iniciar com um traço");
+            throw new InvalidArgumentException("The short notation must start with a dash");
         }
     }
 
     private function validateLongNotation(?string $longNotation): void
     {
         if ($longNotation !== null && str_starts_with($longNotation, "--") === false) {
-            throw new InvalidArgumentException("A notação longa deve iniciar com dois traços");
+            throw new InvalidArgumentException("The long notation must start with two dashes");
         }
     }
 

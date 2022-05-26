@@ -13,12 +13,12 @@ class ExampleException extends Command
 {
     public function initialize(): void
     {
-        $this->setName("exemplo-excecao");
-        $this->setDescription("Executa o comando exemplo-excecao");
+        $this->setName("example-exception");
+        $this->setDescription("Run the 'example-exception' command");
     }
 
     protected function handle(Arguments $arguments): void
     {
-        throw new Exception("exemplo-excecao lançou exceção");
+        throw new Exception("Command 'example-exception' threw exception");
     }
 }

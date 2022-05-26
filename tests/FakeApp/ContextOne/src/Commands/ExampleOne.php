@@ -12,14 +12,14 @@ class ExampleOne extends Command
 {
     protected function initialize(): void
     {
-        $this->setName("exemplo1");
-        $this->setDescription("Executa o comando exemplo1");
-        $this->setHowToUse("./superapp exemplo1 [opcoes]");
+        $this->setName("example1");
+        $this->setDescription("Run the 'example1' command");
+        $this->setHowToUse("./example example1 [options]");
     }
 
     protected function handle(Arguments $arguments): void
     {
         // dispara saída padrão para o teste capturar
-        $this->line("exemplo1 executado");
+        $this->line("Command 'example1' executed");
     }
 }

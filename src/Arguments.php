@@ -41,7 +41,7 @@ class Arguments
     public function getOption(string $notation): string
     {
         if (isset($this->notationMap[$notation]) === false) {
-            throw new OutOfRangeException("A opção '{$notation}' é inválida");
+            throw new OutOfRangeException("Option '{$notation}' is invalid");
         }
 
         $mainNotation = $this->notationMap[$notation];
