@@ -17,17 +17,17 @@ class Parser
     /**
      * Lista de opções identificáveis pela notação principal
      * @var array<string,Option> */
-    private array $configuredOptionsList = [];
+    private array $configuredOptions = [];
 
     /**
      * Lista de valores identificáveis pela notação principal
      * @var array<string,mixed> */
-    private array $flaggedOptionsList = [];
+    private array $flaggedOptions = [];
 
     /**
      * Lista de textos especificados que não pertencem a nenhuma opção
      * @var array<int,string> */
-    private array $standAloneOptionsList = [];
+    private array $standAloneOptions = [];
 
     /** @param array<int,Option> $configuration */
     public function __construct(array $configuration)
@@ -38,7 +38,7 @@ class Parser
             $shortNotation = $option->getShortNotation();
             $longNotation = $option->getLongNotation();
 
-            $this->configuredOptionsList[$mainNotation] = $option;
+            $this->configuredOptions[$mainNotation] = $option;
             $this->notationMap[$shortNotation] = $mainNotation;
             $this->notationMap[$longNotation] = $mainNotation;
         }
@@ -46,7 +46,7 @@ class Parser
 
     private function composeValuesBetweenQuotes(): void
     {
-        $this->standAloneOptionsList = (new Composition($this->standAloneOptionsList))->valores();
+        $this->standAloneOptions = (new Composition($this->standAloneOptions))->valores();
     }
 
     /**
@@ -64,7 +64,7 @@ class Parser
      */
     private function extractStandAloneOption(array &$argumentList, int $index): void
     {
-        $this->standAloneOptionsList[] = $argumentList[$index];
+        $this->standAloneOptions[] = $argumentList[$index];
 
         unset($argumentList[$index]);
     }
@@ -80,7 +80,7 @@ class Parser
         $mainNotation = $option->getMainNotation();
 
         if ($option->isBoolean() === true || $option->isValued() === false) {
-            $this->flaggedOptionsList[$mainNotation] = '1';
+            $this->flaggedOptions[$mainNotation] = '1';
             return;
         }
 
@@ -111,7 +111,7 @@ class Parser
             throw new RuntimeException("The '{$notation}' option requires a value");
         }
 
-        $this->flaggedOptionsList[$mainNotation] = implode(" ", $compositeValue);
+        $this->flaggedOptions[$mainNotation] = implode(" ", $compositeValue);
     }
 
     private function removeQuotes(string $argument): string
@@ -148,7 +148,7 @@ class Parser
     private function getOption(string $notation): Option
     {
         $notation = $this->notationMap[$notation];
-        return $this->configuredOptionsList[$notation];
+        return $this->configuredOptions[$notation];
     }
 
     public function parseStringArguments(string $argumentsDoTerminal): Arguments
@@ -182,38 +182,38 @@ class Parser
         $this->populateBooleanValues();
         $this->composeValuesBetweenQuotes();
 
-        return new Arguments($this->notationMap, $this->flaggedOptionsList, $this->standAloneOptionsList);
+        return new Arguments($this->notationMap, $this->flaggedOptions, $this->standAloneOptions);
     }
 
     private function populateDefaultValues(): void
     {
         /** @var Option $option */
-        foreach ($this->configuredOptionsList as $option) {
+        foreach ($this->configuredOptions as $option) {
             if ($option->getDefaultValue() === "") {
                 continue;
             }
 
-            if (isset($this->flaggedOptionsList[$option->getMainNotation()]) === true) {
+            if (isset($this->flaggedOptions[$option->getMainNotation()]) === true) {
                 continue;
             }
 
-            $this->flaggedOptionsList[$option->getMainNotation()] = $option->getDefaultValue();
+            $this->flaggedOptions[$option->getMainNotation()] = $option->getDefaultValue();
         }
     }
 
     private function populateBooleanValues(): void
     {
         /** @var Option $option */
-        foreach ($this->configuredOptionsList as $option) {
+        foreach ($this->configuredOptions as $option) {
             if ($option->isBoolean() === false) {
                 continue;
             }
 
-            if (isset($this->flaggedOptionsList[$option->getMainNotation()]) === true) {
+            if (isset($this->flaggedOptions[$option->getMainNotation()]) === true) {
                 continue;
             }
 
-            $this->flaggedOptionsList[$option->getMainNotation()] = '0';
+            $this->flaggedOptions[$option->getMainNotation()] = '0';
         }
     }
 
@@ -222,12 +222,12 @@ class Parser
         $requireds = [];
 
         /** @var Option $option */
-        foreach ($this->configuredOptionsList as $option) {
+        foreach ($this->configuredOptions as $option) {
             if ($option->isRequired() === false) {
                 continue;
             }
 
-            if (isset($this->flaggedOptionsList[$option->getMainNotation()]) === true) {
+            if (isset($this->flaggedOptions[$option->getMainNotation()]) === true) {
                 continue;
             }
 
