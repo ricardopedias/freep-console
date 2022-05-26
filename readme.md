@@ -7,40 +7,39 @@
 [![Twitter](https://img.shields.io/twitter/follow/ricardopedias?label=Siga%20no%20Twitter)](https://twitter.com/ricardopedias)
 
 
-## Sinopse
+## Synopsis
 
-Este repositório contém as funcionalidades necessárias para implementar um gerenciador de 
-comandos para terminal em uma aplicação PHP de forma fácil.
+This repository contains the necessary functionality to easily implement a terminal command manager in a PHP application.
 
-Para informações detalhadas, consulte a [documentação](docs/indice.md);
+For detailed information, consult the documentation in [English](docs/en/index.md) or [Portuguese](docs/pt-br/indice.md). See also this readme in [Portuguese](docs/pt-br/leiame.md).
 
-## Modo de Usar
+## How to use
 
-### 1. Crie um comando
+### 1. Create a command
 
-Implemente um comando chamado "meu-comando", baseado na classe abstrata `Freep\Console\Comando`:
+Implement a command called "my-command", based on the abstract class `Freep\Console\Command`:
 
 ```php
-class MeuComando extends Comando
+class MyCommand extends Command
 {
-    protected function inicializar(): void
+    protected function initialize(): void
     {
-        $this->setarNome("meu-comando");
-        $this->adicionarOpcao(
-            new Opcao('-l', '--ler', 'Lê um arquivo texto', Opcao::OBRIGATORIA)
+        $this->setName("my-command");
+        $this->addOption(
+            new Option('-r', '--read', 'Read a text file', Option::REQUIRED)
         );
     }
 
-    protected function manipular(Argumentos $argumentos): void
+    protected function handle(Arguments $arguments): void
     {
-        $this->info("Olá");
+        $this->info("Hello");
     }
 }
 ```
 
-### 2. Crie um script
+### 2. Create a script
 
-Crie um arquivo, chame-o por exemplo de "meuconsole", e adicione o seguinte conteúdo:
+Create a file, call it for example "myconsole", and add the following content:
 
 ```php
 #!/bin/php
@@ -49,65 +48,65 @@ include __DIR__ . "/vendor/autoload.php";
 
 array_shift($argv);
 
-$terminal = new Freep\Console\Terminal("/diretorio/de/comandos");
-$terminal->executar($argv);
+$terminal = new Freep\Console\Terminal("/directory/containing/commands");
+$terminal->run($argv);
 ```
 
-### 3. Execute o script
+### 3. Run the script
 
 ```bash
-$ ./meuconsole meu-comando -l
-# exibe: Olá
+$ ./myconsole my-command -r
+# will display: Hello
 ```
 
 ```bash
-$ ./meuconsole meu-comando --ajuda
-# exibe:
+$ ./myconsole my-command --help
+# will display:
 #
-# Comando: meu-comando
+# Comando: my-command
 # Executa o comando meu-comando
 #
 # Modo de usar:
-# ./meuconsole meu-comando [opcoes]
+# ./myconsole my-command [opcoes]
 #
 # Opções:
-# -a, --ajuda     Exibe a ajuda do comando
-# -l, --ler       Lê um arquivo texto
+# -h, --help     Exibe a ajuda do comando
+# -r, --read     Lê um arquivo texto
 ```
 
 ```bash
-$ ./meuconsole --ajuda
-# exibe:
+$ ./myconsole --help
+# will display:
 #
 # Modo de usar:
-# ./meuconsole comando [opcoes] [argumentos]
+# ./myconsole command [opcoes] [argumentos]
 #
 # Opções:
-# -a, --ajuda     Exibe as informações de ajuda
+# -h, --help     Exibe as informações de ajuda
 #
 # Comandos disponíveis:
-# ajuda           Exibe as informações de ajuda
-# meu-comando     Executa o comando meu-comando
+# help           Exibe as informações de ajuda
+# my-command     Executa o comando meu-comando
 ```
 
-## Características
+## Characteristics
 
--   Feito para o PHP 8.0 ou superior;
--   Codificado com boas práticas e máxima qualidade;
--   Bem documentado e amigável para IDEs;
--   Feito com TDD (Test Driven Development);
--   Implementado com testes de unidade usando PHPUnit;
--   Feito com :heart: &amp; :coffee:.
+- Made for PHP 8.0 or higher;
+- Codified with best practices and maximum quality;
+- Well documented and IDE friendly;
+- Made with TDD (Test Driven Development);
+- Implemented with unit tests using PHPUnit;
+- Made with :heart: &amp; :coffee:.
 
-## Sumário
+## Summary
 
-- [Modo de Usar](docs/01-modo-de-usar.md)
-- [Script de terminal](docs/02-script-de-terminal.md)
-- [Instanciando o Terminal](docs/03-instanciando-o-terminal.md)
-- [Criando Comandos](docs/04-criando-comandos.md)
-- [Implementando Opções](docs/05-implementando-opcoes.md)
-- [Usando os argumentos](docs/06-usando-os-argumentos.md)
-- [Evoluindo a biblioteca](docs/07-evoluindo-a-biblioteca.md)
+- [How to use](docs/en/01-modo-de-usar.md)
+- [Terminal script](docs/en/02-script-de-terminal.md)
+- [Instantiating the Terminal](docs/en/03-instanciando-o-terminal.md)
+- [Criando Comandos](docs/en/04-criando-comandos.md)
+- [Creating Commands](docs/en/05-implementando-opcoes.md)
+- [Using the arguments](docs/en/06-usando-os-argumentos.md)
+- [Improving the library](docs/en/07-evoluindo-a-biblioteca.md)
 
 ## Creditos
 
