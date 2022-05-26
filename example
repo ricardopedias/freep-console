@@ -4,7 +4,7 @@
 include __DIR__ . "/vendor/autoload.php";
 
 /**
- * ./superapp - Script para linha de comando
+ * ./example - Script para linha de comando
  *
  * Site: https://github.com/ricardopedias/freep-console
  * Autor: Ricardo Pereira <contato@ricardopedias.com.br>
@@ -14,19 +14,19 @@ include __DIR__ . "/vendor/autoload.php";
  * com a biblioteca freep-console.
  *
  * Para informações sobre os comandos disponíveis, use o comando:
- * $ ./superapp --ajuda
+ * $ ./example --help
  *
  * Licença: MIT
  */
 
 use Freep\Console\Terminal;
 
-// Remove o primeiro argumento com o nome do script (./superapp)
+// Remove o primeiro argumento do usuário contendo o nome do script (./example)
 array_shift($argv);
 
 $terminal = new Terminal(__DIR__ . "/codigo");
-$terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
-$terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoUm/src/Comandos");
-$terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoDois");
+$terminal->setHowToUse("./example command [options] [arguments]");
+$terminal->loadCommandsFrom(__DIR__ . "/tests/FakeApp/ContextOne/src/Commands");
+$terminal->loadCommandsFrom(__DIR__ . "/tests/FakeApp/ContextTwo");
 
-$terminal->executar($argv);
+$terminal->run($argv);
