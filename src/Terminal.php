@@ -80,8 +80,8 @@ class Terminal
         try {
             $this->runCommand($commandName, $arguments);
         } catch (Throwable $e) {
-            echo "\033[0;31m✗  " . $e->getFile() . " on line " . $e->getLine() . "\033[0m\n";
-            echo "\033[0;31m   " . $e->getMessage() . "\033[0m\n";
+            $this->print("\033[0;31m✗  " . $e->getFile() . " on line " . $e->getLine() . "\033[0m\n");
+            $this->print("\033[0;31m   " . $e->getMessage() . "\033[0m\n");
         }
     }
 
@@ -130,7 +130,7 @@ class Terminal
             return;
         }
 
-        echo "\033[0;31m✗ '{$name}' command not found\033[0m\n";
+        $this->print("\033[0;31m✗ '{$name}' command not found\033[0m\n");
         (new Help($this))->run($arguments);
     }
 
@@ -195,5 +195,12 @@ class Terminal
     public function executedCommand(): string
     {
         return $this->executedCommand;
+    }
+
+    public function print(string $text): void
+    {
+        $resource = fopen('php://output', 'w');
+        fwrite($resource, $text); // @phpstan-ignore-line
+        fclose($resource); // @phpstan-ignore-line
     }
 }

@@ -145,7 +145,7 @@ abstract class Command
 
     protected function line(string $text): void
     {
-        $this->print($text . "\n");
+        $this->getTerminal()->print($text . "\n");
     }
 
     protected function error(string $text): void
@@ -161,12 +161,5 @@ abstract class Command
     protected function warning(string $text): void
     {
         $this->line("\033[0;33m{$text}\033[0m");
-    }
-
-    private function print(string $text): void
-    {
-        $resource = fopen('php://output', 'w');
-        fwrite($resource, $text); // @phpstan-ignore-line
-        fclose($resource); // @phpstan-ignore-line
     }
 }
