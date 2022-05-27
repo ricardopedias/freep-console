@@ -11,6 +11,7 @@ use Freep\Console\Terminal;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
+use Tests\FakeApp\StaticInfo;
 
 /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class CommandImplementationsTest extends TestCase
@@ -50,13 +51,12 @@ class CommandImplementationsTest extends TestCase
 
             protected function handle(Arguments $arguments): void
             {
-                echo "teste";
+                StaticInfo::instance()->addData('result', "teste");
             }
         };
 
-        ob_start();
         $objeto->run([ "-p", '8080' ]);
-        $result = (string)ob_get_clean();
+        $result = StaticInfo::instance()->getData('result');
         $this->assertStringContainsString("teste", $result);
     }
 

@@ -8,6 +8,7 @@ use Freep\Console\Arguments;
 use Freep\Console\Command;
 use Freep\Console\Terminal;
 use PHPUnit\Framework\TestCase;
+use Tests\FakeApp\StaticInfo;
 
 /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class CommandGetDataTest extends TestCase
@@ -27,13 +28,12 @@ class CommandGetDataTest extends TestCase
 
             protected function handle(Arguments $arguments): void
             {
-                echo $this->getAppPath();
+                StaticInfo::instance()->addData('result', $this->getAppPath());
             }
         };
 
-        ob_start();
         $objeto->run([]);
-        $result = (string)ob_get_clean();
+        $result = StaticInfo::instance()->getData('result');
 
         $path = (string)realpath(__DIR__ . "/FakeApp");
         $this->assertStringContainsString($path, $result);
@@ -49,13 +49,12 @@ class CommandGetDataTest extends TestCase
 
             protected function handle(Arguments $arguments): void
             {
-                echo $this->getAppPath("teste/de/sufixo");
+                StaticInfo::instance()->addData('result', $this->getAppPath("teste/de/sufixo"));
             }
         };
 
-        ob_start();
         $objeto->run([]);
-        $result = (string)ob_get_clean();
+        $result = StaticInfo::instance()->getData('result');
 
         $path = (string)realpath(__DIR__ . "/FakeApp/teste/de/sufixo");
         $this->assertStringContainsString($path, $result);
@@ -72,13 +71,12 @@ class CommandGetDataTest extends TestCase
             protected function handle(Arguments $arguments): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                echo $this->getAppPath("/teste/de/sufixo/");
+                StaticInfo::instance()->addData('result', $this->getAppPath("/teste/de/sufixo"));
             }
         };
 
-        ob_start();
         $objeto->run([]);
-        $result = (string)ob_get_clean();
+        $result = StaticInfo::instance()->getData('result');
 
         $path = (string)realpath(__DIR__ . "/FakeApp/teste/de/sufixo");
         $this->assertStringContainsString($path, $result);
@@ -95,13 +93,12 @@ class CommandGetDataTest extends TestCase
             protected function handle(Arguments $arguments): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                echo $this->getAppPath("teste/de/sufixo/");
+                StaticInfo::instance()->addData('result', $this->getAppPath("teste/de/sufixo"));
             }
         };
 
-        ob_start();
         $objeto->run([]);
-        $result = (string)ob_get_clean();
+        $result = StaticInfo::instance()->getData('result');
 
         $path = (string)realpath(__DIR__ . "/FakeApp/teste/de/sufixo");
         $this->assertStringContainsString($path, $result);
@@ -118,13 +115,12 @@ class CommandGetDataTest extends TestCase
             protected function handle(Arguments $arguments): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                echo $this->getAppPath("/teste/de/sufixo");
+                StaticInfo::instance()->addData('result', $this->getAppPath("/teste/de/sufixo"));
             }
         };
 
-        ob_start();
         $objeto->run([]);
-        $result = (string)ob_get_clean();
+        $result = StaticInfo::instance()->getData('result');
 
         $path = (string)realpath(__DIR__ . "/FakeApp/teste/de/sufixo");
         $this->assertStringContainsString($path, $result);
