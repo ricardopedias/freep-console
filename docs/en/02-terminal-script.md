@@ -40,7 +40,7 @@ Note that the above script starts with `#!/bin/php`. This notation tells the ope
 `./example`:
 
 ```bash
-$ ./example --help
+./example --help
 ```
 
 > **Note:** on unix or derived systems, to be able to directly invoke a script (eg ./example), it must have the permission to execute. This is achieved by the command `chmod a+x example`

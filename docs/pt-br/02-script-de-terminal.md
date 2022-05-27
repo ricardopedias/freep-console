@@ -43,7 +43,7 @@ programa "/bin/php". Dessa forma, não é necessário digitar `php example`, mas
 `./example`:
 
 ```bash
-$ ./example --help
+./example --help
 ```
 
 > **Nota:** em sistemas unix ou derivados, para poder invocar diretamente um script (ex: ./example), é preciso que ele possua permissão para executar. Isso é conseguido pelo comando `chmod a+x example`

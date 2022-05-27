@@ -12,7 +12,7 @@ Ele contém todas todas as opções digitadas no terminal, organizadas de acordo
 Considere o seguinte comando digitado no terminal:
 
 ```bash
-$ ./example dizer-ola -n "Ricardo Pereira" --livro "Arquitetura Limpa" Teste 'Portas e Adaptadores' --dev
+./example dizer-ola -n "Ricardo Pereira" --livro "Arquitetura Limpa" Teste 'Portas e Adaptadores' --dev
 ```
 
 O interpretador vai enviar para o método `Command->handle()`, um objeto `Arguments`, onde as opções poderão ser obtidas para implementar a rotina do comando.
@@ -26,7 +26,7 @@ São os valores das opções determinadas dentro do método abstrato `Command->i
 Por exemplo: 
 
 ```bash
-$ ./example dizer-ola -n "Ricardo Pereira" -l "Arquitetura Limpa" Teste 'Portas e Adaptadores' -d
+./example dizer-ola -n "Ricardo Pereira" -l "Arquitetura Limpa" Teste 'Portas e Adaptadores' -d
 ```
 
 ```php
@@ -56,7 +56,7 @@ Esses valores não pertencem a nenhuma opção válida.
 Por exemplo: 
 
 ```bash
-$ ./example dizer-ola -n "Ricardo Pereira" -l "Arquitetura Limpa" Teste 'Portas e Adaptadores' -d
+./example dizer-ola -n "Ricardo Pereira" -l "Arquitetura Limpa" Teste 'Portas e Adaptadores' -d
 ```
 
 ```php

@@ -18,17 +18,17 @@ Para o desenvolvimento, foram utilizadas ferramentas para testes de unidade e an
 
 São as seguintes ferramentas:
 
-- [PHP Unit](https://phpunit.de)
-- [PHP Stan](https://phpstan.org)
-- [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-- [PHP MD](https://phpmd.org)
+-  [PHP Unit](https://phpunit.de)
+-  [PHP Stan](https://phpstan.org)
+-  [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+-  [PHP MD](https://phpmd.org)
 
 ### 2.2. Análise estática
 
 Para fazer a análise do código implementado e colher feedback das ferramentas, use:
 
 ```bash
-$ ./composer analyse
+./composer analyse
 ```
 
 ### 2.3. Análise estática
@@ -36,7 +36,7 @@ $ ./composer analyse
 Para executar os testes de unidade, use:
 
 ```bash
-$ ./composer test
+./composer test
 ```
 
 

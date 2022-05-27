@@ -12,7 +12,7 @@ It contains all the options typed in the terminal, organized according to their 
 Consider the following command typed in the terminal:
 
 ```bash
-$ ./example say-hello -n "Ricardo Pereira" --book "Arquitetura Limpa" Test 'Portas e Adaptadores' --dev
+./example say-hello -n "Ricardo Pereira" --book "Arquitetura Limpa" Test 'Portas e Adaptadores' --dev
 ```
 
 The interpreter will send to the `Command->handle()` method, an `Arguments` object, where options can be obtained to implement the command routine.
@@ -26,7 +26,7 @@ These are the option values determined within the abstract method `Command->init
 For example:
 
 ```bash
-$ ./example say-hello -n "Ricardo Pereira" -l "Arquitetura Limpa" Test 'Portas e Adaptadores' -d
+./example say-hello -n "Ricardo Pereira" -l "Arquitetura Limpa" Test 'Portas e Adaptadores' -d
 ```
 
 ```php
@@ -56,7 +56,7 @@ These values do not belong to any valid options.
 For example:
 
 ```bash
-$ ./example say-hello -n "Ricardo Pereira" -l "Arquitetura Limpa" Test 'Portas e Adaptadores' -d
+./example say-hello -n "Ricardo Pereira" -l "Arquitetura Limpa" Test 'Portas e Adaptadores' -d
 ```
 
 ```php

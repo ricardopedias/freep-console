@@ -18,17 +18,17 @@ For development, tools for unit testing and static analysis were used. All confi
 
 These are the following tools:
 
-- [PHP Unit](https://phpunit.de)
-- [PHP Stan](https://phpstan.org)
-- [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-- [PHP MD](https://phpmd.org)
+-  [PHP Unit](https://phpunit.de)
+-  [PHP Stan](https://phpstan.org)
+-  [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+-  [PHP MD](https://phpmd.org)
 
 ### 2.2. Static analysis
 
 To analyze the implemented code and gather feedback from the tools, use:
 
 ```bash
-$ ./composer analyse
+./composer analyse
 ```
 
 ### 2.3. Automated tests
@@ -36,7 +36,7 @@ $ ./composer analyse
 To run the unit tests, use:
 
 ```bash
-$ ./composer test
+./composer test
 ```
 
 
