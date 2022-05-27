@@ -5,38 +5,38 @@
 
 ## 1. Implementar comandos
 
-A primeira coisa a fazer é criar os comandos necessários e alocá-los em algum diretório. Um comando deve ser implementado com base na classe abstrata `Freep\Console\Comando`, conforme o exemplo abaixo:.
+A primeira coisa a fazer é criar os comandos necessários e alocá-los em algum diretório. Um comando deve ser implementado com base na classe abstrata `Freep\Console\Command`, conforme o exemplo abaixo:.
 
 ```php
-class DizerOla extends Comando
+class DizerOla extends Command
 {
     /**
-     * Pelo menos o método "setarNome" deverá ser invocado para determinar a palavra 
+     * Pelo menos o método "setName" deverá ser invocado para determinar a palavra 
      */
-    protected function inicializar(): void
+    protected function initialize(): void
     {
-        $this->setarNome("dizer-ola");
-        $this->setarDescricao("Exibe a mensagem 'olá' no terminal");
-        $this->setarModoDeUsar("./superapp dizer-ola [opcoes]");
+        $this->setName("dizer-ola");
+        $this->setDescription("Exibe a mensagem 'olá' no terminal");
+        $this->setHowToUse("./example dizer-ola [opcoes]");
 
         // Uma opção obrigatória e valorada.
         // Quando especificada no terminal, deverá vir acompanhada de um valor
-        $this->adicionarOpcao(
-            new Opcao(
+        $this->addOption(
+            new Option(
                 '-l',
                 '--ler-arquivo',
                 'Lê a mensagem a partir de um arquivo texto',
-                Opcao::OBRIGATORIA | Opcao::COM_VALOR
+                Option::REQUIRED | Option::VALUED
             )
         );
 
         // Uma opção não-obrigatória
-        $this->adicionarOpcao(
-            new Opcao(
+        $this->addOption(
+            new Option(
                 '-d',
                 '--destruir',
                 'Apaga o arquivo texto após usá-lo',
-                Opcao::OPCIONAL
+                Option::OPTIONAL
             )
         );
     }
@@ -44,26 +44,26 @@ class DizerOla extends Comando
     /**
      * É neste método que a rotina do comando deverá ser implementada.
      */ 
-    protected function manipular(Argumentos $argumentos): void
+    protected function handle(Arguments $arguments): void
     {
-        $mensagem = "Olá";
+        $message = "Olá";
 
-        if ($argumentos->opcao('-l') !== '1') {
-            $this->linha("Lendo o arquivo texto contendo a mensagem de olá");
+        if ($arguments->getOption('-l') !== '1') {
+            $this->line("Lendo o arquivo texto contendo a mensagem de olá");
             // ... rotina para ler o arquivo texto
-            $mensagem = "";
+            $message = "";
         }
 
-        if ($mensagem === "") {
-            $this->erro("Não foi possível ler o arquivo texto");
+        if ($message === "") {
+            $this->error("Não foi possível ler o arquivo texto");
         }
 
-        if ($argumentos->opcao('-d') === '1') {
-            $this->alerta("Apagando o arquivo texto usado");
+        if ($arguments->getOption('-d') === '1') {
+            $this->warning("Apagando o arquivo texto usado");
             // ... rotina para apagar o arquivo texto
         }
 
-        $this->info($mensagem);
+        $this->info($message);
     }
 }
 ```
@@ -81,14 +81,14 @@ Por fim, basta mandar o Terminal executar os comandos através do método `Termi
 $terminal = new Terminal("raiz/da/super/aplicacao");
 
 // Uma dica sobre como o terminal pode ser utilizado
-$terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
+$terminal->setHowToUse("./superapp comando [opcoes] [argumentos]");
 
 // Adiciona dois diretórios contendo comandos
-$terminal->carregarComandosDe(__DIR__ . "/comandos");
-$terminal->carregarComandosDe(__DIR__ . "/mais-comandos");
+$terminal->loadCommandsFrom(__DIR__ . "/comandos");
+$terminal->loadCommandsFrom(__DIR__ . "/mais-comandos");
 
 // Executa o comando a partir de uma lista de argumentos
-$terminal->executar([ "dizer-ola", "-l", "mensagem.txt", "-d" ]);
+$terminal->run([ "dizer-ola", "-l", "mensagem.txt", "-d" ]);
 
 ```
 

@@ -23,9 +23,6 @@
             "Tests\\": "tests/"
         }
     },
-    "bin": [
-        "freep"
-    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",

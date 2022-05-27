@@ -9,12 +9,12 @@ A interpretação dos argumentos digitados pelo usuário acontece através da in
 da classe `Freep\Console\Terminal`, que pode ser configurada da seguinte maneira:
 
 ```php
-$terminal = new Terminal(__DIR__ . "/codigo");
-$terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
-$terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoUm/src/Comandos");
-$terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoDois");
+$terminal = new Terminal(__DIR__ . "/src");
+$terminal->setHowToUse("./example command [options] [arguments]");
+$terminal->loadCommandsFrom(__DIR__ . "/tests/FakeApp/ContextOne/src/Commands");
+$terminal->loadCommandsFrom(__DIR__ . "/tests/FakeApp/ContextTwo");
 
-$terminal->executar($argv);
+$terminal->run($argv);
 ```
 
 ## 2. Métodos disponíveis
@@ -22,7 +22,7 @@ $terminal->executar($argv);
 ### 2.1. O diretório de trabalho
 
 ```php
-$terminal = new Terminal(__DIR__ . "/codigo");
+$terminal = new Terminal(__DIR__ . "/src");
 ```
 
 A instância de `Freep\Console\Terminal` deve ser criada, especificando um **"diretório 
@@ -38,30 +38,30 @@ onde se encontra a estrutura do projeto.
 ### 2.2. O modo de usar
 
 ```php
-$terminal->setarModoDeUsar("./superapp comando [opcoes] [argumentos]");
+$terminal->setHowToUse("./example command [options] [arguments]");
 ```
 
 Especifica a mensagem de ajuda sobre o formato do comando. Note que leva em consideração
-o nome do script atual, ou seja, `superapp`.
+o nome do script atual, ou seja, `example`.
 
 
 ### 2.3. Diretório de comandos
 
 ```php
-$terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoUm/src/Comandos");
-$terminal->carregarComandosDe(__DIR__ . "/testes/AppFalso/ContextoDois");
+$terminal->loadCommandsFrom(__DIR__ . "/tests/FakeApp/ContextOne/src/Commands");
+$terminal->loadCommandsFrom(__DIR__ . "/tests/FakeApp/ContextTwo");
 ```
 
 Inúmeros diretórios contendo comandos poderão ser especificados. Cada um será
 varrido pela biblioteca a fim de identificar os comandos disponíveis.
 
-Quando o usuario digitar `./superapp --ajuda`, as informações de ajuda de todos os 
+Quando o usuario digitar `./example --help`, as informações de ajuda de todos os 
 coamndos será utilizada para exibir uma tela de ajuda abrangente no terminal do usuário.
 
 ### 2.4. Interpretar a entrada do usuário
 
 ```php
-$terminal->executar($argv);
+$terminal->run($argv);
 ```
 
 Os argumentos digitados pelo usuário no terminal do sistema operacional são interpretados

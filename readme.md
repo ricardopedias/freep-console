@@ -63,30 +63,30 @@ $ ./myconsole my-command -r
 $ ./myconsole my-command --help
 # will display:
 #
-# Comando: my-command
-# Executa o comando meu-comando
-#
-# Modo de usar:
-# ./myconsole my-command [opcoes]
-#
-# Opções:
-# -h, --help     Exibe a ajuda do comando
-# -r, --read     Lê um arquivo texto
+# Command: my-command
+# Run the 'my-command' command
+# 
+# How to use:
+# ./myconsole my-command [options]
+# 
+# Options:
+# -h, --help   Display command help
+# -r, --read   Read a text file
 ```
 
 ```bash
 $ ./myconsole --help
 # will display:
 #
-# Modo de usar:
-# ./myconsole command [opcoes] [argumentos]
+# How to use:
+# ./myconsole command [options] [arguments]
+# 
+# Options:
+# -h, --help   Display command help
 #
-# Opções:
-# -h, --help     Exibe as informações de ajuda
-#
-# Comandos disponíveis:
-# help           Exibe as informações de ajuda
-# my-command     Executa o comando meu-comando
+# Available commands:
+# help           Display command help
+# my-command     Run the 'my-command' command
 ```
 
 ## Characteristics

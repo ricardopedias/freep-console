@@ -1,16 +1,18 @@
 # Freep Console: Documentação
 
-## Introdução
+[◂ Back to readme](../readme.md) | [How to use ▸](01-how-to-use.md)
+-- | --
 
-Bem vindo(a) à documentação da biblioteca Freep Console. Aqui você encontra as informações
-necessárias para utilizar as funcionalidades disponíveis e usufruir ao máximo da biblioteca.
+## Introduction
 
-### Conteúdo
+Welcome to the Freep Console library documentation. Here you will find the necessary information to use the available features and make the most of the library.
 
-- [Modo de Usar](01-modo-de-usar.md)
-- [Script de terminal](02-script-de-terminal.md)
-- [Instanciando o Terminal](03-instanciando-o-terminal.md)
-- [Criando Comandos](04-criando-comandos.md)
-- [Implementando Opções](05-implementando-opcoes.md)
-- [Usando os argumentos](06-usando-os-argumentos.md)
-- [Evoluindo a biblioteca](07-evoluindo-a-biblioteca.md)
+### Contents
+
+- [How to use](01-how-to-use.md)
+- [Terminal script](02-terminal-script.md)
+- [Instantiating the Terminal](03-instantiating-the-terminal.md)
+- [Creating Commands](04-creating-commands.md)
+- [Implementing Options](05-implementing-options.md)
+- [Using the arguments](06-using-the-arguments.md)
+- [Improving the library](07-improving-the-library.md)

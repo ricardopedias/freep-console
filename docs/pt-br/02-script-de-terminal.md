@@ -8,7 +8,7 @@
 O objetivo de um comando de terminal é ser executado na linha de comando, por esse motivo óbvio é 
 preciso criar um script para receber os argumentos passados pelo usuário.
 
-Na raiz deste repositório existe um script de exemplo chamado **"superapp"**, contendo a invocação da classe `Freep\Console\Terminal`:
+Na raiz deste repositório existe um script de exemplo chamado **"example"**, contendo a invocação da classe `Freep\Console\Terminal`:
 
 ```php
 #!/bin/php
@@ -26,12 +26,12 @@ use Freep\Console\Terminal;
 // Remove o primeiro argumento, que contém o nome do script (ex: ./superapp)
 array_shift($argv);
 
-$terminal = new Terminal(__DIR__ . "/codigo");
+$terminal = new Terminal(__DIR__ . "/src");
 
 // outras configurações para o $terminal ...
 
 // Usa a variável $argv para interpretar os argumentos do usuário
-$terminal->executar($argv);
+$terminal->run($argv);
 
 ```
 
@@ -39,14 +39,14 @@ $terminal->executar($argv);
 
 Perceba que o script acima inicia com `#!/bin/php`. Essa notação diz para 
 o terminal do sistema operacional que este script deverá ser interpretado pelo 
-programa "/bin/php". Dessa forma, não é necessário digitar `php superapp`, mas apenas
-`./superapp`:
+programa "/bin/php". Dessa forma, não é necessário digitar `php example`, mas apenas
+`./example`:
 
 ```bash
-$ ./superapp --ajuda
+$ ./example --help
 ```
 
-> **Nota:** em sistemas unix ou derivados, para poder invocar diretamente um script (ex: ./superapp), é preciso que ele possua permissão para executar. Isso é conseguido pelo comando `chmod a+x superapp`
+> **Nota:** em sistemas unix ou derivados, para poder invocar diretamente um script (ex: ./example), é preciso que ele possua permissão para executar. Isso é conseguido pelo comando `chmod a+x example`
 
 [◂ Modo de Usar](01-modo-de-usar.md) | [Voltar ao índice](indice.md) | [Instanciando o terminal ▸](03-instanciando-o-terminal.md)
 -- | -- | --

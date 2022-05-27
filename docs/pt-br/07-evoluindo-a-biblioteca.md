@@ -28,7 +28,7 @@ São as seguintes ferramentas:
 Para fazer a análise do código implementado e colher feedback das ferramentas, use:
 
 ```bash
-$ ./composer analisar
+$ ./composer analyse
 ```
 
 ### 2.3. Análise estática
@@ -36,7 +36,7 @@ $ ./composer analisar
 Para executar os testes de unidade, use:
 
 ```bash
-$ ./composer testar
+$ ./composer test
 ```
 
 

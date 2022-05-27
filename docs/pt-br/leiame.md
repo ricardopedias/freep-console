@@ -57,30 +57,30 @@ $ ./meuconsole meu-comando -l
 $ ./meuconsole meu-comando --help
 # exibe:
 #
-# Comando: meu-comando
-# Executa o comando meu-comando
-#
-# Modo de usar:
-# ./meuconsole meu-comando [opcoes]
-#
-# Opções:
-# -a, --ajuda     Exibe a ajuda do comando
-# -l, --ler       Lê um arquivo texto
+# Command: meu-comando
+# Run the 'meu-comando' command
+# 
+# How to use:
+# ./meuconsole meu-comando [options]
+# 
+# Options:
+# -h, --help   Display command help
+# -r, --read   Lê um arquivo texto
 ```
 
 ```bash
 $ ./meuconsole --ajuda
 # exibe:
 #
-# Modo de usar:
-# ./meuconsole comando [opcoes] [argumentos]
+# How to use:
+# ./meuconsole command [options] [arguments]
+# 
+# Options:
+# -h, --help   Display command help
 #
-# Opções:
-# -a, --ajuda     Exibe as informações de ajuda
-#
-# Comandos disponíveis:
-# ajuda           Exibe as informações de ajuda
-# meu-comando     Executa o comando meu-comando
+# Available commands:
+# help           Display command help
+# meu-comando    Run the 'meu-comando' command
 ```
 
 ## Características

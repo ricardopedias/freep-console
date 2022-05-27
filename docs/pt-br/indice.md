@@ -1,5 +1,8 @@
 # Freep Console: Documentação
 
+[◂ Voltar ao Leiame](leiame.md) | [Modo de Usar ▸](01-modo-de-usar.md)
+-- | --
+
 ## Introdução
 
 Bem vindo(a) à documentação da biblioteca Freep Console. Aqui você encontra as informações
