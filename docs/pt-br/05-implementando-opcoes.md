@@ -3,7 +3,6 @@
 [◂ Criando Comandos](04-criando-comandos.md) | [Voltar ao índice](indice.md) | [Usando os argumentos ▸](06-usando-os-argumentos.md)
 -- | -- | --
 
-
 ## 1. Sobre opções
 
 As opções são a cereja do bolo em um comando. Elas permitem controlar aquilo que o usuário pode fazer ao invocar uma rotina.
@@ -36,7 +35,7 @@ Quando uma opção é adicionada (como no exemplo acima), é possível obter seu
 Por exemplo, se o usuário especificar o seguinte comando:
 
 ```bash
-$ ./example dizer-ola --ler-arquivo
+./example dizer-ola --ler-arquivo
 ```
 
 > **Importante:** Todos os valores obtidos pelo objeto Argumentos serão do tipo "string". Mais informações em [Usando Argumentos](06-usando-os-argumentos.md)
@@ -153,7 +152,6 @@ new Option(
     "mensagem.txt"
 )
 ```
-
 
 [◂ Criando Comandos](04-criando-comandos.md) | [Voltar ao índice](indice.md) | [Usando os argumentos ▸](06-usando-os-argumentos.md)
 -- | -- | --

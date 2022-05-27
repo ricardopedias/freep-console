@@ -50,7 +50,6 @@ $this->setName("my-command");
 
 Specifies a description of the purpose of the command.
 This message will be displayed in the help information
-        
 
 ```php
 $this->setDescription("Display 'hello' message in terminal");
@@ -79,7 +78,6 @@ $this->addOption(new Option(
     Option::OPTIONAL
 ));
 ```
-
 
 ## 3. Handle arguments
 
@@ -125,7 +123,6 @@ echo $this->getAppPath();
 echo $this->getAppPath('console/php');
 // /home/ricardo/project/console/php
 ```
-
 
 ### 3.4. Show an warning
 

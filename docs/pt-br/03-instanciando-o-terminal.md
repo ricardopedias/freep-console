@@ -44,7 +44,6 @@ $terminal->setHowToUse("./example command [options] [arguments]");
 Especifica a mensagem de ajuda sobre o formato do comando. Note que leva em consideração
 o nome do script atual, ou seja, `example`.
 
-
 ### 2.3. Diretório de comandos
 
 ```php
@@ -70,7 +69,6 @@ digitadas no terminal e está presente somente quando um script PHP for executad
 ou seja, no terminal.
 
 Mais informações da documentação do PHP em [Reserved Variables](https://www.php.net/manual/pt_BR/reserved.variables.argv.php)
-
 
 [◂ Script de terminal](02-script-de-terminal.md) | [Voltar ao índice](indice.md) | [Criando comandos ▸](04-criando-comandos.md)
 -- | -- | --

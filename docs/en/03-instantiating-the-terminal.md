@@ -39,7 +39,6 @@ $terminal->setHowToUse("./example command [options] [arguments]");
 
 Specifies the help message about the command format. Note that it takes into account the name of the current script, ie `example`.
 
-
 ### 2.3. Command directory
 
 ```php
@@ -60,7 +59,6 @@ $terminal->run($argv);
 Arguments typed by the user in the operating system's terminal are interpreted here, using the PHP reserved variable called "$argv". It contains a list of words typed in the terminal and is only present when a PHP script is executed in CLI, that is, in the terminal.
 
 More information from the PHP documentation at [Reserved Variables](https://www.php.net/manual/pt_BR/reserved.variables.argv.php)
-
 
 [◂ Terminal script](02-terminal-script.md) | [Back to index](index.md) | [Creating Commands ▸](04-creating-commands.md)
 -- | -- | --

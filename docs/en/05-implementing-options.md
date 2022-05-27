@@ -3,7 +3,6 @@
 [◂ Creating Commands](04-creating-commands.md) | [Back to index](index.md) | [Using the arguments ▸](06-using-the-arguments.md)
 -- | -- | --
 
-
 ## 1. About options
 
 Options are the 'icing on the cake' in one command. They allow you to control what the user can do when invoking a routine.
@@ -36,7 +35,7 @@ When an option is added (as in the example above), it is possible to get its cor
 For example, if the user specifies the following command:
 
 ```bash
-$ ./example say-hello --read
+./example say-hello --read
 ```
 
 > **Important:** All values obtained by the Arguments object will be of type "string". More information at [Using the arguments](06-using-the-arguments.md)
@@ -140,7 +139,6 @@ new Option(
 )
 ```
 
-
 ### 2.4. Default value
 
 The value that the option will pass to the command if the user does not specify any. This argument is optional and only works with "valued" options.
@@ -154,7 +152,6 @@ new Option(
     "message.txt"
 )
 ```
-
 
 [◂ Creating Commands](04-creating-commands.md) | [Back to index](index.md) | [Using the arguments ▸](06-using-the-arguments.md)
 -- | -- | --

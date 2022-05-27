@@ -50,7 +50,6 @@ $this->setName("meu-comando");
 
 Especifica uma descrição sobre o objetivo do comando.
 Esta mensagem será exibida nas informações de ajuda
-        
 
 ```php
 $this->setDescription("Exibe a mensagem 'olá' no terminal");
@@ -126,7 +125,6 @@ echo $this->getAppPath();
 echo $this->getAppPath('console/php');
 // /home/ricardo/projeto/console/php
 ```
-
 
 ### 3.4. Emitir um alerta
 
