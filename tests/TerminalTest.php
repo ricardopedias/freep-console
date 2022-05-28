@@ -45,6 +45,15 @@ class TerminalTest extends TestCase
     }
 
     /** @test */
+    public function constructorException(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectErrorMessage('The specified application directory does not exist');
+
+        new Terminal(__DIR__ . "/NotExists");
+    }
+
+    /** @test */
     public function loadCommandsFromException(): void
     {
         $this->expectException(InvalidArgumentException::class);

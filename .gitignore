@@ -1,4 +1,5 @@
 git
 .phpunit.result.cache
 .vscode
+coverage/
 vendor/

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Freep\Console;
 
 use Freep\Console\Commands\Help;
+use Freep\Security\Filesystem;
+use Freep\Security\Path;
 use InvalidArgumentException;
 use RuntimeException;
 use Throwable;
@@ -22,15 +24,20 @@ class Terminal
 
     public function __construct(string $appPath)
     {
-        $realPath = realpath($appPath);
-
-        if ($realPath === false || is_dir($realPath) === false) {
-            throw new InvalidArgumentException("O diretório de aplicação especificado não existe");
+        try {
+            $realPath = (new Path($appPath))->getRealPath();
+        } catch (InvalidArgumentException) {
+            throw new InvalidArgumentException("The specified application directory does not exist");
         }
 
         $this->appPath = $realPath;
 
         $this->loadCommandsFrom(__DIR__ . '/Commands');
+    }
+
+    private function filesystem(string $contextPath): Filesystem
+    {
+        return new Filesystem($contextPath);
     }
 
     public function setHowToUse(string $text): void
@@ -50,13 +57,13 @@ class Terminal
 
     public function loadCommandsFrom(string $commandsPath): self
     {
-        $realPath = realpath($commandsPath);
-
-        if ($realPath === false || is_dir($realPath) === false) {
+        try {
+            $realPath = (new Path($commandsPath))->getRealPath();
+        } catch (InvalidArgumentException) {
             throw new InvalidArgumentException("The directory specified for commands does not exist");
         }
 
-        $this->directoryList[] = $commandsPath;
+        $this->directoryList[] = $realPath;
         return $this;
     }
 
@@ -115,9 +122,9 @@ class Terminal
         foreach ($allCommands as $commandFile) {
             $commandClassName = $this->parseClassName($commandFile);
 
-            if (class_exists($commandClassName) === false) {
-                continue;
-            }
+            // if (class_exists($commandClassName) === false) {
+            //     continue;
+            // }
 
             /** @var Command $commandObject */
             $commandObject = (new $commandClassName($this));
@@ -137,20 +144,11 @@ class Terminal
     /** @return array<int,string> */
     private function directoryList(string $path): array
     {
-        $contextPath = array_diff(
-            (array)scandir($path),
-            ['.', '..', '.gitkeep']
-        );
-
-        return array_map(fn($command) => "$path/$command", $contextPath);
+        return $this->filesystem($path)->getDirectoryFiles('/');
     }
 
     private function extractNamespace(string $oneFile): string
     {
-        if (is_file($oneFile) === false) {
-            return "";
-        }
-
         $allLines = (array)file($oneFile);
         foreach ($allLines as $line) {
             $line = (string)$line;
