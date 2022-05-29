@@ -98,13 +98,13 @@ $terminal->run($argv);
 
 ## Summary
 
-- [How to use](docs/en/01-modo-de-usar.md)
-- [Terminal script](docs/en/02-script-de-terminal.md)
-- [Instantiating the Terminal](docs/en/03-instanciando-o-terminal.md)
-- [Criando Comandos](docs/en/04-criando-comandos.md)
-- [Creating Commands](docs/en/05-implementando-opcoes.md)
-- [Using the arguments](docs/en/06-usando-os-argumentos.md)
-- [Improving the library](docs/en/07-evoluindo-a-biblioteca.md)
+- [How to use](docs/en/01-how-to-use.md)
+- [Terminal script](docs/en/02-terminal-script.md)
+- [Instantiating the Terminal](docs/en/03-instantiating-the-terminal.md)
+- [Creating Commands](docs/en/04-creating-commands.md)
+- [Implementing Options](docs/en/05-implementing-options.md)
+- [Using the arguments](docs/en/06-using-the-arguments.md)
+- [Improving the library](docs/en/07-improving-the-library.md)
 
 ## Creditos
 
