@@ -58,7 +58,7 @@ $this->setDescription("Exibe a mensagem 'olá' no terminal");
 ### 2.4. Setar o modo de usar
 
 Especifica uma dica sobre como este comando pode ser utilizado.
-Esta mensagem será exibida nas informações de ajuda        
+Esta mensagem será exibida nas informações de ajuda.
 
 ```php
 $this->setHowToUse("./example dizer-ola [opcoes]");
@@ -87,7 +87,6 @@ Da mesma forma, o método `"Command->handle()"` deve ser implementado em todos o
 
 Neste método, é possível interagir com o usuário e obter informações sobre o que
 ele forneceu como argumentos ao invocar o comando.
-
 
 ```php
 class MeuComando extends Command

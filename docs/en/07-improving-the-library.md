@@ -3,7 +3,6 @@
 [◂ Using the arguments](06-using-the-arguments.md) | [Back to index](index.md)
 -- | --
 
-
 ## 1. Infrastructure
 
 If [Docker](https://www.docker.com/) is installed on your computer, it is not necessary to have Composer or PHP installed.
@@ -18,10 +17,10 @@ For development, tools for unit testing and static analysis were used. All confi
 
 These are the following tools:
 
--  [PHP Unit](https://phpunit.de)
--  [PHP Stan](https://phpstan.org)
--  [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
--  [PHP MD](https://phpmd.org)
+- [PHP Unit](https://phpunit.de)
+- [PHP Stan](https://phpstan.org)
+- [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+- [PHP MD](https://phpmd.org)
 
 ### 2.2. Static analysis
 
@@ -38,7 +37,6 @@ To run the unit tests, use:
 ```bash
 ./composer test
 ```
-
 
 [◂ Using the arguments](06-using-the-arguments.md) | [Back to index](index.md)
 -- | --

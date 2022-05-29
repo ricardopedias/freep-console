@@ -123,7 +123,7 @@ new Option(
 In the above cases, the user must specify the command in the following format:
 
 ```bash
-$ ./example say-hello --read "message.txt"
+./example say-hello --read "message.txt"
 ```
 
 #### 2.3.4. Boolean

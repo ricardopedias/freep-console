@@ -87,7 +87,6 @@ Likewise, the `"Command->handle()"` method must be implemented in all commands. 
 
 In this method, it is possible to interact with the user and obtain information about what he has provided as arguments when invoking the command.
 
-
 ```php
 class MyCommand extends Command
 {

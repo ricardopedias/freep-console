@@ -21,9 +21,9 @@ Existem dois dipos de argumentos:
 
 ### 1.1. Argumento com chave
 
-São os valores das opções determinadas dentro do método abstrato `Command->initialize()` através do método `Command->addOption()`. 
+São os valores das opções determinadas dentro do método abstrato `Command->initialize()` através do método `Command->addOption()`.
 
-Por exemplo: 
+Por exemplo:
 
 ```bash
 ./example dizer-ola -n "Ricardo Pereira" -l "Arquitetura Limpa" Teste 'Portas e Adaptadores' -d
@@ -50,10 +50,10 @@ class DizerOla extends Command
 
 ### 1.2. Argumento sem chave
 
-São valores avulsos, especificados dentro da linha de comandos. 
+São valores avulsos, especificados dentro da linha de comandos.
 Esses valores não pertencem a nenhuma opção válida.
 
-Por exemplo: 
+Por exemplo:
 
 ```bash
 ./example dizer-ola -n "Ricardo Pereira" -l "Arquitetura Limpa" Teste 'Portas e Adaptadores' -d
@@ -77,7 +77,7 @@ class DizerOla extends Command
 
 ## 2. Valores dos argumentos
 
-Todos os valores obtidos pelo objeto `Arguments` serão do tipo "string", não importa se sejam textos ou números. Caso seja um booleano, a string devolvida será "0" ou "1". 
+Todos os valores obtidos pelo objeto `Arguments` serão do tipo "string", não importa se sejam textos ou números.Caso seja um booleano, a string devolvida será "0" ou "1".
 
 [◂ Implementando Opções](05-implementando-opcoes.md) | [Voltar ao índice](indice.md) | [Evoluindo a biblioteca ▸](07-evoluindo-a-biblioteca.md)
 -- | -- | --

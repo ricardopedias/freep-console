@@ -2,10 +2,11 @@
 
 ## Sinopse
 
-Este repositório contém as funcionalidades necessárias para implementar um gerenciador de 
+Este repositório contém as funcionalidades necessárias para implementar um gerenciador de
 comandos para terminal em uma aplicação PHP de forma fácil.
 
-Para informações detalhadas, consulte a documentação em [Inglês](../en/index.md) ou em [Português](indice.md). Veja também este 'readme' em [Inglês](../../readme.md).
+Para informações detalhadas, consulte a documentação em [Inglês](../en/index.md) ou em [Português](indice.md).
+Veja também este 'readme' em [Inglês](../../readme.md).
 
 ## Modo de Usar
 
@@ -85,23 +86,23 @@ $ ./meuconsole --ajuda
 
 ## Características
 
--   Feito para o PHP 8.0 ou superior;
--   Codificado com boas práticas e máxima qualidade;
--   Bem documentado e amigável para IDEs;
--   Feito com TDD (Test Driven Development);
--   Implementado com testes de unidade usando PHPUnit;
--   Feito com :heart: &amp; :coffee:.
+- Feito para o PHP 8.0 ou superior;
+- Codificado com boas práticas e máxima qualidade;
+- Bem documentado e amigável para IDEs;
+- Feito com TDD (Test Driven Development);
+- Implementado com testes de unidade usando PHPUnit;
+- Feito com :heart: &amp; :coffee:.
 
 ## Sumário
 
--  [Modo de Usar](01-modo-de-usar.md)
--  [Script de terminal](02-script-de-terminal.md)
--  [Instanciando o Terminal](03-instanciando-o-terminal.md)
--  [Criando Comandos](04-criando-comandos.md)
--  [Implementando Opções](05-implementando-opcoes.md)
--  [Usando os argumentos](06-usando-os-argumentos.md)
--  [Evoluindo a biblioteca](07-evoluindo-a-biblioteca.md)
+- [Modo de Usar](01-modo-de-usar.md)
+- [Script de terminal](02-script-de-terminal.md)
+- [Instanciando o Terminal](03-instanciando-o-terminal.md)
+- [Criando Comandos](04-criando-comandos.md)
+- [Implementando Opções](05-implementando-opcoes.md)
+- [Usando os argumentos](06-usando-os-argumentos.md)
+- [Evoluindo a biblioteca](07-evoluindo-a-biblioteca.md)
 
-## Creditos
+## Créditos
 
 [Ricardo Pereira Dias](https://www.ricardopedias.com.br)

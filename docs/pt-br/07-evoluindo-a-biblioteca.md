@@ -3,10 +3,9 @@
 [◂ Usando os argumentos](06-usando-os-argumentos.md) | [Voltar ao índice](indice.md)
 -- | --
 
-
 ## 1. Infraestrutura
 
-Se o [Docker](https://www.docker.com/) estiver instalado no computador, não será necessário ter o Composer ou PHP instalados. 
+Se o [Docker](https://www.docker.com/) estiver instalado no computador, não será necessário ter o Composer ou PHP instalados.
 
 Para usar o Composer e as bibliotecas de qualidade de código, use o script `./composer`, localizado na raiz deste repositório. Este script é, na verdade, uma ponte para todos os comandos do Composer, executando-os através do Docker.
 
@@ -18,10 +17,10 @@ Para o desenvolvimento, foram utilizadas ferramentas para testes de unidade e an
 
 São as seguintes ferramentas:
 
--  [PHP Unit](https://phpunit.de)
--  [PHP Stan](https://phpstan.org)
--  [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
--  [PHP MD](https://phpmd.org)
+- [PHP Unit](https://phpunit.de)
+- [PHP Stan](https://phpstan.org)
+- [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+- [PHP MD](https://phpmd.org)
 
 ### 2.2. Análise estática
 
@@ -38,7 +37,6 @@ Para executar os testes de unidade, use:
 ```bash
 ./composer test
 ```
-
 
 [◂ Usando os argumentos](06-usando-os-argumentos.md) | [Voltar ao índice](indice.md)
 -- | --

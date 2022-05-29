@@ -5,8 +5,7 @@
 
 ## 1. Criando um script
 
-O objetivo de um comando de terminal é ser executado na linha de comando, por esse motivo óbvio é 
-preciso criar um script para receber os argumentos passados pelo usuário.
+O objetivo de um comando de terminal é ser executado na linha de comando, por esse motivo óbvio é preciso criar um script para receber os argumentos passados pelo usuário.
 
 Na raiz deste repositório existe um script de exemplo chamado **"example"**, contendo a invocação da classe `Freep\Console\Terminal`:
 
@@ -37,10 +36,7 @@ $terminal->run($argv);
 
 ## 2. Usando o terminal
 
-Perceba que o script acima inicia com `#!/bin/php`. Essa notação diz para 
-o terminal do sistema operacional que este script deverá ser interpretado pelo 
-programa "/bin/php". Dessa forma, não é necessário digitar `php example`, mas apenas
-`./example`:
+Perceba que o script acima inicia com `#!/bin/php`. Essa notação diz para o terminal do sistema operacional que este script deverá ser interpretado pelo programa "/bin/php". Dessa forma, não é necessário digitar `php example`, mas apenas `./example`:
 
 ```bash
 ./example --help

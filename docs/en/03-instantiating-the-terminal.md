@@ -24,7 +24,7 @@ $terminal->run($argv);
 $terminal = new Terminal(__DIR__ . "/src");
 ```
 
-The instance of `Freep\Console\Terminal` must be created, specifying a **"working directory"**. 
+The instance of `Freep\Console\Terminal` must be created, specifying a **"working directory"**.
 This directory will effectively not cause any side effects.
 
 It's just a way to make available, for all existing commands, what is the *"main directory"* of the current project.

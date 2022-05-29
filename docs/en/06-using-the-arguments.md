@@ -77,7 +77,7 @@ class SayHello extends Command
 
 ## 2. Argument values
 
-All values obtained by the `Arguments` object will be of type "string", no matter if they are texts or numbers. If it is a boolean, the string returned will be "0" or "1". 
+All values obtained by the `Arguments` object will be of type "string", no matter if they are texts or numbers. If it is a boolean, the string returned will be "0" or "1".
 
 [◂ Implementing Options](05-implementing-options.md) | [Back to index](index.md) | [Improving the library ▸](07-improving-the-library.md)
 -- | -- | --

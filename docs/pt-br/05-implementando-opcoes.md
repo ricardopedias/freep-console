@@ -7,7 +7,7 @@
 
 As opções são a cereja do bolo em um comando. Elas permitem controlar aquilo que o usuário pode fazer ao invocar uma rotina.
 
-As opções são especificadas dentro do método abstrato `Command->initialize()` através do método `Command->addOption()`. 
+As opções são especificadas dentro do método abstrato `Command->initialize()` através do método `Command->addOption()`.
 
 ```php
 class DizerOla extends Command
@@ -69,7 +69,7 @@ Uma das duas notações deverá ser fornecida pelo usuário para ativar a opçã
 
 ### 2.3. Tipo
 
-É a forma como a opção se comportará na formulação do comando. 
+É a forma como a opção se comportará na formulação do comando.
 Uma opção pode ser de quatro tipos:
 
 #### 2.3.1. Obrigatória
@@ -123,7 +123,7 @@ new Option(
 Nos casos acima, o usuário deverá especificar o comando no seguinte formato:
 
 ```bash
-$ ./example dizer-ola --ler-arquivo "mensagem.txt"
+./example dizer-ola --ler-arquivo "mensagem.txt"
 ```
 
 #### 2.3.4. Booleana
