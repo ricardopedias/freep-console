@@ -82,8 +82,6 @@ class Terminal
 
         $commandName = array_shift($arguments);
 
-        ini_set("display_errors", "1");
-
         try {
             $this->runCommand($commandName, $arguments);
         } catch (Throwable $e) {
@@ -149,7 +147,11 @@ class Terminal
 
     private function extractNamespace(string $oneFile): string
     {
-        $allLines = (array)file($oneFile);
+        $pathInfo = new Path($oneFile);
+        $contextPath = $pathInfo->getDirectory();
+        $file = $pathInfo->getFile();
+
+        $allLines = $this->filesystem($contextPath)->getFileRows($file);
         foreach ($allLines as $line) {
             $line = (string)$line;
             if (str_starts_with(trim($line), "namespace") === true) {

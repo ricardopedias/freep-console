@@ -35,8 +35,7 @@ class CommandGetDataTest extends TestCase
         $objeto->run([]);
         $result = StaticInfo::instance()->getData('result');
 
-        $path = (string)realpath(__DIR__ . "/FakeApp");
-        $this->assertStringContainsString($path, $result);
+        $this->assertStringContainsString(__DIR__ . "/FakeApp", $result);
     }
 
     /** @test */
@@ -56,8 +55,7 @@ class CommandGetDataTest extends TestCase
         $objeto->run([]);
         $result = StaticInfo::instance()->getData('result');
 
-        $path = (string)realpath(__DIR__ . "/FakeApp/teste/de/sufixo");
-        $this->assertStringContainsString($path, $result);
+        $this->assertStringContainsString(__DIR__ . "/FakeApp/teste/de/sufixo", $result);
     }
 
     /** @test */
