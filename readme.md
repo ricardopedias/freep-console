@@ -89,22 +89,22 @@ $terminal->run($argv);
 
 ## Characteristics
 
--  Made for PHP 8.0 or higher;
--  Codified with best practices and maximum quality;
--  Well documented and IDE friendly;
--  Made with TDD (Test Driven Development);
--  Implemented with unit tests using PHPUnit;
--  Made with :heart: &amp; :coffee:.
+- Made for PHP 8.0 or higher;
+- Codified with best practices and maximum quality;
+- Well documented and IDE friendly;
+- Made with TDD (Test Driven Development);
+- Implemented with unit tests using PHPUnit;
+- Made with :heart: &amp; :coffee:.
 
 ## Summary
 
--  [How to use](docs/en/01-modo-de-usar.md)
--  [Terminal script](docs/en/02-script-de-terminal.md)
--  [Instantiating the Terminal](docs/en/03-instanciando-o-terminal.md)
--  [Criando Comandos](docs/en/04-criando-comandos.md)
--  [Creating Commands](docs/en/05-implementando-opcoes.md)
--  [Using the arguments](docs/en/06-usando-os-argumentos.md)
--  [Improving the library](docs/en/07-evoluindo-a-biblioteca.md)
+- [How to use](docs/en/01-modo-de-usar.md)
+- [Terminal script](docs/en/02-script-de-terminal.md)
+- [Instantiating the Terminal](docs/en/03-instanciando-o-terminal.md)
+- [Criando Comandos](docs/en/04-criando-comandos.md)
+- [Creating Commands](docs/en/05-implementando-opcoes.md)
+- [Using the arguments](docs/en/06-usando-os-argumentos.md)
+- [Improving the library](docs/en/07-evoluindo-a-biblioteca.md)
 
 ## Creditos
 
