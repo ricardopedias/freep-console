@@ -102,6 +102,7 @@ $ ./meuconsole --ajuda
 - [Implementando Opções](05-implementando-opcoes.md)
 - [Usando os argumentos](06-usando-os-argumentos.md)
 - [Evoluindo a biblioteca](07-evoluindo-a-biblioteca.md)
+- [Biblioteca de mensagens](08-biblioteca-de-mensagens.md)
 
 ## Créditos
 

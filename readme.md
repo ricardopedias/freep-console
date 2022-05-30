@@ -105,6 +105,7 @@ $terminal->run($argv);
 - [Implementing Options](docs/en/05-implementing-options.md)
 - [Using the arguments](docs/en/06-using-the-arguments.md)
 - [Improving the library](docs/en/07-improving-the-library.md)
+- [Message library](docs/en/08-message-library.md)
 
 ## Creditos
 

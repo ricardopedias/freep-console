@@ -16,3 +16,4 @@ Welcome to the Freep Console library documentation. Here you will find the neces
 - [Implementing Options](05-implementing-options.md)
 - [Using the arguments](06-using-the-arguments.md)
 - [Improving the library](07-improving-the-library.md)
+- [Message library](08-message-library.md)

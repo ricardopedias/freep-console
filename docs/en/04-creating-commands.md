@@ -123,7 +123,13 @@ echo $this->getAppPath('console/php');
 // /home/ricardo/project/console/php
 ```
 
-### 3.4. Show an warning
+### 3.4. Show a message
+
+Messages are triggered directly by existing methods in the `Freep\Console\Command` abstract class.
+Under the hood, the `Freep\Console\Message` class is used for this job.
+More information about its usefulness can be found in [Message library](08-message-library.md).
+
+#### 3.4.1. Show an warning
 
 Displays an orange highlighted text on the user terminal.
 
@@ -131,7 +137,7 @@ Displays an orange highlighted text on the user terminal.
 echo $this->warning("Non-existent operation");
 ```
 
-### 3.5. Show an error
+#### 3.4.2. Show an error
 
 Displays red highlighted text in the user terminal.
 
@@ -139,7 +145,7 @@ Displays red highlighted text in the user terminal.
 echo $this->error("An error has occurred");
 ```
 
-### 3.6. Show an information
+#### 3.4.3. Show an information
 
 Displays green highlighted text on the user terminal.
 
@@ -147,7 +153,7 @@ Displays green highlighted text on the user terminal.
 echo $this->info("Operation performed");
 ```
 
-### 3.7. Show a simple text
+#### 3.4.4. Show a simple text
 
 Displays text without highlighting on the user's terminal.
 

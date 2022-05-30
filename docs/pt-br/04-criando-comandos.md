@@ -125,7 +125,13 @@ echo $this->getAppPath('console/php');
 // /home/ricardo/projeto/console/php
 ```
 
-### 3.4. Emitir um alerta
+### 3.4. Emitir uma mensagem
+
+As mensagens são disparadas diretamente por métodos já existentes na classe abstrata `Freep\Console\Command`.
+Por baixo dos panos, a classe `Freep\Console\Message` é usada para esse trabalho.
+Mais informações sobre sua utilidade pode ser consultada em [Biblioteca de mensagens](08-biblioteca-de-mensagens.md).
+
+### 3.4.1. Emitir um alerta
 
 Exibe um texto detacado em laranja no terminal do usuário.
 
@@ -133,7 +139,7 @@ Exibe um texto detacado em laranja no terminal do usuário.
 echo $this->warning("Operação inexistente");
 ```
 
-### 3.5. Emitir um erro
+### 3.4.2. Emitir um erro
 
 Exibe um texto detacado em vermelho no terminal do usuário.
 
@@ -141,7 +147,7 @@ Exibe um texto detacado em vermelho no terminal do usuário.
 echo $this->error("Ocorreu um erro");
 ```
 
-### 3.6. Emitir uma informação
+### 3.4.3. Emitir uma informação
 
 Exibe um texto detacado em verde no terminal do usuário.
 
@@ -149,7 +155,7 @@ Exibe um texto detacado em verde no terminal do usuário.
 echo $this->info("Operação executada");
 ```
 
-### 3.7. Emitir um texto simples
+### 3.4.4. Emitir um texto simples
 
 Exibe um texto sem destaque no terminal do usuário.
 
