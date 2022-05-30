@@ -1,6 +1,6 @@
 # Freep Console: Documentação
 
-[◂ Back to readme](../readme.md) | [How to use ▸](01-how-to-use.md)
+[◂ Back to readme](../../readme.md) | [How to use ▸](01-how-to-use.md)
 -- | --
 
 ## Introduction
