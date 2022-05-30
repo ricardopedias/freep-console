@@ -55,7 +55,7 @@ class CommandExecutionTest extends TestCase
         };
 
         $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
-        
+
         $this->assertStringContainsString("Run the 'teste' command", $result);
     }
 

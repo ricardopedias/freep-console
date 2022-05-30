@@ -26,7 +26,7 @@ class CommandOutputTest extends TestCase
                 $this->error("exibida mensagem de erro");
             }
         };
-     
+
         $result = $this->gotcha($objeto, fn(Command $command) => $command->run([ '-h' ]));
 
         $expected = [
@@ -64,7 +64,7 @@ class CommandOutputTest extends TestCase
                 $this->error("exibida mensagem de erro");
             }
         };
-     
+
         $result = $this->gotcha($objeto, fn(Command $command) => $command->run([ '-h' ]));
 
         $expected = [

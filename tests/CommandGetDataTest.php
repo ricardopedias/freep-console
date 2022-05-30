@@ -7,7 +7,6 @@ namespace Tests;
 use Freep\Console\Arguments;
 use Freep\Console\Command;
 use OutOfRangeException;
-use Tests\FakeApp\StaticInfo;
 
 /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class CommandGetDataTest extends TestCase
@@ -86,7 +85,7 @@ class CommandGetDataTest extends TestCase
         };
 
         $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
-        
+
         $this->assertStringContainsString(__DIR__ . "/FakeApp/teste/de/sufixo", $result);
     }
 
@@ -121,7 +120,7 @@ class CommandGetDataTest extends TestCase
             protected function handle(Arguments $arguments): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                $this->line(json_encode($arguments->getArgumentList()));
+                $this->line((string)json_encode($arguments->getArgumentList()));
             }
         };
 

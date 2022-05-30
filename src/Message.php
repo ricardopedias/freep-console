@@ -4,19 +4,21 @@ declare(strict_types=1);
 
 namespace Freep\Console;
 
+/** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
 class Message
 {
     private string $icon = '';
     private string $prefix = '';
     private string $sufix = '';
-    private string $ln = "";
+    private string $lineEnd = "";
 
     public function __construct(private string $message)
-    {}
+    {
+    }
 
     private function lineBreak(): void
     {
-        $this->ln = "\n";
+        $this->lineEnd = "\n";
     }
 
     private function reset(): void
@@ -24,9 +26,9 @@ class Message
         $this->icon   = "";
         $this->prefix = "";
         $this->sufix  = "";
-        $this->ln     = "";
+        $this->lineEnd     = "";
     }
-    
+
     private function wrapperBlue(): void
     {
         $this->prefix = "\033[0;34m";
@@ -150,7 +152,7 @@ class Message
     public function output(): void
     {
         $resource = fopen('php://output', 'w');
-        $message = $this->prefix . $this->icon . $this->message . $this->sufix . $this->ln;
+        $message = $this->prefix . $this->icon . $this->message . $this->sufix . $this->lineEnd;
         fwrite($resource, $message); // @phpstan-ignore-line
         fclose($resource); // @phpstan-ignore-line
 

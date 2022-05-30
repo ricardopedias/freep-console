@@ -9,6 +9,7 @@ use Freep\Console\Parser;
 use Freep\Console\Option;
 use RuntimeException;
 
+/** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
 class ParserTest extends TestCase
 {
     /** @test */

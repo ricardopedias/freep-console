@@ -67,7 +67,7 @@ class TerminalTest extends TestCase
     public function nonExistentCommand(): void
     {
         $terminal = $this->terminalFactory();
-        
+
         $result = $this->gotcha($terminal, fn($terminal) => $terminal->run([ "blabla" ]));
 
         $this->assertEquals("no", $terminal->executedCommand());
@@ -81,7 +81,7 @@ class TerminalTest extends TestCase
     public function exampleCommandOne(): void
     {
         $terminal = $this->terminalFactory();
-        
+
         $result = $this->gotcha($terminal, fn($terminal) => $terminal->run([ "example1" ]));
 
         $this->assertEquals(ExampleOne::class, $terminal->executedCommand());
@@ -92,9 +92,9 @@ class TerminalTest extends TestCase
     public function exampleCommandTwo(): void
     {
         $terminal = $this->terminalFactory();
-        
+
         $result = $this->gotcha(
-            $terminal, 
+            $terminal,
             fn($terminal) => $terminal->run([ "very-very-very-more-very-long-command" ])
         );
 
@@ -106,7 +106,7 @@ class TerminalTest extends TestCase
     public function exampleCommandException(): void
     {
         $terminal = $this->terminalFactory();
-        
+
         $result = $this->gotcha($terminal, fn($terminal) => $terminal->run([ "example-exception" ]));
 
         $this->assertEquals("no", $terminal->executedCommand());
@@ -136,7 +136,7 @@ class TerminalTest extends TestCase
         $this->assertEquals("no", $terminal->executedCommand());
         $this->assertStringContainsString(
             "The file '/application/tests/FakeApp/ContextFour/ExampleFour.php' " .
-            "not contains a 'Tests\FakeApp\ContextTwo\ExampleFour' class", 
+            "not contains a 'Tests\FakeApp\ContextTwo\ExampleFour' class",
             $result
         );
     }

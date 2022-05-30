@@ -102,7 +102,7 @@ class Terminal
 
         foreach ($this->directoryList as $path) {
             $allCommands = array_merge(
-                $allCommands, 
+                $allCommands,
                 $this->filesystem($path)->getDirectoryFiles('/')
             );
         }

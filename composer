@@ -9,9 +9,6 @@ PHP_CONTAINER='freep-console'
 
 docker-compose up -d
 
-docker exec -it $PHP_CONTAINER \
-    composer $@
-
 if [ "$1" == "analyse" ]; then
     docker run \
         -e RUN_LOCAL=true \
@@ -21,3 +18,6 @@ if [ "$1" == "analyse" ]; then
         -v "$(pwd)/docs/.lint.yml":"/action/lib/.automation/docs/.lint.yml" \
         -v "$(pwd)":"/tmp/lint" github/super-linter
 fi
+
+docker exec -it $PHP_CONTAINER \
+    composer $@

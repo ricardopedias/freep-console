@@ -114,7 +114,7 @@ class TerminalHelpTest extends TestCase
         foreach ($this->commandHelpMessageLines() as $texto) {
             $this->assertStringContainsString($texto, $result);
         }
-    } 
+    }
 
     /** @test */
     public function helpCommand(): void

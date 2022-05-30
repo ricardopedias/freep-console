@@ -129,7 +129,7 @@ abstract class Command
             ? str_repeat(" ", $column - $characters)
             : " ";
 
-        
+
         $this->getTerminal()->factoryMessage("$argument ")->yellow();
         $this->getTerminal()->factoryMessage(" " . $spacing . $description)->outputLn();
     }
