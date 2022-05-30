@@ -7,20 +7,12 @@ namespace Tests;
 use Freep\Console\Arguments;
 use Freep\Console\Command;
 use Freep\Console\Option;
-use Freep\Console\Terminal;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use Tests\FakeApp\StaticInfo;
 
 /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class CommandImplementationsTest extends TestCase
 {
-    private function terminalFactory(): Terminal
-    {
-        return new Terminal(__DIR__ . "/FakeApp");
-    }
-
     /** @test */
     public function implementationWithInvalidName(): void
     {
@@ -42,7 +34,7 @@ class CommandImplementationsTest extends TestCase
     /** @test */
     public function implementationWithOption(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
                 $this->setName('teste');
@@ -51,12 +43,12 @@ class CommandImplementationsTest extends TestCase
 
             protected function handle(Arguments $arguments): void
             {
-                StaticInfo::instance()->addData('result', "teste");
+                $this->line("teste");
             }
         };
 
-        $objeto->run([ "-p", '8080' ]);
-        $result = StaticInfo::instance()->getData('result');
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([ "-p", '8080' ]));
+
         $this->assertStringContainsString("teste", $result);
     }
 
@@ -66,7 +58,7 @@ class CommandImplementationsTest extends TestCase
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Required options: -p|--port');
 
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
                 $this->addOption(new Option("-p", "--port", 'Descricao opcao 1', Option::REQUIRED));
@@ -77,6 +69,6 @@ class CommandImplementationsTest extends TestCase
             }
         };
 
-        $objeto->run([]);
+        $object->run([]);
     }
 }

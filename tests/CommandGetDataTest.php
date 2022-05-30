@@ -6,34 +6,27 @@ namespace Tests;
 
 use Freep\Console\Arguments;
 use Freep\Console\Command;
-use Freep\Console\Terminal;
-use PHPUnit\Framework\TestCase;
+use OutOfRangeException;
 use Tests\FakeApp\StaticInfo;
 
 /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class CommandGetDataTest extends TestCase
 {
-    private function terminalFactory(): Terminal
-    {
-        return new Terminal(__DIR__ . "/FakeApp");
-    }
-
     /** @test */
     public function getAppPath(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
             }
 
             protected function handle(Arguments $arguments): void
             {
-                StaticInfo::instance()->addData('result', $this->getAppPath());
+                $this->line($this->getAppPath());
             }
         };
 
-        $objeto->run([]);
-        $result = StaticInfo::instance()->getData('result');
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
 
         $this->assertStringContainsString(__DIR__ . "/FakeApp", $result);
     }
@@ -41,19 +34,18 @@ class CommandGetDataTest extends TestCase
     /** @test */
     public function getAppPathWithSufix(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
             }
 
             protected function handle(Arguments $arguments): void
             {
-                StaticInfo::instance()->addData('result', $this->getAppPath("teste/de/sufixo"));
+                $this->line($this->getAppPath("teste/de/sufixo"));
             }
         };
 
-        $objeto->run([]);
-        $result = StaticInfo::instance()->getData('result');
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
 
         $this->assertStringContainsString(__DIR__ . "/FakeApp/teste/de/sufixo", $result);
     }
@@ -61,7 +53,7 @@ class CommandGetDataTest extends TestCase
     /** @test */
     public function getAppPathWithCleanedBarsSufix(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
             }
@@ -69,21 +61,19 @@ class CommandGetDataTest extends TestCase
             protected function handle(Arguments $arguments): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                StaticInfo::instance()->addData('result', $this->getAppPath("/teste/de/sufixo"));
+                $this->line($this->getAppPath("/teste/de/sufixo"));
             }
         };
 
-        $objeto->run([]);
-        $result = StaticInfo::instance()->getData('result');
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
 
-        $path = (string)realpath(__DIR__ . "/FakeApp/teste/de/sufixo");
-        $this->assertStringContainsString($path, $result);
+        $this->assertStringContainsString(__DIR__ . "/FakeApp/teste/de/sufixo", $result);
     }
 
     /** @test */
     public function getAppPathWithCleanedRightBarsSufix(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
             }
@@ -91,20 +81,19 @@ class CommandGetDataTest extends TestCase
             protected function handle(Arguments $arguments): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                StaticInfo::instance()->addData('result', $this->getAppPath("teste/de/sufixo"));
+                $this->line($this->getAppPath("teste/de/sufixo"));
             }
         };
 
-        $objeto->run([]);
-        $result = StaticInfo::instance()->getData('result');
-
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
+        
         $this->assertStringContainsString(__DIR__ . "/FakeApp/teste/de/sufixo", $result);
     }
 
     /** @test */
     public function getAppPathWithCleanedLeftBarsSufix(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
             }
@@ -112,14 +101,53 @@ class CommandGetDataTest extends TestCase
             protected function handle(Arguments $arguments): void
             {
                 // barras são ajustadas automaticamente na montagem do caminho com sufixo
-                StaticInfo::instance()->addData('result', $this->getAppPath("/teste/de/sufixo"));
+                $this->line($this->getAppPath("/teste/de/sufixo"));
             }
         };
 
-        $objeto->run([]);
-        $result = StaticInfo::instance()->getData('result');
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
 
-        $path = (string)realpath(__DIR__ . "/FakeApp/teste/de/sufixo");
-        $this->assertStringContainsString($path, $result);
+        $this->assertStringContainsString(__DIR__ . "/FakeApp/teste/de/sufixo", $result);
+    }
+
+    /** @test */
+    public function getArgumentList(): void
+    {
+        $object = new class ($this->terminalFactory()) extends Command {
+            protected function initialize(): void
+            {
+            }
+
+            protected function handle(Arguments $arguments): void
+            {
+                // barras são ajustadas automaticamente na montagem do caminho com sufixo
+                $this->line(json_encode($arguments->getArgumentList()));
+            }
+        };
+
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([ "Ricardo Pereira" ]));
+
+        $this->assertEquals(json_encode([ "Ricardo Pereira" ]) . "\n", $result);
+    }
+
+    /** @test */
+    public function invalidOptionException(): void
+    {
+        $this->expectException(OutOfRangeException::class);
+        $this->expectExceptionMessage("Option '-x' is invalid");
+
+        $object = new class ($this->terminalFactory()) extends Command {
+            protected function initialize(): void
+            {
+            }
+
+            protected function handle(Arguments $arguments): void
+            {
+                // barras são ajustadas automaticamente na montagem do caminho com sufixo
+                $arguments->getOption('-x');
+            }
+        };
+
+        $object->run([]);
     }
 }

@@ -8,11 +8,11 @@ use Freep\Console\Arguments;
 use Freep\Console\Command;
 
 /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
-class ExampleTwo extends Command
+class ExampleFourInvalid extends Command // nome da classe diferente do arquivo
 {
     protected function initialize(): void
     {
-        $this->setName("very-very-very-more-very-long-command");
+        $this->setName("example4");
         $this->setDescription("Run the 'example2' command");
     }
 

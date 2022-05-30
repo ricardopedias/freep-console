@@ -131,10 +131,6 @@ class Parser
 
     private function isValidNotation(string $argument): bool
     {
-        if ($this->isNotationFormat($argument) === false) {
-            return false;
-        }
-
         return isset($this->notationMap[$argument]);
     }
 

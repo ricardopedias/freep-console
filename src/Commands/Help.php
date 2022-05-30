@@ -6,6 +6,7 @@ namespace Freep\Console\Commands;
 
 use Freep\Console\Arguments;
 use Freep\Console\Command;
+use RuntimeException;
 
 class Help extends Command
 {
@@ -45,10 +46,6 @@ class Help extends Command
         foreach ($commandList as $commandFile) {
             $commandClassName = $this->getTerminal()->parseClassName($commandFile);
 
-            if (class_exists($commandClassName) === false) {
-                continue;
-            }
-
             $commandObject = (new $commandClassName($this->getTerminal()));
             $list[] = $commandObject;
         }
@@ -56,15 +53,15 @@ class Help extends Command
         return $list;
     }
 
-    private function printCommand(string $comando, string $descricao): void
+    private function printCommand(string $command, string $description): void
     {
-        $coluna = 20;
-        $caracteres = mb_strlen($comando);
-        $espacamento = $caracteres < $coluna
-            ? str_repeat(" ", $coluna - $caracteres)
+        $column = 20;
+        $characters = mb_strlen($command);
+        $spacing = $characters < $column
+            ? str_repeat(" ", $column - $characters)
             : " ";
 
-        $involucro = "\033[0;32m%s \033[0m %s";
-        $this->line(sprintf($involucro, $comando, $espacamento . $descricao));
+        $this->getTerminal()->factoryMessage("$command ")->yellow();
+        $this->getTerminal()->factoryMessage(" " . $spacing . $description)->outputLn();
     }
 }

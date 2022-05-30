@@ -7,21 +7,14 @@ namespace Tests;
 use Freep\Console\Arguments;
 use Freep\Console\Command;
 use Freep\Console\Option;
-use Freep\Console\Terminal;
-use PHPUnit\Framework\TestCase;
 
 /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 class CommandExecutionTest extends TestCase
 {
-    private function terminalFactory(): Terminal
-    {
-        return new Terminal(__DIR__ . "/FakeApp");
-    }
-
     /** @test */
     public function execution(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
                 $this->setName("teste");
@@ -38,9 +31,7 @@ class CommandExecutionTest extends TestCase
             }
         };
 
-        ob_start();
-        $objeto->run([]);
-        $result = (string)ob_get_clean();
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
 
         $this->assertStringContainsString("teste", $result);
         $this->assertStringContainsString("Total de 2 opção", $result);
@@ -51,7 +42,7 @@ class CommandExecutionTest extends TestCase
     /** @test */
     public function defaultDescriptionWithName(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
                 $this->setName("teste");
@@ -63,17 +54,15 @@ class CommandExecutionTest extends TestCase
             }
         };
 
-        ob_start();
-        $objeto->run([]);
-        $result = (string)ob_get_clean();
-
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
+        
         $this->assertStringContainsString("Run the 'teste' command", $result);
     }
 
     /** @test */
     public function defaultDescriptionWithoutName(): void
     {
-        $objeto = new class ($this->terminalFactory()) extends Command {
+        $object = new class ($this->terminalFactory()) extends Command {
             protected function initialize(): void
             {
             }
@@ -84,9 +73,7 @@ class CommandExecutionTest extends TestCase
             }
         };
 
-        ob_start();
-        $objeto->run([]);
-        $result = (string)ob_get_clean();
+        $result = $this->gotcha($object, fn($terminal) => $terminal->run([]));
 
         $this->assertStringContainsString("Run the 'no-name' command", $result);
     }

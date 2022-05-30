@@ -35,6 +35,11 @@ class Terminal
         $this->loadCommandsFrom(__DIR__ . '/Commands');
     }
 
+    public function factoryMessage(string $message): Message
+    {
+        return new Message($message);
+    }
+
     private function filesystem(string $contextPath): Filesystem
     {
         return new Filesystem($contextPath);
@@ -85,8 +90,8 @@ class Terminal
         try {
             $this->runCommand($commandName, $arguments);
         } catch (Throwable $e) {
-            $this->print("\033[0;31m✗  " . $e->getFile() . " on line " . $e->getLine() . "\033[0m\n");
-            $this->print("\033[0;31m   " . $e->getMessage() . "\033[0m\n");
+            $this->factoryMessage($e->getFile() . " on line " . $e->getLine())->error();
+            $this->factoryMessage("   " . $e->getMessage())->red();
         }
     }
 
@@ -96,7 +101,10 @@ class Terminal
         $allCommands = [];
 
         foreach ($this->directoryList as $path) {
-            $allCommands = array_merge($allCommands, $this->directoryList($path));
+            $allCommands = array_merge(
+                $allCommands, 
+                $this->filesystem($path)->getDirectoryFiles('/')
+            );
         }
 
         return $allCommands;
@@ -120,9 +128,11 @@ class Terminal
         foreach ($allCommands as $commandFile) {
             $commandClassName = $this->parseClassName($commandFile);
 
-            // if (class_exists($commandClassName) === false) {
-            //     continue;
-            // }
+            if (class_exists($commandClassName) === false) {
+                throw new RuntimeException(
+                    "The file '$commandFile' not contains a '$commandClassName' class"
+                );
+            }
 
             /** @var Command $commandObject */
             $commandObject = (new $commandClassName($this));
@@ -135,14 +145,8 @@ class Terminal
             return;
         }
 
-        $this->print("\033[0;31m✗ '{$name}' command not found\033[0m\n");
+        $this->factoryMessage("'{$name}' command not found")->error();
         (new Help($this))->run($arguments);
-    }
-
-    /** @return array<int,string> */
-    private function directoryList(string $path): array
-    {
-        return $this->filesystem($path)->getDirectoryFiles('/');
     }
 
     private function extractNamespace(string $oneFile): string
@@ -195,12 +199,5 @@ class Terminal
     public function executedCommand(): string
     {
         return $this->executedCommand;
-    }
-
-    public function print(string $text): void
-    {
-        $resource = fopen('php://output', 'w');
-        fwrite($resource, $text); // @phpstan-ignore-line
-        fclose($resource); // @phpstan-ignore-line
     }
 }

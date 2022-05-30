@@ -7,11 +7,24 @@ namespace Tests;
 use Freep\Console\Arguments;
 use Freep\Console\Parser;
 use Freep\Console\Option;
-use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 class ParserTest extends TestCase
 {
+    /** @test */
+    public function parseInvalidOption(): void
+    {
+        $interpretador = new Parser([
+            new Option('-a', '--aaa', 'Descricao opcao 1', Option::REQUIRED | Option::VALUED),
+        ]);
+
+        $argumentos = $interpretador->parseStringArguments('-a valor -b valor');
+        $this->assertInstanceOf(Arguments::class, $argumentos);
+        $this->assertSame([
+            '-a' => 'valor'
+        ], $argumentos->getOptionList());
+    }
+
     /** @test */
     public function requiredOptionWithRequiredValue(): void
     {
@@ -22,6 +35,22 @@ class ParserTest extends TestCase
         $argumentos = $interpretador->parseStringArguments('-a valor');
         $this->assertInstanceOf(Arguments::class, $argumentos);
         $this->assertSame('valor', $argumentos->getOption('-a'));
+        $this->assertSame([
+            '-a' => 'valor'
+        ], $argumentos->getOptionList());
+    }
+
+    /** @test */
+    public function requiredOptionValueException(): void
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage("The '-a' option requires a value");
+
+        $interpretador = new Parser([
+            new Option('-a', '--aaa', 'Descricao opcao 1', Option::REQUIRED | Option::VALUED),
+        ]);
+
+        $interpretador->parseStringArguments('-a');
     }
 
     /**

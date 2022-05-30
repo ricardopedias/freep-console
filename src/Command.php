@@ -116,7 +116,7 @@ abstract class Command
 
     protected function printSection(string $text): void
     {
-        $this->line("\n\033[0;33m{$text} \033[0m");
+        $this->getTerminal()->factoryMessage("\n$text ")->yellowLn();
     }
 
     protected function printOption(string $shortNotation, string $longNotation, string $description): void
@@ -129,8 +129,9 @@ abstract class Command
             ? str_repeat(" ", $column - $characters)
             : " ";
 
-        $involucro = " \033[0;32m%s \033[0m %s";
-        $this->line(sprintf($involucro, $argument, $spacing . $description));
+        
+        $this->getTerminal()->factoryMessage("$argument ")->yellow();
+        $this->getTerminal()->factoryMessage(" " . $spacing . $description)->outputLn();
     }
 
     protected function getTerminal(): Terminal
@@ -145,21 +146,21 @@ abstract class Command
 
     protected function line(string $text): void
     {
-        $this->getTerminal()->print($text . "\n");
+        $this->getTerminal()->factoryMessage($text)->outputLn();
     }
 
     protected function error(string $text): void
     {
-        $this->line("\033[0;31m✗  {$text}\033[0m");
+        $this->getTerminal()->factoryMessage($text)->errorLn();
     }
 
     protected function info(string $text): void
     {
-        $this->line("\033[0;32m➜  {$text}\033[0m");
+        $this->getTerminal()->factoryMessage($text)->infoLn();
     }
 
     protected function warning(string $text): void
     {
-        $this->line("\033[0;33m{$text}\033[0m");
+        $this->getTerminal()->factoryMessage($text)->warningLn();
     }
 }

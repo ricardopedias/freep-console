@@ -6,7 +6,6 @@ namespace Tests;
 
 use Freep\Console\Option;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 
 class OptionNotationsTest extends TestCase
 {

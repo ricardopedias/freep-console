@@ -6,19 +6,9 @@ namespace Tests;
 
 use Freep\Console\Commands\Help;
 use Freep\Console\Terminal;
-use PHPUnit\Framework\TestCase;
 
 class TerminalHelpTest extends TestCase
 {
-    private function terminalFactory(): Terminal
-    {
-        $terminal = new Terminal(__DIR__ . "/FakeApp");
-        $terminal->setHowToUse("./example command [options] [arguments]");
-        $terminal->loadCommandsFrom(__DIR__ . "/FakeApp/ContextOne/src/Commands");
-        $terminal->loadCommandsFrom(__DIR__ . "/FakeApp/ContextTwo");
-        return $terminal;
-    }
-
     /** @return array<int,string> */
     private function helpMessageLines(): array
     {
@@ -37,7 +27,7 @@ class TerminalHelpTest extends TestCase
             "Run the 'example-exception' command",
             "example1",
             "Run the 'example1' command",
-            "example2",
+            "very-very-very-more-very-long-command",
             "Run the 'example2' command"
         ];
     }
@@ -52,17 +42,21 @@ class TerminalHelpTest extends TestCase
             "./example example1 [options]",
             "Options:",
             "-h, --help",
-            "Display command help"
+            "Display command help",
+            "-v, --very-very-very-more-very-long-option",
+            "Descricao opcao 1"
         ];
     }
 
     /** @test */
     public function longDefaultHelpOption(): void
     {
-        ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "--help" ]);
-        $result = (string)ob_get_clean();
+
+        $result = $this->gotcha(
+            $terminal,
+            fn(Terminal $terminal) => $terminal->run([ "--help" ])
+        );
 
         foreach ($this->helpMessageLines() as $texto) {
             $this->assertStringContainsString($texto, $result);
@@ -72,10 +66,12 @@ class TerminalHelpTest extends TestCase
     /** @test */
     public function shortDefaultHelpOption(): void
     {
-        ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "-h" ]);
-        $result = (string)ob_get_clean();
+
+        $result = $this->gotcha(
+            $terminal,
+            fn(Terminal $terminal) => $terminal->run([ "-h" ])
+        );
 
         $this->assertEquals(Help::class, $terminal->executedCommand());
 
@@ -87,36 +83,48 @@ class TerminalHelpTest extends TestCase
     /** @test */
     public function longHelpOptionFromCommand(): void
     {
-        ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "example1", "--help" ]);
-        $result = (string)ob_get_clean();
+
+        $result = $this->gotcha(
+            $terminal,
+            fn(Terminal $terminal) => $terminal->run([ "example1", "--help" ])
+        );
 
         foreach ($this->commandHelpMessageLines() as $texto) {
             $this->assertStringContainsString($texto, $result);
         }
+
+        // com espacos de alinhamento
+        $this->assertStringContainsString("  Descricao opcao 1\n", $result);
+
+        // sem espacos de alinhamento
+        $this->assertStringNotContainsString("          Descricao opcao 1\n", $result);
     }
 
     /** @test */
     public function shortHelpOptionFromCommand(): void
     {
-        ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "example1", "-h" ]);
-        $result = (string)ob_get_clean();
+
+        $result = $this->gotcha(
+            $terminal,
+            fn(Terminal $terminal) => $terminal->run([ "example1", "-h" ])
+        );
 
         foreach ($this->commandHelpMessageLines() as $texto) {
             $this->assertStringContainsString($texto, $result);
         }
-    }
+    } 
 
     /** @test */
     public function helpCommand(): void
     {
-        ob_start();
         $terminal = $this->terminalFactory();
-        $terminal->run([ "help" ]);
-        $result = (string)ob_get_clean();
+
+        $result = $this->gotcha(
+            $terminal,
+            fn(Terminal $terminal) => $terminal->run([ "help" ])
+        );
 
         $this->assertEquals(Help::class, $terminal->executedCommand());
 
