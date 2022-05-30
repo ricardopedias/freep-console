@@ -135,7 +135,7 @@ class TerminalTest extends TestCase
 
         $this->assertEquals("no", $terminal->executedCommand());
         $this->assertStringContainsString(
-            "The file '/application/tests/FakeApp/ContextFour/ExampleFour.php' " .
+            "The file '" . __DIR__ . "/tests/FakeApp/ContextFour/ExampleFour.php' " .
             "not contains a 'Tests\FakeApp\ContextTwo\ExampleFour' class",
             $result
         );
