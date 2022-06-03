@@ -8,12 +8,22 @@ namespace Freep\Console;
 class Message
 {
     private string $icon = '';
+
     private string $prefix = '';
+
     private string $sufix = '';
-    private string $lineEnd = "";
+
+    private string $lineEnd = '';
+
+    private bool $quietMode = false;
 
     public function __construct(private string $message)
     {
+    }
+
+    public function enableQuietMode(): void
+    {
+        $this->quietMode = true;
     }
 
     private function lineBreak(): void
@@ -151,6 +161,10 @@ class Message
 
     public function output(): void
     {
+        if ($this->quietMode === true) {
+            return;
+        }
+        
         $resource = fopen('php://output', 'w');
         $message = $this->prefix . $this->icon . $this->message . $this->sufix . $this->lineEnd;
         fwrite($resource, $message); // @phpstan-ignore-line

@@ -11,10 +11,8 @@ use PHPUnit\Framework\TestCase;
 /** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
 class MessageTest extends TestCase
 {
-    private function gotcha(string $message, Closure $callback): string
+    private function gotcha(Message $object, Closure $callback): string
     {
-        $object = new Message($message);
-
         ob_start();
         $callback($object);
         return (string)ob_get_clean();
@@ -24,7 +22,7 @@ class MessageTest extends TestCase
     public function blue(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->blue()
         );
 
@@ -35,7 +33,7 @@ class MessageTest extends TestCase
     public function blueLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->blueLn()
         );
 
@@ -46,7 +44,7 @@ class MessageTest extends TestCase
     public function green(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->green()
         );
 
@@ -57,7 +55,7 @@ class MessageTest extends TestCase
     public function greenLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->greenLn()
         );
 
@@ -68,7 +66,7 @@ class MessageTest extends TestCase
     public function red(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->red()
         );
 
@@ -79,7 +77,7 @@ class MessageTest extends TestCase
     public function redLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->redLn()
         );
 
@@ -90,7 +88,7 @@ class MessageTest extends TestCase
     public function yellow(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->yellow()
         );
 
@@ -101,7 +99,7 @@ class MessageTest extends TestCase
     public function yellowLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->yellowLn()
         );
 
@@ -112,7 +110,7 @@ class MessageTest extends TestCase
     public function error(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->error()
         );
 
@@ -123,7 +121,7 @@ class MessageTest extends TestCase
     public function errorLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->errorLn()
         );
 
@@ -134,7 +132,7 @@ class MessageTest extends TestCase
     public function info(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->info()
         );
 
@@ -145,7 +143,7 @@ class MessageTest extends TestCase
     public function infoLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->infoLn()
         );
 
@@ -156,7 +154,7 @@ class MessageTest extends TestCase
     public function success(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->success()
         );
 
@@ -167,7 +165,7 @@ class MessageTest extends TestCase
     public function successLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->successLn()
         );
 
@@ -178,7 +176,7 @@ class MessageTest extends TestCase
     public function warning(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->warning()
         );
 
@@ -189,7 +187,7 @@ class MessageTest extends TestCase
     public function warningLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->warningLn()
         );
 
@@ -200,7 +198,7 @@ class MessageTest extends TestCase
     public function output(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->output()
         );
 
@@ -211,9 +209,60 @@ class MessageTest extends TestCase
     public function outputLn(): void
     {
         $result = $this->gotcha(
-            'Simple message',
+            new Message('Simple message'),
             fn(Message $object) => $object->outputLn()
         );
         $this->assertSame("Simple message\n", $result);
+    }
+
+    public function methodList(): array
+    {
+        return [
+            [ 'blue' ],
+            [ 'green' ],
+            [ 'red' ],
+            [ 'yellow' ],
+            [ 'info' ],
+            [ 'success' ],
+            [ 'error' ],
+            [ 'warning' ],
+            [ 'output' ]
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider methodList
+     */
+    public function quietMode(string $methodName): void
+    {
+        $message = new Message('Simple message');
+        $message->enableQuietMode();
+
+        $result = $this->gotcha(
+            $message,
+            fn(Message $object) => $object->$methodName()
+        );
+
+        $this->assertSame("", $result);
+    }
+
+    /**
+     * @test
+     * @dataProvider methodList
+     */
+    public function quietModeLn(string $methodName): void
+    {
+        $methodName .= 'Ln';
+
+        $message = new Message('Simple message');
+        $message->enableQuietMode();
+
+        $result = $this->gotcha(
+            $message,
+            fn(Message $object) => $object->$methodName()
+        );
+
+        $this->assertSame("", $result);
     }
 }
