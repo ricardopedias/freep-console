@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Freep\Console;
 
-/** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
+/**
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ */
 class Message
 {
     private string $icon = '';
@@ -164,7 +167,7 @@ class Message
         if ($this->quietMode === true) {
             return;
         }
-        
+
         $resource = fopen('php://output', 'w');
         $message = $this->prefix . $this->icon . $this->message . $this->sufix . $this->lineEnd;
         fwrite($resource, $message); // @phpstan-ignore-line

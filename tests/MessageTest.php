@@ -215,6 +215,7 @@ class MessageTest extends TestCase
         $this->assertSame("Simple message\n", $result);
     }
 
+    /** @return array<int,array<int,string>> */
     public function methodList(): array
     {
         return [
