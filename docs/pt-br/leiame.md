@@ -43,7 +43,8 @@ include __DIR__ . "/vendor/autoload.php";
 
 array_shift($argv);
 
-$terminal = new Freep\Console\Terminal("/diretorio/contendo/comandos");
+$terminal = new Freep\Console\Terminal("/diretorio/da/super/aplicacao");
+$terminal->loadCommandsFrom("/diretorio/de/comandos");
 $terminal->run($argv);
 ```
 

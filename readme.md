@@ -46,7 +46,8 @@ include __DIR__ . "/vendor/autoload.php";
 
 array_shift($argv);
 
-$terminal = new Freep\Console\Terminal("/directory/containing/commands");
+$terminal = new Freep\Console\Terminal("/root/of/super/application");
+$terminal->loadCommandsFrom("/directory/of/commands");
 $terminal->run($argv);
 ```
 
@@ -107,6 +108,6 @@ $terminal->run($argv);
 - [Improving the library](docs/en/07-improving-the-library.md)
 - [Message library](docs/en/08-message-library.md)
 
-## Creditos
+## Credits
 
 [Ricardo Pereira Dias](https://www.ricardopedias.com.br)
