@@ -15,5 +15,6 @@ Welcome to the Freep Console library documentation. Here you will find the neces
 - [Creating Commands](04-creating-commands.md)
 - [Implementing Options](05-implementing-options.md)
 - [Using the arguments](06-using-the-arguments.md)
-- [Improving the library](07-improving-the-library.md)
-- [Message library](08-message-library.md)
+- [Message library](07-message-library.md)
+- [Testing Commands](08-testing-commands.md)
+- [Improving the library](99-improving-the-library.md)

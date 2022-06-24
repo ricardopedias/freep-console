@@ -1,7 +1,7 @@
 # Evoluindo a biblioteca
 
-[◂ Usando os argumentos](06-usando-os-argumentos.md) | [Voltar ao índice](indice.md) | [Biblioteca de mensagens ▸](08-biblioteca-de-mensagens.md)
--- | -- | --
+[◂ Testando comandos](08-testando-comandos.md) | [Voltar ao índice](indice.md)
+-- | --
 
 ## 1. Infraestrutura
 
@@ -38,5 +38,5 @@ Para executar os testes de unidade, use:
 ./composer test
 ```
 
-[◂ Usando os argumentos](06-usando-os-argumentos.md) | [Voltar ao índice](indice.md) | [Biblioteca de mensagens ▸](08-biblioteca-de-mensagens.md)
--- | -- | --
+[◂ Testando comandos](08-testando-comandos.md) | [Voltar ao índice](indice.md)
+-- | --

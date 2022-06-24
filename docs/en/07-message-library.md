@@ -1,7 +1,7 @@
 # Improving the library
 
-[◂ Improving the library](07-improving-the-library.md) | [Back to index](index.md)
--- | --
+[◂ Using the arguments](06-using-the-arguments.md) | [Back to index](index.md) | [Testing Commands ▸](08-testing-commands.md)
+-- | -- | --
 
 ## 1. A biblioteca de mensagens
 
@@ -49,5 +49,5 @@ $message->output();
 $message->outputLn(); // with line break
 ```
 
-[◂ Improving the library](07-improving-the-library.md) | [Back to index](index.md)
--- | --
+[◂ Using the arguments](06-using-the-arguments.md) | [Back to index](index.md) | [Testing Commands ▸](08-testing-commands.md)
+-- | -- | --

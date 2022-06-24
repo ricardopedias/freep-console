@@ -1,7 +1,7 @@
 # Improving the library
 
-[◂ Using the arguments](06-using-the-arguments.md) | [Back to index](index.md) | [Message library ▸](08-message-library.md)
--- | -- | --
+[◂ Testing Commands](08-testing-commands.md) | [Back to index](index.md)
+-- | --
 
 ## 1. Infrastructure
 
@@ -38,5 +38,5 @@ To run the unit tests, use:
 ./composer test
 ```
 
-[◂ Using the arguments](06-using-the-arguments.md) | [Back to index](index.md) | [Message library ▸](08-message-library.md)
--- | -- | --
+[◂ Testing Commands](08-testing-commands.md) | [Back to index](index.md)
+-- | --
