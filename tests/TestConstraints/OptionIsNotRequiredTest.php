@@ -7,10 +7,10 @@ namespace Tests\TestConstraints;
 use Freep\Console\Option;
 use Freep\Console\Tests\Constraints\OptionIsNotRequired;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestFailure;
 
 class OptionIsNotRequiredTest extends ConstraintTestCase
 {
+    /** @return array<string,array<int,mixed>> */
     public function successProvider(): array
     {
         $list = [];
@@ -46,6 +46,7 @@ class OptionIsNotRequiredTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];

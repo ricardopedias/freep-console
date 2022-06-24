@@ -7,7 +7,6 @@ namespace Tests\TestConstraints;
 use Freep\Console\Command;
 use Freep\Console\Tests\Constraints\CommandCountOptions;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestFailure;
 
 class CommandCountOptionsTest extends ConstraintTestCase
 {
@@ -21,6 +20,7 @@ class CommandCountOptionsTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];

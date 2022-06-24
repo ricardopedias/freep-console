@@ -32,7 +32,7 @@ class ConsoleTestCase extends TestCase
         string $name,
         Command $command,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new CommandHasName($name);
         self::assertThat($command, $constraint, $message);
     }
@@ -41,7 +41,7 @@ class ConsoleTestCase extends TestCase
         string $name,
         Command $command,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new CommandHasDescription($name);
         self::assertThat($command, $constraint, $message);
     }
@@ -50,7 +50,7 @@ class ConsoleTestCase extends TestCase
         string $name,
         Command $command,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new CommandHasHowToUse($name);
         self::assertThat($command, $constraint, $message);
     }
@@ -59,7 +59,7 @@ class ConsoleTestCase extends TestCase
         string $notation,
         Command $command,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new CommandHasOption($notation);
         self::assertThat($command, $constraint, $message);
     }
@@ -68,7 +68,7 @@ class ConsoleTestCase extends TestCase
         int $amount,
         Command $command,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new CommandCountOptions($amount);
         self::assertThat($command, $constraint, $message);
     }
@@ -77,7 +77,7 @@ class ConsoleTestCase extends TestCase
         string $notation,
         Option $option,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new OptionHasShortNotation($notation);
         self::assertThat($option, $constraint, $message);
     }
@@ -86,7 +86,7 @@ class ConsoleTestCase extends TestCase
         string $notation,
         Option $option,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new OptionHasLongNotation($notation);
         self::assertThat($option, $constraint, $message);
     }
@@ -95,7 +95,7 @@ class ConsoleTestCase extends TestCase
         string $description,
         Option $option,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new OptionHasDescription($description);
         self::assertThat($option, $constraint, $message);
     }
@@ -104,7 +104,7 @@ class ConsoleTestCase extends TestCase
         string $value,
         Option $option,
         string $message = ''
-    ) {
+    ): void {
         $constraint = new OptionHasDefaultValue($value);
         self::assertThat($option, $constraint, $message);
     }
@@ -112,48 +112,48 @@ class ConsoleTestCase extends TestCase
     public static function assertOptionIsBoolean(
         Option $option,
         string $message = ''
-    ) {
-        $constraint = new OptionIsBoolean($option);
+    ): void {
+        $constraint = new OptionIsBoolean();
         self::assertThat($option, $constraint, $message);
     }
 
     public static function assertOptionIsRequired(
         Option $option,
         string $message = ''
-    ) {
-        $constraint = new OptionIsRequired($option);
+    ): void {
+        $constraint = new OptionIsRequired();
         self::assertThat($option, $constraint, $message);
     }
 
     public static function assertOptionIsValued(
         Option $option,
         string $message = ''
-    ) {
-        $constraint = new OptionIsValued($option);
+    ): void {
+        $constraint = new OptionIsValued();
         self::assertThat($option, $constraint, $message);
     }
 
     public static function assertOptionIsNotBoolean(
         Option $option,
         string $message = ''
-    ) {
-        $constraint = new OptionIsNotBoolean($option);
+    ): void {
+        $constraint = new OptionIsNotBoolean();
         self::assertThat($option, $constraint, $message);
     }
 
     public static function assertOptionIsNotRequired(
         Option $option,
         string $message = ''
-    ) {
-        $constraint = new OptionIsNotRequired($option);
+    ): void {
+        $constraint = new OptionIsNotRequired();
         self::assertThat($option, $constraint, $message);
     }
 
     public static function assertOptionIsNotValued(
         Option $option,
         string $message = ''
-    ) {
-        $constraint = new OptionIsNotValued($option);
+    ): void {
+        $constraint = new OptionIsNotValued();
         self::assertThat($option, $constraint, $message);
     }
 }

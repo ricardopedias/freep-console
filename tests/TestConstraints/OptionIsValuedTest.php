@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestFailure;
 
 class OptionIsValuedTest extends ConstraintTestCase
 {
+    /** @return array<string,array<int,mixed>> */
     public function successProvider(): array
     {
         $list = [];
@@ -38,6 +39,7 @@ class OptionIsValuedTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];

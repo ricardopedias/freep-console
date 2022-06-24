@@ -7,7 +7,6 @@ namespace Tests\TestConstraints;
 use Freep\Console\Option;
 use Freep\Console\Tests\Constraints\OptionHasDefaultValue;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestFailure;
 
 class OptionHasDefaultValueTest extends ConstraintTestCase
 {
@@ -21,6 +20,7 @@ class OptionHasDefaultValueTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];

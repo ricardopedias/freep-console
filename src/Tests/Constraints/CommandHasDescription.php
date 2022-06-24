@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Freep\Console\Tests\Constraints;
 
-class CommandHasdescription extends CommandHasName
+class CommandHasDescription extends CommandHasName
 {
     protected function methodToComparison(): string
     {

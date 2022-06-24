@@ -7,10 +7,10 @@ namespace Tests\TestConstraints;
 use Freep\Console\Command;
 use Freep\Console\Tests\Constraints\CommandHasOption;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestFailure;
 
 class CommandHasOptionTest extends ConstraintTestCase
 {
+    /** @return array<string,array<int,mixed>> */
     public function successProvider(): array
     {
         $list = [];
@@ -36,6 +36,7 @@ class CommandHasOptionTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];

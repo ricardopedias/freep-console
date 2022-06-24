@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestFailure;
 
 class OptionIsRequiredTest extends ConstraintTestCase
 {
+    /** @return array<string,array<int,mixed>> */
     public function successProvider(): array
     {
         $list = [];
@@ -43,6 +44,7 @@ class OptionIsRequiredTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];

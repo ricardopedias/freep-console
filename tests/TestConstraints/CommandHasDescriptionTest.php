@@ -7,7 +7,6 @@ namespace Tests\TestConstraints;
 use Freep\Console\Command;
 use Freep\Console\Tests\Constraints\CommandHasDescription;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestFailure;
 
 class CommandHasDescriptionTest extends ConstraintTestCase
 {
@@ -21,6 +20,7 @@ class CommandHasDescriptionTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];

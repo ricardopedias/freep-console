@@ -7,10 +7,10 @@ namespace Tests\TestConstraints;
 use Freep\Console\Option;
 use Freep\Console\Tests\Constraints\OptionIsNotBoolean;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestFailure;
 
 class OptionIsNotBooleanTest extends ConstraintTestCase
 {
+    /** @return array<string,array<int,mixed>> */
     public function successProvider(): array
     {
         $list = [];
@@ -42,6 +42,7 @@ class OptionIsNotBooleanTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];

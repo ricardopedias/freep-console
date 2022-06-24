@@ -7,7 +7,6 @@ namespace Tests\TestConstraints;
 use Freep\Console\Option;
 use Freep\Console\Tests\Constraints\OptionHasLongNotation;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestFailure;
 
 class OptionHasLongNotationTest extends ConstraintTestCase
 {
@@ -21,6 +20,7 @@ class OptionHasLongNotationTest extends ConstraintTestCase
         );
     }
 
+    /** @return array<string,array<int,mixed>> */
     public function failsProvider(): array
     {
         $list = [];
