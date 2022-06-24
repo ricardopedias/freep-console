@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestFailure;
 use Tests\TestCase;
 use Throwable;
 
+/**
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
+ */
 class ConstraintTestCase extends TestCase
 {
     /**

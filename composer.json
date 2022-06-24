@@ -38,8 +38,8 @@
         "analyse": [
             "phpcbf --standard=PSR1,PSR12 src tests",
             "phpcs --standard=PSR1,PSR12 src tests",
-            "phpmd ./src ansi cleancode,codesize,unusedcode,naming",
-            "phpmd ./tests ansi cleancode,codesize,unusedcode,naming",
+            "phpmd ./src ansi cleancode,codesize,unusedcode,naming,design,controversial",
+            "phpmd ./tests ansi cleancode,codesize,unusedcode,naming,design,controversial",
             "phpstan analyse --level=8 src",
             "phpstan analyse --level=8 tests"
         ]
