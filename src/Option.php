@@ -56,6 +56,7 @@ class Option
         }
 
         $valuedTypes = [
+            Option::VALUED,
             Option::OPTIONAL | Option::VALUED,
             Option::REQUIRED | Option::VALUED,
         ];
