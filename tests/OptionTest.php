@@ -10,6 +10,15 @@ use InvalidArgumentException;
 class OptionTest extends TestCase
 {
     /** @test */
+    public function optionInfo(): void
+    {
+        $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::REQUIRED, "1");
+        $this->assertOptionHasShortNotation("-a", $opcao);
+        $this->assertOptionHasLongNotation("--aaa", $opcao);
+        $this->assertOptionHasDescription("Descricao opcao 1", $opcao);
+    }
+
+    /** @test */
     public function defaultBooleanValueException(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -23,44 +32,44 @@ class OptionTest extends TestCase
     public function defaultBooleanValue(): void
     {
         $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::REQUIRED, "1");
-        $this->assertEquals("1", $opcao->getDefaultValue());
+        $this->assertOptionHasDefaultValue("1", $opcao);
 
         $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::REQUIRED, "0");
-        $this->assertEquals("0", $opcao->getDefaultValue());
+        $this->assertOptionHasDefaultValue("0", $opcao);
     }
 
     /** @test */
     public function defaultValue(): void
     {
         $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::REQUIRED | Option::VALUED, "valor teste");
-        $this->assertEquals("valor teste", $opcao->getDefaultValue());
+        $this->assertOptionHasDefaultValue("valor teste", $opcao);
     }
 
     /** @test */
     public function requireds(): void
     {
         $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::REQUIRED);
-        $this->assertTrue($opcao->isRequired());
-        $this->assertTrue($opcao->isBoolean());
-        $this->assertFalse($opcao->isValued());
+        $this->assertOptionIsRequired($opcao);
+        $this->assertOptionIsBoolean($opcao);
+        $this->assertOptionIsNotValued($opcao);
 
         $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::REQUIRED | Option::VALUED);
-        $this->assertTrue($opcao->isRequired());
-        $this->assertFalse($opcao->isBoolean());
-        $this->assertTrue($opcao->isValued());
+        $this->assertOptionIsRequired($opcao);
+        $this->assertOptionIsNotBoolean($opcao);
+        $this->assertOptionIsValued($opcao);
     }
 
     /** @test */
     public function optionals(): void
     {
         $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::OPTIONAL);
-        $this->assertFalse($opcao->isRequired());
-        $this->assertTrue($opcao->isBoolean());
-        $this->assertFalse($opcao->isValued());
+        $this->assertOptionIsNotRequired($opcao);
+        $this->assertOptionIsBoolean($opcao);
+        $this->assertOptionIsNotValued($opcao);
 
         $opcao = new Option("-a", "--aaa", 'Descricao opcao 1', Option::OPTIONAL | Option::VALUED);
-        $this->assertFalse($opcao->isRequired());
-        $this->assertFalse($opcao->isBoolean());
-        $this->assertTrue($opcao->isValued());
+        $this->assertOptionIsNotRequired($opcao);
+        $this->assertOptionIsNotBoolean($opcao);
+        $this->assertOptionIsValued($opcao);
     }
 }

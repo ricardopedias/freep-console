@@ -6,9 +6,9 @@ namespace Tests;
 
 use Closure;
 use Freep\Console\Terminal;
-use PHPUnit\Framework\TestCase as FrameworkTestCase;
+use Freep\Console\Tests\ConsoleTestCase;
 
-class TestCase extends FrameworkTestCase
+class TestCase extends ConsoleTestCase
 {
     protected function gotcha(object $terminal, Closure $callback): string
     {
