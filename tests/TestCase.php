@@ -6,7 +6,7 @@ namespace Tests;
 
 use Closure;
 use Freep\Console\Terminal;
-use Freep\Console\Tests\ConsoleTestCase;
+use Freep\Console\PhpUnit\ConsoleTestCase;
 
 class TestCase extends ConsoleTestCase
 {
