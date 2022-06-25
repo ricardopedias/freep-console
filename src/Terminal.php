@@ -158,8 +158,11 @@ class Terminal
         $allLines = $this->filesystem($contextPath)->getFileRows($file);
         foreach ($allLines as $line) {
             $line = (string)$line;
+
             if (str_starts_with(trim($line), "namespace") === true) {
-                return trim(str_replace(["namespace ", ";"], "", $line));
+                $line = substr($line, 0, strpos($line, ';'));
+                
+                return trim(str_replace("namespace ", "", $line));
             }
         }
 
