@@ -160,8 +160,11 @@ class Terminal
             $line = (string)$line;
 
             if (str_starts_with(trim($line), "namespace") === true) {
-                $line = substr($line, 0, strpos($line, ';'));
-                
+                $limit = strpos($line, ';');
+                $limit = $limit === false ? null : $limit;
+
+                $line = substr($line, 0, $limit);
+
                 return trim(str_replace("namespace ", "", $line));
             }
         }
