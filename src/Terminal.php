@@ -25,7 +25,7 @@ class Terminal
     public function __construct(string $appPath)
     {
         try {
-            $realPath = (new Path($appPath))->getRealPath();
+            $realPath = (new Path($appPath))->getAbsolutePath();
         } catch (InvalidArgumentException) {
             throw new InvalidArgumentException("The specified application directory does not exist");
         }
@@ -63,7 +63,7 @@ class Terminal
     public function loadCommandsFrom(string $commandsPath): self
     {
         try {
-            $realPath = (new Path($commandsPath))->getRealPath();
+            $realPath = (new Path($commandsPath))->getAbsolutePath();
         } catch (InvalidArgumentException) {
             throw new InvalidArgumentException("The directory specified for commands does not exist");
         }
@@ -101,9 +101,14 @@ class Terminal
         $allCommands = [];
 
         foreach ($this->directoryList as $path) {
+            $fileList = array_map(
+                fn($fileObject) => $fileObject->getPath(),
+                $this->filesystem($path)->getDirectoryFiles('/')
+            );
+
             $allCommands = array_merge(
                 $allCommands,
-                $this->filesystem($path)->getDirectoryFiles('/')
+                $fileList
             );
         }
 
