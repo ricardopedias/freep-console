@@ -113,7 +113,7 @@ class Terminal
     /**
      * @param array<int,string> $arguments
      */
-    private function runCommand(string $name, array $arguments): void
+    public function runCommand(string $name, array $arguments): void
     {
         $commandName = $this->normalizeCommandName($name);
 
