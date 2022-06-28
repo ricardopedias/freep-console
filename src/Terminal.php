@@ -26,7 +26,7 @@ class Terminal
     {
         try {
             $realPath = (new Path($appPath))->getAbsolutePath();
-        } catch (InvalidArgumentException) {
+        } catch (RuntimeException) {
             throw new InvalidArgumentException("The specified application directory does not exist");
         }
 
@@ -64,7 +64,7 @@ class Terminal
     {
         try {
             $realPath = (new Path($commandsPath))->getAbsolutePath();
-        } catch (InvalidArgumentException) {
+        } catch (RuntimeException) {
             throw new InvalidArgumentException("The directory specified for commands does not exist");
         }
 

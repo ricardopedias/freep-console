@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ricardopedias/freep-security.git",
-                "reference": "f07d8a2e8822d253b7cec232cb6745928a2e7f36"
+                "reference": "ddd9b7d4b47706c5d70b9a637742e26a9afd0c1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ricardopedias/freep-security/zipball/f07d8a2e8822d253b7cec232cb6745928a2e7f36",
-                "reference": "f07d8a2e8822d253b7cec232cb6745928a2e7f36",
+                "url": "https://api.github.com/repos/ricardopedias/freep-security/zipball/ddd9b7d4b47706c5d70b9a637742e26a9afd0c1b",
+                "reference": "ddd9b7d4b47706c5d70b9a637742e26a9afd0c1b",
                 "shasum": ""
             },
             "require": {
@@ -49,9 +49,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ricardopedias/freep-security/issues",
-                "source": "https://github.com/ricardopedias/freep-security/tree/main"
+                "source": "https://github.com/ricardopedias/freep-security/tree/v1.0.0"
             },
-            "time": "2022-06-27T19:15:16+00:00"
+            "time": "2022-06-28T19:52:12+00:00"
         }
     ],
     "packages-dev": [
@@ -2908,7 +2908,7 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
@@ -2955,7 +2955,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.0.1"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.0.2"
             },
             "funding": [
                 {
@@ -3343,16 +3343,16 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "e517458f278c2131ca9f262f8fbaf01410f2c65c"
+                "reference": "d78d39c1599bd1188b8e26bb341da52c3c6d8a66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/e517458f278c2131ca9f262f8fbaf01410f2c65c",
-                "reference": "e517458f278c2131ca9f262f8fbaf01410f2c65c",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/d78d39c1599bd1188b8e26bb341da52c3c6d8a66",
+                "reference": "d78d39c1599bd1188b8e26bb341da52c3c6d8a66",
                 "shasum": ""
             },
             "require": {
@@ -3405,7 +3405,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/service-contracts/tree/v3.0.1"
+                "source": "https://github.com/symfony/service-contracts/tree/v3.0.2"
             },
             "funding": [
                 {
@@ -3421,7 +3421,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-13T20:10:05+00:00"
+            "time": "2022-05-30T19:17:58+00:00"
         },
         {
             "name": "theseer/tokenizer",
