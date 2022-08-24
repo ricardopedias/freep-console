@@ -1,7 +1,6 @@
 # Usando argumentos
 
-[◂ Implementando opções](05-implementando-opcoes.md) | [Sumário da Documentação](indice.md) | [Evoluindo a biblioteca ▸](07-biblioteca-de-mensagens.md)
--- | -- | --
+--page-nav--
 
 ## 1. Objeto Argumentos
 
@@ -32,19 +31,19 @@ Por exemplo:
 ```php
 class DizerOla extends Command
 {
-// ...
+    // ...
 
-protected function handle(Arguments $arguments): void
-{
-$this->info($arguments->getOption('-n'));
-//  isso exibirá: Ricardo Pereira
+    protected function handle(Arguments $arguments): void
+    {
+        $this->info($arguments->getOption('-n'));
+        //  isso exibirá: Ricardo Pereira
 
-$this->info($arguments->getOption('-r'));
-//  isso exibirá: Arquitetura Limpa
+        $this->info($arguments->getOption('-r'));
+        //  isso exibirá: Arquitetura Limpa
 
-$this->info($arguments->getOption('-d'));
-//  isso exibirá: 1
-}
+        $this->info($arguments->getOption('-d'));
+        //  isso exibirá: 1
+    }
 }
 ```
 
@@ -62,16 +61,16 @@ Por exemplo:
 ```php
 class DizerOla extends Command
 {
-// ...
+    // ...
 
-protected function handle(Arguments $arguments): void
-{
-$this->info($arguments->getArgument(0));
-//  isso exibirá: Teste
+    protected function handle(Arguments $arguments): void
+    {
+        $this->info($arguments->getArgument(0));
+        //  isso exibirá: Teste
 
-$this->info($arguments->getArgument(1));
-//  isso exibirá: Portas e Adaptadores
-}
+        $this->info($arguments->getArgument(1));
+        //  isso exibirá: Portas e Adaptadores
+    }
 }
 ```
 
@@ -79,5 +78,4 @@ $this->info($arguments->getArgument(1));
 
 Todos os valores obtidos pelo objeto `Arguments` serão do tipo "string", não importa se sejam textos ou números.Caso seja um booleano, a string devolvida será "0" ou "1".
 
-[◂ Implementando opções](05-implementando-opcoes.md) | [Sumário da Documentação](indice.md) | [Evoluindo a biblioteca ▸](07-biblioteca-de-mensagens.md)
--- | -- | --
+--page-nav--

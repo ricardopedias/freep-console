@@ -1,7 +1,6 @@
 # Creating Commands
 
-[◂ Instantiating the Terminal](03-instantiating-the-terminal.md) | [Documentation Summary](index.md) | [Implementing Options ▸](05-implementing-options.md)
--- | -- | --
+--page-nav--
 
 ## 1. About a command
 
@@ -10,9 +9,9 @@ All commands must be implemented based on the abstract class `Freep\Console\Comm
 ```php
 abstract class Command
 {
-abstract protected function initialize(): void;
+    abstract protected function initialize(): void;
 
-abstract protected function handle(Arguments $arguments): void;
+    abstract protected function handle(Arguments $arguments): void;
 }
 ```
 
@@ -27,14 +26,14 @@ A minimal implementation must contain at least the `"Command->setName()"` method
 ```php
 class MyCommand extends Command
 {
-protected function initialize(): void
-{
-$this->setName("my-command");
+    protected function initialize(): void
+    {
+        $this->setName("my-command");
 
-// other command settings
-}
+        // other command settings
+    }
 
-//...
+    //...
 }
 ```
 
@@ -72,10 +71,10 @@ More information about options in [Implementing options](05-implementing-options
 
 ```php
 $this->addOption(new Option(
-'-d',
-'--delete',
-'Delete the text file after using it',
-Option::OPTIONAL
+    '-d',
+    '--delete',
+    'Delete the text file after using it',
+    Option::OPTIONAL
 ));
 ```
 
@@ -90,16 +89,16 @@ In this method, it is possible to interact with the user and obtain information 
 ```php
 class MyCommand extends Command
 {
-// ...
+    // ...
 
-protected function handle(Arguments $arguments): void
-{
-// command routine implementation
+    protected function handle(Arguments $arguments): void
+    {
+        // command routine implementation
 
-$this->info('Command executed successfully');
-}
+        $this->info('Command executed successfully');
+    }
 
-//...
+    //...
 }
 ```
 
@@ -169,5 +168,4 @@ This object is available as an argument of the `"Command->handle()"` method.
 
 More information about arguments at [Using the arguments](06-using-the-arguments.md).
 
-[◂ Instantiating the Terminal](03-instantiating-the-terminal.md) | [Documentation Summary](index.md) | [Implementing Options ▸](05-implementing-options.md)
--- | -- | --
+--page-nav--

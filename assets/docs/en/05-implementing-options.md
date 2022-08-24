@@ -1,7 +1,6 @@
 # Implementing Options
 
-[◂ Creating Commands](04-creating-commands.md) | [Documentation Summary](index.md) | [Using arguments ▸](06-using-the-arguments.md)
--- | -- | --
+--page-nav--
 
 ## 1. About options
 
@@ -12,21 +11,21 @@ Options are specified within the abstract method `Command->initialize()` via the
 ```php
 class SayHello extends Command
 {
-protected function initialize(): void
-{
-// ...
+    protected function initialize(): void
+    {
+        // ...
 
-$this->addOption(
-new Option(
-'-r',
-'--read',
-'Read the message from a text file',
-Option::REQUIRED | Option::VALUED
-)
-);
-}
+        $this->addOption(
+            new Option(
+                '-r',
+                '--read',
+                'Read the message from a text file',
+                Option::REQUIRED | Option::VALUED
+            )
+        );
+    }
 
-// ...
+    // ...
 }
 ```
 
@@ -43,13 +42,13 @@ For example, if the user specifies the following command:
 ```php
 class SayHello extends Command
 {
-// ...
+    // ...
 
-protected function handle(Arguments $arguments): void
-{
-$this->info($arguments->getOption('-r'));
-//  this will display '1'
-}
+    protected function handle(Arguments $arguments): void
+    {
+        $this->info($arguments->getOption('-r'));
+        //  this will display '1'
+    }
 }
 ```
 
@@ -78,10 +77,10 @@ A **mandatory option** must be specified by the user. Otherwise, a message will 
 
 ```php
 new Option(
-'-r',
-'--read',
-'Read the message from a text file',
-Option::REQUIRED
+    '-r',
+    '--read',
+    'Read the message from a text file',
+    Option::REQUIRED
 )
 ```
 
@@ -91,10 +90,10 @@ An **non-mandatory option** can be ignored, leaving it up to the user to specify
 
 ```php
 new Option(
-'-r',
-'--read',
-'Read the message from a text file',
-Option::OPTIONAL
+    '-r',
+    '--read',
+    'Read the message from a text file',
+    Option::OPTIONAL
 )
 ```
 
@@ -104,19 +103,19 @@ A **valued option** will require the user to specify an additional value after i
 
 ```php
 new Option(
-'-r',
-'--read',
-'Read the message from a text file',
-Option::OPTIONAL | Option::VALUED
+    '-r',
+    '--read',
+    'Read the message from a text file',
+    Option::OPTIONAL | Option::VALUED
 )
 ```
 
 ```php
 new Option(
-'-r',
-'--read',
-'Read the message from a text file',
-Option::REQUIRED | Option::VALUED
+    '-r',
+    '--read',
+    'Read the message from a text file',
+    Option::REQUIRED | Option::VALUED
 )
 ```
 
@@ -132,10 +131,10 @@ A **boolean option** is one that does not require a value after declaring its ke
 
 ```php
 new Option(
-'-r',
-'--read',
-'Read the message from a text file',
-Option::OPTIONAL
+    '-r',
+    '--read',
+    'Read the message from a text file',
+    Option::OPTIONAL
 )
 ```
 
@@ -145,13 +144,12 @@ The value that the option will pass to the command if the user does not specify 
 
 ```php
 new Option(
-'-r',
-'--read',
-'Read the message from a text file',
-Option::REQUIRED | Option::VALUED,
-"message.txt"
+    '-r',
+    '--read',
+    'Read the message from a text file',
+    Option::REQUIRED | Option::VALUED,
+    "message.txt"
 )
 ```
 
-[◂ Creating Commands](04-creating-commands.md) | [Documentation Summary](index.md) | [Using arguments ▸](06-using-the-arguments.md)
--- | -- | --
+--page-nav--

@@ -19,18 +19,18 @@ Implemente um comando chamado "meu-comando", baseado na classe abstrata `Freep\C
 ```php
 class MeuComando extends Command
 {
-protected function initialize(): void
-{
-$this->setName("meu-comando");
-$this->addOption(
-new Option('-l', '--ler', 'Lê um arquivo texto', Option::REQUIRED)
-);
-}
+    protected function initialize(): void
+    {
+        $this->setName("meu-comando");
+        $this->addOption(
+            new Option('-l', '--ler', 'Lê um arquivo texto', Option::REQUIRED)
+        );
+    }
 
-protected function handle(Arguments $arguments): void
-{
-$this->info("Olá");
-}
+    protected function handle(Arguments $arguments): void
+    {
+        $this->info("Olá");
+    }
 }
 ```
 
@@ -63,10 +63,10 @@ $terminal->run($argv);
 #
 # Command: meu-comando
 # Run the 'meu-comando' command
-#
+# 
 # How to use:
 # ./meuconsole meu-comando [options]
-#
+# 
 # Options:
 # -h, --help   Display command help
 # -r, --read   Lê um arquivo texto
@@ -78,7 +78,7 @@ $ ./meuconsole --ajuda
 #
 # How to use:
 # ./meuconsole command [options] [arguments]
-#
+# 
 # Options:
 # -h, --help   Display command help
 #

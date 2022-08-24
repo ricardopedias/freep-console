@@ -1,7 +1,6 @@
 # Improving the library
 
-[◂ Testing Commands](08-testing-commands.md) | [Documentation Summary ▸](index.md)
--- | --
+--page-nav--
 
 ## 1. Infrastructure
 
@@ -38,5 +37,4 @@ To run the unit tests, use:
 ./composer test
 ```
 
-[◂ Testing Commands](08-testing-commands.md) | [Documentation Summary ▸](index.md)
--- | --
+--page-nav--

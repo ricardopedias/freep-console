@@ -1,7 +1,6 @@
 # Evoluindo a biblioteca
 
-[◂ Usando argumentos](06-usando-os-argumentos.md) | [Sumário da Documentação](indice.md) | [Testando comandos ▸](08-testando-comandos.md)
--- | -- | --
+--page-nav--
 
 ## 1. A biblioteca de mensagens
 
@@ -49,5 +48,4 @@ $message->output();
 $message->outputLn(); // com quebra de linha
 ```
 
-[◂ Usando argumentos](06-usando-os-argumentos.md) | [Sumário da Documentação](indice.md) | [Testando comandos ▸](08-testando-comandos.md)
--- | -- | --
+--page-nav--

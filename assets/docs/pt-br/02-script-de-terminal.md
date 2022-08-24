@@ -1,7 +1,6 @@
 # Script de terminal
 
-[◂ Modo de Usar](01-modo-de-usar.md) | [Sumário da Documentação](indice.md) | [Instanciando o terminal ▸](03-instanciando-o-terminal.md)
--- | -- | --
+--page-nav--
 
 ## 1. Criando um script
 
@@ -18,7 +17,7 @@ include __DIR__ . "/vendor/autoload.php";
 
 use Freep\Console\Terminal;
 
-// O PHP em modo CLI disponibiliza a variável reservada "$argv", contendo a lista
+// O PHP em modo CLI disponibiliza a variável reservada "$argv", contendo a lista 
 // de palavras digitadas pelo usuário no Terminal. Esta variável será usada para
 // passar as informações ao Terminal da biblioteca.
 
@@ -44,5 +43,4 @@ Perceba que o script acima inicia com `#!/bin/php`. Essa notação diz para o te
 
 > **Nota:** em sistemas unix ou derivados, para poder invocar diretamente um script (ex: ./example), é preciso que ele possua permissão para executar. Isso é conseguido pelo comando `chmod a+x example`
 
-[◂ Modo de Usar](01-modo-de-usar.md) | [Sumário da Documentação](indice.md) | [Instanciando o terminal ▸](03-instanciando-o-terminal.md)
--- | -- | --
+--page-nav--

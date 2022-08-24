@@ -1,7 +1,7 @@
 {
     "name": "ricardopedias/freep-console",
     "type": "tool",
-    "description": "Camada para linha de comando do framework Freep.",
+    "description": "Toolkit for implementing PHP-based terminal commands",
     "keywords": ["framework", "freep", "tool", "console"],
     "license": "MIT",
     "require": {
@@ -9,11 +9,12 @@
         "ricardopedias/freep-security": "dev-main"
     },
     "require-dev": {
+        "codacy/coverage": "dev-master",
         "phpunit/phpunit": "^9",
         "phpstan/phpstan": "^0.12",
-        "squizlabs/php_codesniffer": "3.*",
         "phpmd/phpmd": "@stable",
-        "codacy/coverage": "dev-master"
+        "ricardopedias/freep-docmap": "dev-main",
+        "squizlabs/php_codesniffer": "3.*"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +36,14 @@
     "scripts" : {
         "test": "vendor/bin/phpunit --testdox",
         "coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "docmap" : [
+            "rm -Rf docs/pt-br/*",
+            "vendor/bin/docmap -s assets/docs/pt-br -d docs/pt-br -r leiame.md -l pt-br",
+            "rm -Rf docs/en/*",
+            "vendor/bin/docmap -s assets/docs/en -d docs/en"
+        ],
         "analyse": [
+            "@docmap",
             "phpcbf --standard=PSR1,PSR12 src tests",
             "phpcs --standard=PSR1,PSR12 src tests",
             "phpmd ./src ansi cleancode,codesize,unusedcode,naming,design,controversial",

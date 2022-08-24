@@ -1,7 +1,6 @@
 # Testando comandos
 
-[◂ Evoluindo a biblioteca](07-biblioteca-de-mensagens.md) | [Sumário da Documentação](indice.md) | [Evoluindo a biblioteca ▸](99-evoluindo-a-biblioteca.md)
--- | -- | --
+--page-nav--
 
 ## 1. Usando asserções especiais para PHPUnit
 
@@ -27,5 +26,4 @@ As seguintes asserções adicionais estarão disponíveis para uso:
 - assertOptionIsNotRequired
 - assertOptionIsNotValued
 
-[◂ Evoluindo a biblioteca](07-biblioteca-de-mensagens.md) | [Sumário da Documentação](indice.md) | [Evoluindo a biblioteca ▸](99-evoluindo-a-biblioteca.md)
--- | -- | --
+--page-nav--

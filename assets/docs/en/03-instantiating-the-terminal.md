@@ -1,7 +1,6 @@
 # Instantiating the Terminal
 
-[◂ Terminal script](02-terminal-script.md) | [Documentation Summary](index.md) | [Creating Commands ▸](04-creating-commands.md)
--- | -- | --
+--page-nav--
 
 ## 1. Implementation
 
@@ -60,5 +59,4 @@ Arguments typed by the user in the operating system's terminal are interpreted h
 
 More information from the PHP documentation at [Reserved Variables](https://www.php.net/manual/pt_BR/reserved.variables.argv.php)
 
-[◂ Terminal script](02-terminal-script.md) | [Documentation Summary](index.md) | [Creating Commands ▸](04-creating-commands.md)
--- | -- | --
+--page-nav--

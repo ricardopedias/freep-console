@@ -1,7 +1,6 @@
 # Terminal script
 
-[◂ How to use](01-how-to-use.md) | [Documentation Summary](index.md) | [Instantiating the Terminal ▸](03-instantiating-the-terminal.md)
--- | -- | --
+--page-nav--
 
 ## 1. Creating a script
 
@@ -18,8 +17,8 @@ include __DIR__ . "/vendor/autoload.php";
 
 use Freep\Console\Terminal;
 
-// PHP in CLI mode provides the reserved variable "$argv", containing the list
-// of words typed by the user in the Terminal. This variable will be used to
+// PHP in CLI mode provides the reserved variable "$argv", containing the list 
+// of words typed by the user in the Terminal. This variable will be used to 
 // pass the information to the library's Terminal.
 
 // Removes the first argument, which contains the script name (ex: ./example)
@@ -45,5 +44,4 @@ Note that the above script starts with `#!/bin/php`. This notation tells the ope
 
 > **Note:** on unix or derived systems, to be able to directly invoke a script (eg ./example), it must have the permission to execute. This is achieved by the command `chmod a+x example`
 
-[◂ How to use](01-how-to-use.md) | [Documentation Summary](index.md) | [Instantiating the Terminal ▸](03-instantiating-the-terminal.md)
--- | -- | --
+--page-nav--

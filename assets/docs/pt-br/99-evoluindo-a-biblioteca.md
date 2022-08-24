@@ -1,7 +1,6 @@
 # Evoluindo a biblioteca
 
-[◂ Testando comandos](08-testando-comandos.md) | [Sumário da Documentação ▸](indice.md)
--- | --
+--page-nav--
 
 ## 1. Infraestrutura
 
@@ -38,5 +37,4 @@ Para executar os testes de unidade, use:
 ./composer test
 ```
 
-[◂ Testando comandos](08-testando-comandos.md) | [Sumário da Documentação ▸](indice.md)
--- | --
+--page-nav--

@@ -1,7 +1,6 @@
 # Using arguments
 
-[◂ Implementing Options](05-implementing-options.md) | [Documentation Summary](index.md) | [Improving the library ▸](07-message-library.md)
--- | -- | --
+--page-nav--
 
 ## 1. The Arguments object
 
@@ -32,19 +31,19 @@ For example:
 ```php
 class SayHello extends Command
 {
-// ...
+    // ...
 
-protected function handle(Arguments $arguments): void
-{
-$this->info($arguments->getOption('-n'));
-//  this will display: Ricardo Pereira
+    protected function handle(Arguments $arguments): void
+    {
+        $this->info($arguments->getOption('-n'));
+        //  this will display: Ricardo Pereira
 
-$this->info($arguments->getOption('-r'));
-//  this will display: Arquitetura Limpa
+        $this->info($arguments->getOption('-r'));
+        //  this will display: Arquitetura Limpa
 
-$this->info($arguments->getOption('-d'));
-//  this will display: 1
-}
+        $this->info($arguments->getOption('-d'));
+        //  this will display: 1
+    }
 }
 ```
 
@@ -62,16 +61,16 @@ For example:
 ```php
 class SayHello extends Command
 {
-// ...
+    // ...
 
-protected function handle(Arguments $arguments): void
-{
-$this->info($arguments->getArgument(0));
-//  this will display: Teste
+    protected function handle(Arguments $arguments): void
+    {
+        $this->info($arguments->getArgument(0));
+        //  this will display: Teste
 
-$this->info($arguments->getArgument(1));
-//  this will display: Portas e Adaptadores
-}
+        $this->info($arguments->getArgument(1));
+        //  this will display: Portas e Adaptadores
+    }
 }
 ```
 
@@ -79,5 +78,4 @@ $this->info($arguments->getArgument(1));
 
 All values obtained by the `Arguments` object will be of type "string", no matter if they are texts or numbers. If it is a boolean, the string returned will be "0" or "1".
 
-[◂ Implementing Options](05-implementing-options.md) | [Documentation Summary](index.md) | [Improving the library ▸](07-message-library.md)
--- | -- | --
+--page-nav--

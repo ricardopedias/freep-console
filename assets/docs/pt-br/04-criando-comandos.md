@@ -1,7 +1,6 @@
 # Criando Comandos
 
-[◂ Instanciando o terminal](03-instanciando-o-terminal.md) | [Sumário da Documentação](indice.md) | [Implementando opções ▸](05-implementando-opcoes.md)
--- | -- | --
+--page-nav--
 
 ## 1. Sobre um comando
 
@@ -10,9 +9,9 @@ Todos os comandos devem ser implementados com base na classe abstrata `Freep\Con
 ```php
 abstract class Command
 {
-abstract protected function initialize(): void;
+    abstract protected function initialize(): void;
 
-abstract protected function handle(Arguments $arguments): void;
+    abstract protected function handle(Arguments $arguments): void;
 }
 ```
 
@@ -27,14 +26,14 @@ Uma implementação mínima deve conter ao menos o método `"Command->setarNome(
 ```php
 class MeuComando extends Command
 {
-protected function initialize(): void
-{
-$this->setName("meu-comando");
+    protected function initialize(): void
+    {
+        $this->setName("meu-comando");
 
-// outras configurações do comando
-}
+        // outras configurações do comando
+    }
 
-//...
+    //...
 }
 ```
 
@@ -72,10 +71,10 @@ Mais informações sobre opções em [Implementando Opções](05-implementando-o
 
 ```php
 $this->addOption(new Option(
-'-d',
-'--destruir',
-'Apaga o arquivo texto após usá-lo',
-Option::OPTIONAL
+    '-d',
+    '--destruir',
+    'Apaga o arquivo texto após usá-lo',
+    Option::OPTIONAL
 ));
 ```
 
@@ -91,16 +90,16 @@ ele forneceu como argumentos ao invocar o comando.
 ```php
 class MeuComando extends Command
 {
-// ...
+    // ...
 
-protected function handle(Arguments $arguments): void
-{
-// implementação da rotina do comando
+    protected function handle(Arguments $arguments): void
+    {
+        // implementação da rotina do comando
 
-$this->info('Comando executado com sucesso');
-}
+        $this->info('Comando executado com sucesso');
+    }
 
-//...
+    //...
 }
 ```
 
@@ -173,5 +172,4 @@ Este objeto é disponibilizado como argumento do método `"Command->handle()"`.
 
 Mais informações sobre argumentos em [Usando os Argumentos](06-usando-os-argumentos.md).
 
-[◂ Instanciando o terminal](03-instanciando-o-terminal.md) | [Sumário da Documentação](indice.md) | [Implementando opções ▸](05-implementando-opcoes.md)
--- | -- | --
+--page-nav--
