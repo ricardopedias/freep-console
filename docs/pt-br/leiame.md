@@ -5,8 +5,11 @@
 
 ## Sinopse
 
-Este repositório contém as funcionalidades necessárias para implementar um gerenciador de
-comandos para terminal em uma aplicação PHP de forma fácil.
+Este repositório contém as funcionalidades necessárias para implementar um gerenciador de comandos para terminal em uma aplicação PHP de forma fácil.
+
+```bash
+composer require ricardopedias/freep-console
+```
 
 Para informações detalhadas, consulte o [Sumário da Documentação](indice.md).
 
